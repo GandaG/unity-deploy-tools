@@ -13,9 +13,9 @@ mkdir $(pwd)/Project
 -quit
 
 echo "Move files to Assets/"
-mkdir $(pwd)/Project/Assets/$(project)
-mv $(pwd)/* $(pwd)/Project/Assets/$(project)
-rm -r $(pwd)/Project/Assets/$(project)/Project
+mkdir $(pwd)/Project/Assets/$project
+mv $(pwd)/* $(pwd)/Project/Assets/$project
+rm -r $(pwd)/Project/Assets/$project/Project
 
 echo "Attempting to package $project:"
 /Applications/Unity/Unity.app/Contents/MacOS/Unity \
@@ -24,7 +24,7 @@ echo "Attempting to package $project:"
 -silent-crashes \
 -logFile $(pwd)/unityPackage.log \
 -projectPath $(pwd)/Project \
--exportPackage $(pwd)/Project/Assets/$(project) $(project) \
+-exportPackage $(pwd)/Project/Assets/$project $project \
 -quit
 
 echo 'Logs from package:'
