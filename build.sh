@@ -16,7 +16,7 @@ echo "Move files to Assets/"
 mkdir $(pwd)/Project/Assets/$project
 for file in $(pwd)/*
 do
-  if [ $file != "Project" -o $file != "install.sh" -o $file != "Unity.pkg" -o $file != "unityProject.log" -o $file != "build.sh" ]
+  if [ $file != Project -o $file != install.sh -o $file != Unity.pkg -o $file != unityProject.log -o $file != build.sh ]
   then
     mv $file $(pwd)/Project/Assets/$project/
   fi
