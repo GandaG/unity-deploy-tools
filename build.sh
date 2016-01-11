@@ -14,8 +14,13 @@ mkdir $(pwd)/Project
 
 echo "Move files to Assets/"
 mkdir $(pwd)/Project/Assets/$project
-mv $(pwd)/* $(pwd)/Project/Assets/$project
-rm -r $(pwd)/Project/Assets/$project/Project
+for file in $(pwd)/*
+do
+  if [ $file != "Project" -o $file != "install.sh" -o $file != "Unity.pkg" -o $file != "unityProject.log" -o $file != "build.sh" ]
+  then
+    mv $file $(pwd)/Project/Assets/$project/
+  fi
+done
 
 echo "Attempting to package $project:"
 /Applications/Unity/Unity.app/Contents/MacOS/Unity \
