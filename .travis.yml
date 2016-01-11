@@ -1,0 +1,7 @@
+language: objective-c
+rvm:
+- 2.1.2
+install:
+- ./install.sh
+script:
+- ./build.sh
