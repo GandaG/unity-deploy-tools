@@ -14,7 +14,7 @@ mkdir "$(pwd)"/Project
 
 echo "Move files to Assets/"
 mkdir -p "$(pwd)"/Project/Assets/$project
-find . -path ./Project/ -prune -o \! -name "*.sh" \! -name "*.pkg" \! -name "*.log" -name "*" -exec mv {} "$(pwd)"/Project/Assets/$project/ \;
+find . -path ./Project/ -name "*.sh" -name "*.pkg" -name "*.log" -prune -o -name "*" -exec mv {} "$(pwd)"/Project/Assets/$project/ \;
 
 echo "Attempting to package $project:"
 /Applications/Unity/Unity.app/Contents/MacOS/Unity \
