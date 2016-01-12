@@ -1,8 +1,5 @@
 language: objective-c
-before_install:
- - chmod a+x install.sh
- - chmod a+x build.sh
 install:
-- ./install.sh
+- sh install
 script:
-- ./build.sh
+- sh build
