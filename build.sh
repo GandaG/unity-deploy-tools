@@ -3,7 +3,9 @@
 project="ci-build"
 
 echo "Setting up project directory;"
+echo ~/
 mkdir "$(pwd)"/Project
+pwd
 /Applications/Unity/Unity.app/Contents/MacOS/Unity \
  -batchmode \
  -nographics \
@@ -13,7 +15,9 @@ mkdir "$(pwd)"/Project
  -quit
 
 echo "Moving files into temporary project;"
+pwd
 mkdir -p "$(pwd)"/Project/Assets/$project
+pwd
 #find "$(pwd)" \( -type d \( -path "$(pwd)"/Project/ -o -path "$(pwd)"/.git/ \) \
 # -o -type f \( -name "*.sh" -o -name "*.pkg" -o -name "*.log" -o -name ".gitignore" \) \) \
 # -prune -o \
