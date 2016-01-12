@@ -14,15 +14,10 @@ mkdir "$(pwd)"/Project
 
 echo "Moving files into temporary project;"
 mkdir -p "$(pwd)"/Project/Assets/$project
-find "$(pwd)" \
- -path "$(pwd)"/Project/ \
- -a -path "$(pwd)"/.git/ \
- -a -name "*.sh" \
- -a -name "*.pkg" \
- -a -name "*.log" \
- -a -name ".gitignore" \
+find "$(pwd)" \( -type d \( -path "$(pwd)"/Project/ -o -path "$(pwd)"/.git/ \) \
+ -o -type f \( -name "*.sh" -o -name "*.pkg" -o -name "*.log" -o -name ".gitignore" \) \) \
  -prune -o \
- -name "*" \
+ \( -type f -o -type d \) \
  -exec mv {} "$(pwd)"/Project/Assets/$project/ \;
 
 echo "Attempting to package $project;"
