@@ -2,7 +2,7 @@
 
 project="ci-build"
 
-echo "Setting up project directory:"
+echo "Setting up project directory;"
 mkdir "$(pwd)"/Project
 /Applications/Unity/Unity.app/Contents/MacOS/Unity \
 -batchmode \
@@ -12,11 +12,11 @@ mkdir "$(pwd)"/Project
 -createProject "$(pwd)"/Project \
 -quit
 
-echo "Move files to Assets/"
+echo "Moving files into temporary project;"
 mkdir -p "$(pwd)"/Project/Assets/$project
-find . -path ./Project/ -name "*.sh" -name "*.pkg" -name "*.log" -prune -o -name "*" -exec mv {} "$(pwd)"/Project/Assets/$project/ \;
+find "$(pwd)" -path "$(pwd)"/Project/ -path "$(pwd)"/.git/ -name "*.sh" -name "*.pkg" -name "*.log" -name ".gitignore" -prune -o -name "*" -exec mv {} "$(pwd)"/Project/Assets/$project/ \;
 
-echo "Attempting to package $project:"
+echo "Attempting to package $project;"
 /Applications/Unity/Unity.app/Contents/MacOS/Unity \
 -batchmode \
 -nographics \
