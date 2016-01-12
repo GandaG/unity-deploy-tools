@@ -1,4 +1,5 @@
 language: bash
+sudo: required
 before_install:
  - chmod a+x install.sh
  - chmod a+x build.sh
