@@ -1,5 +1,5 @@
 language: bash
-sudo: required
+os: osx
 before_install:
  - chmod a+x install.sh
  - chmod a+x build.sh
