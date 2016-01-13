@@ -23,7 +23,8 @@ find ./* \
  ! -name "*.pkg" \
  ! -name "*.log" \
  ! -name ".gitignore" \
- -exec mv {} ./Project/Assets/$project/ \;
+ -print
+# -exec mv {} ./Project/Assets/$project/ \;
 
 echo "Attempting to package $project;"
 /Applications/Unity/Unity.app/Contents/MacOS/Unity \
