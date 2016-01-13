@@ -17,8 +17,7 @@ mkdir -p ./Project/Assets/$project
 
 find ./* \
  ! -path '*/\.*' \
- ! -path ./Project/* \
- ! -path ./.git/ \
+ ! -path "./Project/*" \
  ! -name "*.sh" \
  ! -name "*.pkg" \
  ! -name "*.log" \
