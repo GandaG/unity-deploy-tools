@@ -14,9 +14,9 @@ mkdir ./Project
 
 echo 'Log:'
 cat ./unityProject.log
-printf '%s\n' --------------------
-printf '%s\n' --------------------
-printf '%s\n' --------------------
+printf '%s\n' ------------------------------------------------------------
+printf '%s\n' ------------------------------------------------------------
+printf '%s\n' ------------------------------------------------------------
 
 echo "Moving files into temporary project;"
 mkdir -p ./Project/Assets/$project
@@ -42,6 +42,13 @@ echo "Attempting to package $project;"
 
 echo 'Log:'
 cat ./unityPackage.log
-printf '%s\n' --------------------
-printf '%s\n' --------------------
-printf '%s\n' --------------------
+printf '%s\n' ------------------------------------------------------------
+printf '%s\n' ------------------------------------------------------------
+printf '%s\n' ------------------------------------------------------------
+
+#For testing: I need to know where the package is exported to.
+echo "Inside $project:"
+find ./Project/Assets/$project/* -type f -print
+
+echo "Inside Assets:"
+find ./Project/Assets/* -type f -print
