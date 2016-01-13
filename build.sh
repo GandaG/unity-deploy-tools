@@ -1,6 +1,7 @@
 #! /bin/sh
 
-project="ci-build"
+project="${TRAVIS_REPO_SLUG##*/}"
+package=$project.unitypackage
 
 echo "Setting up project directory;"
 mkdir ./Project
@@ -37,7 +38,7 @@ echo "Attempting to package $project;"
  -silent-crashes \
  -logFile ./unityPackage.log \
  -projectPath "$PWD"/Project \
- -exportPackage Assets/$project $project.unitypackage \
+ -exportPackage Assets/$project $package \
  -quit
 
 echo 'Log:'
@@ -46,6 +47,6 @@ printf '%s\n' ------------------------------------------------------------
 printf '%s\n' ------------------------------------------------------------
 printf '%s\n' ------------------------------------------------------------
 
-#For testing: I need to know where the package is exported to.
+#For testing: I need to know where the package is exported to. The package is exported to ./Project/$package
 echo "Unity Package:"
 find . -name "*.unitypackage"
