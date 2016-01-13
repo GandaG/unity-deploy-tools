@@ -21,13 +21,13 @@ mkdir -p ./Project/Assets/$project
 # -exec mv {} "$(pwd)"/Project/Assets/$project/ \;
  
 find . \
+ ! -path '*/\.*' #hidden files
  ! -path ./Project/ \
  ! -path ./.git/ \
  ! -name "*.sh" \
  ! -name "*.pkg" \
  ! -name "*.log" \
  ! -name ".gitignore" \
- -type f \
  -exec mv {} ./Project/Assets/$project/ \;
 
 echo "Attempting to package $project;"
