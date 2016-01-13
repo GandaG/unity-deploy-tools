@@ -37,7 +37,7 @@ echo "Attempting to package $project;"
  -silent-crashes \
  -logFile ./unityPackage.log \
  -projectPath "$PWD"/Project \
- -exportPackage Assets/$project $project \
+ -exportPackage Assets/$project $project.unitypackage \
  -quit
 
 echo 'Log:'
