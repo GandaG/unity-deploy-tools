@@ -23,7 +23,6 @@ find ./* \
  ! -name "*.pkg" \
  ! -name "*.log" \
  ! -name ".gitignore" \
- -print
 # -exec mv {} ./Project/Assets/$project/ \;
 
 echo "Attempting to package $project;"
