@@ -1,40 +1,51 @@
-#! /bin/bash
+#! /bin/sh
 
 project="ci-build"
 
 echo "Setting up project directory;"
-mkdir "$(pwd)"/Project
+mkdir ./Project
 /Applications/Unity/Unity.app/Contents/MacOS/Unity \
  -batchmode \
  -nographics \
  -silent-crashes \
- -logFile "$(pwd)"/unityProject.log \
- -createProject "$(pwd)"/Project \
+ -logFile ./unityProject.log \
+ -createProject ./Project \
  -quit
 
+echo 'Log:'
+cat ./unityProject.log
+printf '%s\n' ------------------------------------------------------------
+printf '%s\n' ------------------------------------------------------------
+printf '%s\n' ------------------------------------------------------------
+
 echo "Moving files into temporary project;"
-mkdir -p "$(pwd)"/Project/Assets/$project
-find "$(pwd)" \
- -path "$(pwd)"/Project/ \
- -a -path "$(pwd)"/.git/ \
- -a -name "*.sh" \
- -a -name "*.pkg" \
- -a -name "*.log" \
- -a -name ".gitignore" \
- -prune -o \
- -name "*" \
- -exec mv {} "$(pwd)"/Project/Assets/$project/ \;
+mkdir -p ./Project/Assets/$project
+find ./* \
+ ! -path '*/\.*' \
+ ! -path "./Project/*" \
+ ! -name "Project" \
+ ! -name "*.sh" \
+ ! -name "*.pkg" \
+ ! -name "*.log" \
+ ! -name ".gitignore" \
+ -exec mv {} ./Project/Assets/$project/ \;
 
 echo "Attempting to package $project;"
 /Applications/Unity/Unity.app/Contents/MacOS/Unity \
  -batchmode \
  -nographics \
  -silent-crashes \
- -logFile "$(pwd)"/unityPackage.log \
- -projectPath "$(pwd)"/Project \
- -exportPackage "$(pwd)"/Project/Assets/$project $project \
+ -logFile ./unityPackage.log \
+ -projectPath "$PWD"/Project \
+ -exportPackage Assets/$project $project.unitypackage \
  -quit
 
-echo 'Logs from package:'
-cat "$(pwd)"/unityProject.log
-cat "$(pwd)"/unityPackage.log
+echo 'Log:'
+cat ./unityPackage.log
+printf '%s\n' ------------------------------------------------------------
+printf '%s\n' ------------------------------------------------------------
+printf '%s\n' ------------------------------------------------------------
+
+#For testing: I need to know where the package is exported to.
+echo "Unity Package:"
+find . -name "*.unitypackage"
