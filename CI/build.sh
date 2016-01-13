@@ -3,50 +3,56 @@
 project="${TRAVIS_REPO_SLUG##*/}"
 package=$project.unitypackage
 
-echo "Setting up project directory;"
+echo "Setting up project directory; -------------------------------------------------------------------------------------------------"
 mkdir ./Project
 /Applications/Unity/Unity.app/Contents/MacOS/Unity \
  -batchmode \
  -nographics \
  -silent-crashes \
- -logFile ./unityProject.log \
+ -logFile ./CI/unityProject.log \
  -createProject ./Project \
  -quit
 
-echo 'Log:'
-cat ./unityProject.log
+echo 'Project Log; ------------------------------------------------------------------------------------------------------------------'
+cat ./CI/unityProject.log
 printf '%s\n' ------------------------------------------------------------------------------------------------------------------------
 printf '%s\n' ------------------------------------------------------------------------------------------------------------------------
 printf '%s\n' ------------------------------------------------------------------------------------------------------------------------
 
-echo "Moving files into temporary project;"
+echo "Moving files into temporary project; ------------------------------------------------------------------------------------------"
 mkdir -p ./Project/Assets/$project
 find ./* \
  ! -path '*/\.*' \
  ! -path "./Project/*" \
  ! -name "Project" \
- ! -name "*.sh" \
- ! -name "*.pkg" \
- ! -name "*.log" \
+ ! -path "./CI/*" \
+ ! -name "CI" \
  ! -name ".gitignore" \
  -exec mv {} ./Project/Assets/$project/ \;
 
-echo "Attempting to package $project;"
+echo "Attempting to package $project; -----------------------------------------------------------------------------------------------"
 /Applications/Unity/Unity.app/Contents/MacOS/Unity \
  -batchmode \
  -nographics \
  -silent-crashes \
- -logFile ./unityPackage.log \
+ -logFile ./CI/unityPackage.log \
  -projectPath "$PWD"/Project \
  -exportPackage Assets/$project $package \
  -quit
 
-echo 'Log:'
-cat ./unityPackage.log
+echo 'Packaging Log; ----------------------------------------------------------------------------------------------------------------'
+cat ./CI/unityPackage.log
 printf '%s\n' ------------------------------------------------------------------------------------------------------------------------
 printf '%s\n' ------------------------------------------------------------------------------------------------------------------------
 printf '%s\n' ------------------------------------------------------------------------------------------------------------------------
 
-#For testing: I need to know where the package is exported to. The package is exported to ./Project/$package
-echo "Unity Package:"
-find . -name "*.unitypackage"
+#The package is exported to ./Project/$package
+echo "Checking package exists; ------------------------------------------------------------------------------------------------------"
+file=find . -name "*.unitypackage" -exec basename {} \;
+
+if [ -e $file ];
+then
+   exit 0
+else
+   exit 1
+fi
