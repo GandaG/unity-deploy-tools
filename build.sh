@@ -12,9 +12,14 @@ mkdir ./Project
  -createProject ./Project \
  -quit
 
+echo 'Log:'
+cat ./unityProject.log
+printf '%s\n' --------------------
+printf '%s\n' --------------------
+printf '%s\n' --------------------
+
 echo "Moving files into temporary project;"
 mkdir -p ./Project/Assets/$project
-
 find ./* \
  ! -path '*/\.*' \
  ! -path "./Project/*" \
@@ -32,9 +37,11 @@ echo "Attempting to package $project;"
  -silent-crashes \
  -logFile ./unityPackage.log \
  -projectPath "$PWD"/Project \
- -exportPackage ./Project/Assets/$project $project \
+ -exportPackage Assets/$project $project \
  -quit
 
-echo 'Logs from package:'
-cat ./unityProject.log
+echo 'Log:'
 cat ./unityPackage.log
+printf '%s\n' --------------------
+printf '%s\n' --------------------
+printf '%s\n' --------------------
