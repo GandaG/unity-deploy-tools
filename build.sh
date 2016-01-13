@@ -20,8 +20,8 @@ mkdir -p ./Project/Assets/$project
 # \( -type f -o -type d \) \
 # -exec mv {} "$(pwd)"/Project/Assets/$project/ \;
  
-find . \
- ! -path '*/\.*' #hidden files
+find ./* \
+ ! -path '*/\.*' \ #hidden files
  ! -path ./Project/ \
  ! -path ./.git/ \
  ! -name "*.sh" \
@@ -36,7 +36,7 @@ echo "Attempting to package $project;"
  -nographics \
  -silent-crashes \
  -logFile ./unityPackage.log \
- -projectPath ./Project \
+ -projectPath "$PWD"/Project \
  -exportPackage ./Project/Assets/$project $project \
  -quit
 
