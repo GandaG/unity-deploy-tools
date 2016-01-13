@@ -47,8 +47,5 @@ printf '%s\n' ------------------------------------------------------------
 printf '%s\n' ------------------------------------------------------------
 
 #For testing: I need to know where the package is exported to.
-echo "Inside $project:"
-find ./Project/Assets/$project/* -type f -print
-
-echo "Inside Assets:"
-find ./Project/Assets/* -type f -print
+echo "Unity Package:"
+find . -name "*.unitypackage"
