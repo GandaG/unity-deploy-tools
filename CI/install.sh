@@ -1,7 +1,7 @@
 #! /bin/sh
 
 #testing variables
-find ./
+cat ./.travis.yml
 echo $project
 echo $package
 
