@@ -1,6 +1,6 @@
 language: objective-c
 
-install:
+before_install:
  - sh CI/install.sh
 
 script:
