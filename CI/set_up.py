@@ -5,7 +5,7 @@ try:
 except NameError:
 	exit(0)
 
-if !TRAVIS_PULL_REQUEST:
+if TRAVIS_PULL_REQUEST != "false":
 	exit(0) #It's better to not rebuild on pr since the secure variables are not shared.
 
 project = TRAVIS_REPO_SLUG.split("/")[1]
