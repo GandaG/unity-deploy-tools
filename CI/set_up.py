@@ -28,6 +28,7 @@ baseymldict = {"language": ["objective-c"],
 				"env": {"global": ["REBUILDING = true"]}
 				}
 
+#it would great if the specific commit could be specified
 requestdict = {"message": "Testing API requests. Rebuilding with different yml file.",
 				"branch": branch,
 				"config": baseymldict}
@@ -39,8 +40,7 @@ try:
 except NameError:
 	print "Not deploying to Github Releases."
 else:
-	deploy_gh = {
-		"deploy": [
+	deploy_gh = [
 			{
 			"provider": "releases",
 			"api_key": [
@@ -55,7 +55,6 @@ else:
 			}
 			}
 		]
-		}
 	baseymldict["deploy"] = deploy_gh
 
 response = requests.post(url, headers=headers, json=json)

@@ -71,7 +71,7 @@ file=./Project/$package
 
 if [ -e $file ];
 then
-	echo "Package exported successfully!"
+	echo "Package exported successfully: $file"
 	exit 0
 else
 	"Package not exported. Aborting."

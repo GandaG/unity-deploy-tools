@@ -29,20 +29,20 @@ then
    /bin/cat <<EOM > ./Temp/.travis.yml
    language: objective-c
 
-before_install:
-  - pip install requests
-  - python ./CI/set_up.py
-
-install:
-  - sh CI/install.sh
-
-script:
-  - sh CI/build.sh
-  
-env:
-  global:
-    - secure: API_encrypted_token_here
-    - secure: Gihutb_encrypted_token_here
+   before_install:
+     - pip install requests
+     - python ./CI/set_up.py
+   
+   install:
+     - sh CI/install.sh
+   
+   script:
+     - sh CI/build.sh
+     
+   env:
+     global:
+       - secure: API_encrypted_token_here
+       - secure: Gihutb_encrypted_token_here
 
 EOM
    
