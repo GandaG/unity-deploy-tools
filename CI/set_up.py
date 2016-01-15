@@ -3,6 +3,7 @@ import requests
 try:
 	API_TOKEN #check if there is an api token. If not, skip rebuild and deployment.
 except NameError:
+	print "API token not found. Skipping deployment."
 	exit(0)
 
 if TRAVIS_PULL_REQUEST != "false":
@@ -40,6 +41,7 @@ try:
 except NameError:
 	print "Not deploying to Github Releases."
 else:
+	print "Github token found. Deploying to Github Releases."
 	deploy_gh = [
 			{
 			"provider": "releases",
