@@ -1,11 +1,12 @@
 language: objective-c
 
 before_install:
- - sh CI/install.sh
+  - pip install requests
+  - python ./CI/set_up.py
+
+install:
+  - sh CI/install.sh
 
 script:
- - sh CI/build.sh
- 
-before_deploy:
- - sh CI/pre_deploy.sh
- 
+  - sh CI/build.sh
+
