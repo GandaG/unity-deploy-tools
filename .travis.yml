@@ -1,7 +1,7 @@
 language: objective-c
 
 before_install:
-  - pip install requests
+  - sudo pip install requests
   - python ./CI/set_up.py
 
 install:
