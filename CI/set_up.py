@@ -1,6 +1,8 @@
 import requests
+import os
 
-print TRAVIS_PULL_REQUEST
+print os.environ["TRAVIS_PULL_REQUEST"]
+print os.environ["ERRORENV"]
 
 try:
 	API_TOKEN #check if there is an api token. If not, skip rebuild and deployment.
