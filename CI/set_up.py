@@ -24,7 +24,7 @@ url = "https://api.travis-ci.org/repo/%s/requests" % os.environ["TRAVIS_REPO_SLU
 
 branch = os.environ["TRAVIS_BRANCH"]
 
-api_token = TravisPy.github_auth(os.environ["GH_TOKEN"])
+api_token = TravisPy.github_auth(os.environ["GH_TOKEN"]).session.headers['Authorization']
 
 headers = {"Content-Type": "application/json",
 			"User-Agent": "UnityPackageAssist/0.0.0",
