@@ -1,30 +1,27 @@
 import requests
 import os
 
-print os.environ["TRAVIS_PULL_REQUEST"]
-print os.environ["ERRORENV"]
-
 try:
-	API_TOKEN #check if there is an api token. If not, skip rebuild and deployment.
-except NameError:
+	os.environ["API_TOKEN"] #check if there is an api token. If not, skip rebuild and deployment.
+except KeyError:
 	print "API token not found. Skipping deployment."
 	exit(0)
 
-if TRAVIS_PULL_REQUEST != "false":
+if os.environ["TRAVIS_PULL_REQUEST"] != "false":
 	exit(0) #It's better to not rebuild on pr since the secure variables are not shared.
 
-project = TRAVIS_REPO_SLUG.split("/")[1]
+project = os.environ["TRAVIS_REPO_SLUG"].split("/")[1]
 
 package = "%s.unitypackage" % project
 
-url = "https://api.travis-ci.org/repo/%s/requests" % TRAVIS_REPO_SLUG
+url = "https://api.travis-ci.org/repo/%s/requests" % os.environ["TRAVIS_REPO_SLUG"]
 
-branch = TRAVIS_BRANCH
+branch = os.environ["TRAVIS_BRANCH"]
 
 headers = {"Content-Type": "application/json",
 			"Accept": "application/json",
 			"Travis-API-Version": "3",
-			"Authorization": API_TOKEN}
+			"Authorization": os.environ["API_TOKEN"]}
 
 baseymldict = {"language": ["objective-c"],
 				"before_install": ["sh CI/install.sh"],
@@ -41,8 +38,8 @@ requestdict = {"message": "Testing API requests. Rebuilding with different yml f
 json = {"request": requestdict}
 
 try:
-	GH_TOKEN
-except NameError:
+	os.environ["GH_TOKEN"]
+except KeyError:
 	print "Not deploying to Github Releases."
 else:
 	print "Github token found. Deploying to Github Releases."
@@ -51,7 +48,7 @@ else:
 			"provider": "releases",
 			"api_key": [
 				{
-				"secure": GH_TOKEN
+				"secure": os.environ["GH_TOKEN"]
 				}
 			],
 			"file": "./Deploy/%s.zip" % project,
