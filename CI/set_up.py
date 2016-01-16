@@ -2,7 +2,10 @@ import requests
 from travispy import TravisPy
 import os
 
+#this whole script needs to be cleaned, right now it's a mess.
+
 try:
+	#this needs to be changed since it's no longer needed. api token is grabbed with travispy.
 	os.environ["API_TOKEN"] #check if there is an api token. If not, skip rebuild and deployment.
 except KeyError:
 	print "API token not found. Skipping deployment."
@@ -17,13 +20,13 @@ project = os.environ["TRAVIS_REPO_SLUG"].split("/")[1]
 
 package = "%s.unitypackage" % project
 
-urlrequest = "http://api.travis-ci.org/repo/%s/requests" % os.environ["TRAVIS_REPO_SLUG"]
+url = "https://api.travis-ci.org/repo/%s/requests" % os.environ["TRAVIS_REPO_SLUG"]
 
 branch = os.environ["TRAVIS_BRANCH"]
 
 api_token = TravisPy.github_auth(os.environ["GH_TOKEN"])
 
-headersrequest = {"Content-Type": "application/json",
+headers = {"Content-Type": "application/json",
 			"User-Agent": "UnityPackageAssist/0.0.0",
 			"Accept": "application/vnd.travis-ci.2+json",
 			"Travis-API-Version": "3",
@@ -41,7 +44,7 @@ requestdict = {"message": "Testing API requests. Rebuilding with different yml f
 				"branch": branch,
 				"config": baseymldict}
 
-jsonrequest = {"request": requestdict}
+json = {"request": requestdict}
 
 try:
 	os.environ["GH_TOKEN"]
@@ -66,24 +69,13 @@ else:
 		]
 	baseymldict["deploy"] = deploy_gh
 
-response = requests.post(urlrequest, headers=headersrequest, json=jsonrequest)
+response = requests.post(url, headers=headers, json=json)
 
 if response.status_code != requests.codes.ok:
 	print "Response content: %s" % response.content
 	print "Response status code: %s" % response.status_code
 	print "Response history: %s" % response.history
-	print "Post request failed, retrying..."
-	r2 = requests.post(url, headers=headers, json=json)
-	if r2.status_code != requests.codes.ok:
-		print "Response content: %s" % r2.content
-		print "Response status code: %s" % r2.status_code
-		print "Response history: %s" % r2.history
-		raise r2.raise_for_status()
-		exit(1)
-	else:
-		print r2.content
-else:
-	print response.content
+	raise response.raise_for_status()
 
 
 
