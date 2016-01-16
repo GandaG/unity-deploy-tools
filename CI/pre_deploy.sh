@@ -28,23 +28,23 @@ then
    
    /bin/cat <<EOM > ./Temp/.travis.yml
    language: objective-c
-
-   before_install:
-     - pip install requests
-     - python ./CI/set_up.py
-   
+    
    install:
-     - sh CI/install.sh
-   
+     - sh ./CI/py_set_up.py
+     - python ./CI/deploy_set_up.py
+     - sh ./CI/unity_install.sh
+    
    script:
-     - sh CI/build.sh
-     
+     - sh ./CI/unity_build.sh
+    
    env:
      global:
-       - secure: API_encrypted_token_here
        - secure: Gihutb_encrypted_token_here
 
 EOM
+   
+   echo "New yml file:"
+   cat ./Temp/.travis.yml
    
    zip ./Temp/* "./Deploy/$project.zip"
 else

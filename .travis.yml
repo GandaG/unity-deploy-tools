@@ -1,19 +1,13 @@
 language: objective-c
 
-before_install:
-  - curl -o CI/Python.pkg https://www.python.org/ftp/python/2.7.11/python-2.7.11-macosx10.6.pkg
-  - sudo installer -dumplog -package CI/Python.pkg -target /
-  - sudo -H pip install requests
-  - sudo -H pip install travispy
-  - python ./CI/set_up.py
-
 install:
-  - sh CI/install.sh
+  - sh ./CI/py_set_up.py
+  - python ./CI/deploy_set_up.py
+  - sh ./CI/unity_install.sh
 
 script:
-  - sh CI/build.sh
+  - sh ./CI/unity_build.sh
 
 env:
     global:
-      - secure: "ssqFbKb1wEXjyBnCHAj6dVp8zN3drJPp5wiSy41cjernIBpZ3+BWn0IhhvUP22InUZitHMGCRUt6ve4qMnfB7LcHSnqNcXvwVqq6C8BwvCt8+CITglaqwUh6pGVsMLHPiGfCy3wxQbYZB/gYZphOHZvby14tboTB55kv6NQFHNHoBAe11paLZoV/p5sTH62vlOxuD8Intz76hSkZybTS2BMjTWWz0P094QOPcBHjrKNoF3gwW3yz6bzKECmYkB5hNLnnitdMTLvn+s1GQKw2JklFj2ZVClT68T71T+7uEWhuTemiwytqiK5vMJDOxuz5itQLUz1DPzS3boXBYHMheXddayyEyCW16vCoE2HXOgMCDSKL/Sj3s2sST0jVwK1lMZXMwVuysBbNRY4pA+XSBUoa35lfX9To22XzvV+E2c9xB+LNzJGdLsTh7X11z3a9B2OYQkheDQHbPxeLrunsloQ87kTafJXdufzdw/fDjlaY7PE/EFQDRKEhtSoZsdCkZhwMYjSoNgwKLj3zqPbPtrQ9I+aarROHD/2vhbi+0iLeqLw9dGe1IbH6cb8HpgwWnXyDXXRh2dfS7panoE/uZB4HBiZ8ie0i5C4uLDjERclLVbJfvRu0upRElJv4LKN4jQS9UOtK4RtBKs6C81v+lHYrRzUt0P0KyOIvo6z86do="
-      - secure: "lYwOP6Wumjx31PEIp6rf/2TTew5uGbBiyH07ZVcyrC2F32TyG5JjFy3JR4ycsErl/6u9YMYfKTdLGFWCr9R1k6m9BpqORuRFbJQ1LF+kEXAt3kfNHC9pD6qDFLHSYbQ65Akl4tWE9OKONCEVostawr1CVHUsPjhjHESkGHrRtXNKwf71XrXZlMF+Il+tDTqEMvmMcvjUFopGPYpixFTcLpLpz/R+OAL+1yuaidWqb/3kWRsLbH06zmn+BrysIzNV2o/9DMOHFgYs3MmVrxD63DXBOKUSSVaAI+IEArrdslFntRptBrYpcTxsPQZ2pTV3f4SPmWVmG5r0eN86EjElxB/qYQl/S1I6/4R9UKQA3tRt3zsGX5DWkTaancUZRVM/uhNIRXF3PjNjzkHRCHO3UMBGHsgNPzU/NTUmmh9jpSp6YeOHqC9uzwPql7xlYrAKCimE6ANv7DXllJ0tI78TiOwQIolGiQExKoTgMXu4xvE4+Av0rSN0uLqfl7yhgJuCsQ1CMpPptUPQp9O4W2KcUBUJoC2Usx7dzVrcu7Jcd5wmvr7lCY8vwPxkgoDQI0DvxBnkElM4ye7n80vx7h6nTAGkQW7iEj/osPd6Vzh50lkg67T//ly+oaaVDtxLRzp+PXgmqG3LFftjPOEBGfhOwOoBf0hXIS+mpubLMZHx+as="
+        - secure: "lYwOP6Wumjx31PEIp6rf/2TTew5uGbBiyH07ZVcyrC2F32TyG5JjFy3JR4ycsErl/6u9YMYfKTdLGFWCr9R1k6m9BpqORuRFbJQ1LF+kEXAt3kfNHC9pD6qDFLHSYbQ65Akl4tWE9OKONCEVostawr1CVHUsPjhjHESkGHrRtXNKwf71XrXZlMF+Il+tDTqEMvmMcvjUFopGPYpixFTcLpLpz/R+OAL+1yuaidWqb/3kWRsLbH06zmn+BrysIzNV2o/9DMOHFgYs3MmVrxD63DXBOKUSSVaAI+IEArrdslFntRptBrYpcTxsPQZ2pTV3f4SPmWVmG5r0eN86EjElxB/qYQl/S1I6/4R9UKQA3tRt3zsGX5DWkTaancUZRVM/uhNIRXF3PjNjzkHRCHO3UMBGHsgNPzU/NTUmmh9jpSp6YeOHqC9uzwPql7xlYrAKCimE6ANv7DXllJ0tI78TiOwQIolGiQExKoTgMXu4xvE4+Av0rSN0uLqfl7yhgJuCsQ1CMpPptUPQp9O4W2KcUBUJoC2Usx7dzVrcu7Jcd5wmvr7lCY8vwPxkgoDQI0DvxBnkElM4ye7n80vx7h6nTAGkQW7iEj/osPd6Vzh50lkg67T//ly+oaaVDtxLRzp+PXgmqG3LFftjPOEBGfhOwOoBf0hXIS+mpubLMZHx+as="
