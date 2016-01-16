@@ -16,15 +16,40 @@ project = os.environ["TRAVIS_REPO_SLUG"].split("/")[1]
 
 package = "%s.unitypackage" % project
 
-url = "https://api.travis-ci.org/repo/%s/requests" % os.environ["TRAVIS_REPO_SLUG"]
+urlrequest = "https://api.travis-ci.org/repo/%s/requests" % os.environ["TRAVIS_REPO_SLUG"]
+
+urlauth = "https://api.travis-ci.org/repo/%s/auth/github" % os.environ["TRAVIS_REPO_SLUG"]
+
+headersauth = {"Content-Type": "application/json",
+			"User-Agent": "UnityPackageAssist/0.0.0",
+			"Accept": "application/vnd.travis-ci.2+json"}
+
+jsonauth = {"github_token": os.environ["GH_TOKEN"]}
+
+response = requests.post(urlauth, headers=headersauth, json=jsonauth)
+
+if response.status_code != requests.codes.ok:
+	print "Response content: %s" % response.content
+	print "Response status code: %s" % response.status_code
+	print "Response history: %s" % response.history
+	print "Post request failed, retrying..."
+	r2 = requests.post(urlauth, headers=headersauth, json=jsonauth)
+	if r2.status_code != requests.codes.ok:
+		print "Response content: %s" % r2.content
+		print "Response status code: %s" % r2.status_code
+		print "Response history: %s" % r2.history
+		raise r2.raise_for_status()
+		exit(1)
+
+api_token = response.json[1]
 
 branch = os.environ["TRAVIS_BRANCH"]
 
-headers = {"Content-Type": "application/json",
+headersrequest = {"Content-Type": "application/json",
 			"User-Agent": "UnityPackageAssist/0.0.0",
 			"Accept": "application/vnd.travis-ci.2+json",
 			"Travis-API-Version": "3",
-			"Authorization": "token %s" % os.environ["API_TOKEN"]}
+			"Authorization": "token %s" % api_token}
 
 baseymldict = {"language": ["objective-c"],
 				"before_install": ["sh CI/install.sh"],
@@ -38,7 +63,7 @@ requestdict = {"message": "Testing API requests. Rebuilding with different yml f
 				"branch": branch,
 				"config": baseymldict}
 
-json = {"request": requestdict}
+jsonrequest = {"request": requestdict}
 
 try:
 	os.environ["GH_TOKEN"]
@@ -63,7 +88,7 @@ else:
 		]
 	baseymldict["deploy"] = deploy_gh
 
-response = requests.post(url, headers=headers, json=json)
+response = requests.post(urlrequest, headers=headersrequest, json=jsonrequest)
 
 if response.status_code != requests.codes.ok:
 	print "Response content: %s" % response.content
