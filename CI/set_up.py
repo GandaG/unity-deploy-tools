@@ -21,7 +21,7 @@ branch = os.environ["TRAVIS_BRANCH"]
 headers = {"Content-Type": "application/json",
 			"Accept": "application/json",
 			"Travis-API-Version": "3",
-			"Authorization": os.environ["API_TOKEN"]}
+			"Authorization": "token %s" % os.environ["API_TOKEN"]}
 
 baseymldict = {"language": ["objective-c"],
 				"before_install": ["sh CI/install.sh"],
