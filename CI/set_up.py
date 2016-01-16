@@ -16,11 +16,13 @@ else:
 if os.environ["TRAVIS_PULL_REQUEST"] != "false":
 	exit(0) #It's better to not rebuild on pr since the secure variables are not shared.
 
+user = os.environ["TRAVIS_REPO_SLUG"].split("/")[0]
+
 project = os.environ["TRAVIS_REPO_SLUG"].split("/")[1]
 
 package = "%s.unitypackage" % project
 
-url = "https://api.travis-ci.org/repo/%s/requests" % os.environ["TRAVIS_REPO_SLUG"]
+url = "https://api.travis-ci.org/repo/%s%2F%s/requests" % (user, project)
 
 branch = os.environ["TRAVIS_BRANCH"]
 
