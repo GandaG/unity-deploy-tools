@@ -21,7 +21,8 @@ url = "https://api.travis-ci.org/repo/%s/requests" % os.environ["TRAVIS_REPO_SLU
 branch = os.environ["TRAVIS_BRANCH"]
 
 headers = {"Content-Type": "application/json",
-			"Accept": "application/json",
+			"User-Agent": "UnityPackageAssist/0.0.0"
+			"Accept": "application/vnd.travis-ci.2+json",
 			"Travis-API-Version": "3",
 			"Authorization": "token %s" % os.environ["API_TOKEN"]}
 
