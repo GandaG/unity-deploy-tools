@@ -1,7 +1,9 @@
 import requests
 
+print API_TOKEN
+
 try:
-	$API_TOKEN #check if there is an api token. If not, skip rebuild and deployment.
+	API_TOKEN #check if there is an api token. If not, skip rebuild and deployment.
 except NameError:
 	print "API token not found. Skipping deployment."
 	exit(0)
