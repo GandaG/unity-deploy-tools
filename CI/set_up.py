@@ -1,4 +1,5 @@
 import requests
+from travispy import TravisPy
 import os
 
 try:
@@ -18,21 +19,9 @@ package = "%s.unitypackage" % project
 
 urlrequest = "http://api.travis-ci.org/repo/%s/requests" % os.environ["TRAVIS_REPO_SLUG"]
 
-urlauth = "http://api.travis-ci.org/auth/github"
-
-headersauth = {"User-Agent": "UnityPackageAssist/0.0.0",
-			"Accept": "application/vnd.travis-ci.2+json"}
-
-response = requests.post(urlauth, headers=headersauth, params={"github_token": os.environ["GH_TOKEN"]})
-
-if response.status_code != requests.codes.ok:
-	raise response.raise_for_status()
-	exit(1)
-		
-contents = response.json()
-api_token = contents['access_token']
-
 branch = os.environ["TRAVIS_BRANCH"]
+
+api_token = TravisPy.github_auth(os.environ["GH_TOKEN"])
 
 headersrequest = {"Content-Type": "application/json",
 			"User-Agent": "UnityPackageAssist/0.0.0",
