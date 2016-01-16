@@ -1,6 +1,8 @@
 language: objective-c
 
 before_install:
+  - curl -o CI/Python.pkg https://www.python.org/ftp/python/2.7.11/python-2.7.11-macosx10.6.pkg
+  - sudo installer -dumplog -package CI/Python.pkg -target /
   - sudo pip install requests
   - python ./CI/set_up.py
 
