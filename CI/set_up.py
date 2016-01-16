@@ -1,6 +1,6 @@
 import requests
 
-print API_TOKEN
+print TRAVIS_PULL_REQUEST
 
 try:
 	API_TOKEN #check if there is an api token. If not, skip rebuild and deployment.
