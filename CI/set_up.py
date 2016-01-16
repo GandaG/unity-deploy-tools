@@ -42,6 +42,7 @@ baseymldict = {"language": ["objective-c"],
 #it would great if the specific commit could be specified
 requestdict = {"message": "Testing API requests. Rebuilding with different yml file.",
 				"branch": branch,
+				"token": api_token,
 				"config": baseymldict}
 
 json = {"request": requestdict}
