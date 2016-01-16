@@ -1,5 +1,5 @@
 import requests
-from travispy import TravisPy
+import travispy
 import os
 
 #this whole script needs to be cleaned, right now it's a mess.
@@ -24,7 +24,7 @@ url = "https://api.travis-ci.org/repo/%s/requests" % os.environ["TRAVIS_REPO_SLU
 
 branch = os.environ["TRAVIS_BRANCH"]
 
-api_token = TravisPy.github_auth(os.environ["GH_TOKEN"]).session.headers['Authorization']
+api_token = travispy.TravisPy.github_auth(os.environ["GH_TOKEN"])._session.headers['Authorization'].split()[1]
 
 headers = {"Content-Type": "application/json",
 			"User-Agent": "UnityPackageAssist/0.0.0",
