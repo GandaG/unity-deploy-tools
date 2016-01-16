@@ -23,9 +23,7 @@ urlauth = "http://api.travis-ci.org/auth/github"
 headersauth = {"User-Agent": "UnityPackageAssist/0.0.0",
 			"Accept": "application/vnd.travis-ci.2+json"}
 
-jsonauth = {"github_token": os.environ["GH_TOKEN"]}
-
-response = requests.post(urlauth, headers=headersauth, params={"github_token": token})
+response = requests.post(urlauth, headers=headersauth, params={"github_token": os.environ["GH_TOKEN"]})
 
 if response.status_code != requests.codes.ok:
 	raise response.raise_for_status()
