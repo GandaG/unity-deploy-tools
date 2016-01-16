@@ -6,6 +6,8 @@ try:
 except KeyError:
 	print "API token not found. Skipping deployment."
 	exit(0)
+else:
+	print "API token found. Starting deployment."
 
 if os.environ["TRAVIS_PULL_REQUEST"] != "false":
 	exit(0) #It's better to not rebuild on pr since the secure variables are not shared.
@@ -40,7 +42,7 @@ json = {"request": requestdict}
 try:
 	os.environ["GH_TOKEN"]
 except KeyError:
-	print "Not deploying to Github Releases."
+	print "Github token not found. Not deploying to Github Releases."
 else:
 	print "Github token found. Deploying to Github Releases."
 	deploy_gh = [
@@ -63,9 +65,15 @@ else:
 response = requests.post(url, headers=headers, json=json)
 
 if response.status_code != requests.codes.ok:
+	print "Response content: %s" % response.content
+	print "Response status code: %s" % response.status_code
+	print "Response history: %s" % response.history
 	print "Post request failed, retrying..."
 	r2 = requests.post(url, headers=headers, json=json)
 	if r2.status_code != requests.codes.ok:
+		print "Response content: %s" % r2.content
+		print "Response status code: %s" % r2.status_code
+		print "Response history: %s" % r2.history
 		raise r2.raise_for_status()
 		exit(1)
 	else:
