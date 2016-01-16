@@ -22,7 +22,7 @@ project = os.environ["TRAVIS_REPO_SLUG"].split("/")[1]
 
 package = "%s.unitypackage" % project
 
-url = "https://api.travis-ci.org/repo/" + user + "%sF" + project + "/requests"
+url = "https://api.travis-ci.org/repo/" + user + "%2F" + project + "/requests"
 
 branch = os.environ["TRAVIS_BRANCH"]
 
