@@ -30,7 +30,7 @@ then
    language: objective-c
     
    install:
-     - sh ./CI/py_set_up.py
+     - sh ./CI/py_set_up.sh
      - python ./CI/deploy_set_up.py
      - sh ./CI/unity_install.sh
     
