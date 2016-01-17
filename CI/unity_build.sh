@@ -1,10 +1,17 @@
 #! /bin/sh
 
 #the only case where it shouldn't run is if there is an api key present but it's not rebuilding.
-if ! [ -z "${API_TOKEN+x}" ];
+if ! [ -z "${GH_TOKEN+x}" ];
 then
 	if [ -z "${REBUILDING+x}" ];
 	then exit 0
+	fi
+else
+	if ! [ -z "${ASSET_TOKEN+x}" ];
+	then
+		if [ -z "${REBUILDING+x}" ];
+		then exit 0
+		fi
 	fi
 fi
 

@@ -5,10 +5,12 @@ package=$project.unitypackage
 
 if [ "$project" == "unitypackage-ci" ];
 then
+   echo "Preparing directories;"
    mkdir ./Temp
    mkdir ./Deploy
    
    #grab everything inside CI/ except the files created during the build.
+   echo "Move stuff inside CI/ to Temp/"
    find ./CI/ \ 
     ! -path '*/\.*' \ 
 	! -name "*.pkg" \ 
@@ -16,15 +18,12 @@ then
 	! -name ".gitignore" \ 
 	-exec mv {} ./Temp/ \; 
 
+   echo "Grab the README and the LICENSE."
    #also grab the readme and the license.
    find ./* \
     -name "README.rst" \
 	-name "LICENSE" \
 	-exec mv {} ./Temp/ \;
-	
-   #checking the files inside temp - for testing only
-   echo "All files inside temp;"
-   find ./Temp/*
    
    /bin/cat <<EOM > ./Temp/.travis.yml
    language: objective-c
@@ -43,9 +42,14 @@ then
 
 EOM
    
+   #checking the files inside temp - for testing only
+   echo "All files inside temp;"
+   find ./Temp/*
+   
    echo "New yml file:"
    cat ./Temp/.travis.yml
    
+   echo "Zip everything up."
    zip ./Temp/* "./Deploy/$project.zip"
 else
    mkdir ./Deploy
