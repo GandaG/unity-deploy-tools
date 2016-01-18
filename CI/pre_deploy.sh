@@ -11,12 +11,14 @@ then
     
     #grab everything inside CI/ except the files created during the build.
     echo "Move stuff inside CI/ to Temp/"
-    find ./CI/ \
-     ! -path '*/\.*' \
-     ! -name "*.pkg" \
-     ! -name "*.log" \
-     ! -name ".gitignore" \
-     -exec mv {} ./Temp/ \;
+    mv ./CI ./Temp/CI
+    
+    find ./Temp/CI/* \
+     -path "*/\.*" \
+     -name "*.pkg" \
+     -name "*.log" \
+     -name ".gitignore" \
+     -exec rm {} \;
     
     echo "Grab the README and the LICENSE."
     #also grab the readme and the license.
@@ -26,18 +28,18 @@ then
      -exec mv {} ./Temp/ \;
     
     echo "language: objective-c
-     
-     install:
-       - sh ./CI/py_set_up.sh
-       - python ./CI/deploy_set_up.py
-       - sh ./CI/unity_install.sh
-      
-     script:
-       - sh ./CI/unity_build.sh
-      
-     env:
-       global:
-         - secure: Gihutb_encrypted_token_here" > ./Temp/.travis.yml
+
+install:
+  - sh ./CI/py_set_up.sh
+  - python ./CI/deploy_set_up.py
+  - sh ./CI/unity_install.sh
+
+script:
+  - sh ./CI/unity_build.sh
+
+env:
+    global:
+      - secure: Gihutb_encrypted_token_here" > ./Temp/.travis.yml
     
     #checking the files inside temp - for testing only
     echo "All files inside temp;"
