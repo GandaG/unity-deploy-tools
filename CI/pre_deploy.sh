@@ -8,20 +8,16 @@ if [ "$project" == "unitypackage-ci" ]; then
   mkdir ./Temp
   mkdir ./Deploy
   
-  #Debugging.
-  echo "Everything inside ."
-  find ./*
-  
   #grab everything inside CI/ except the files created during the build.
   echo "Move stuff inside CI/ to Temp/"
   mv ./CI ./Temp/CI
   rm ./Temp/CI/*.pkg
   rm ./Temp/CI/*.log
   
-  echo "Grab the README and the LICENSE."
+  #echo "Grab the README and the LICENSE."
   #also grab the readme and the license.
-  mv "$PWD"/README.rst "$PWD"/Temp/README.rst
-  mv "$PWD"/LICENSE "$PWD"/Temp/LICENSE
+  #mv "$PWD"/README.rst "$PWD"/Temp/README.rst
+  #mv "$PWD"/LICENSE "$PWD"/Temp/LICENSE
   
   echo "language: objective-c
 
@@ -45,7 +41,7 @@ env:
   cat ./Temp/.travis.yml
   
   echo "Zip everything up."
-  zip ./Temp/* "./Deploy/$project.zip"
+  zip './Temp/*' "./Deploy/$project.zip"
 else
   mkdir ./Deploy
   
