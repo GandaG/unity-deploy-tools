@@ -14,10 +14,10 @@ if [ "$project" == "unitypackage-ci" ]; then
   rm ./Temp/CI/*.pkg
   rm ./Temp/CI/*.log
   
-  #echo "Grab the README and the LICENSE."
+  echo "Grab the README and the LICENSE."
   #also grab the readme and the license.
-  #mv "$PWD"/README.rst "$PWD"/Temp/README.rst
-  #mv "$PWD"/LICENSE "$PWD"/Temp/LICENSE
+  mv README.rst ./Temp/README.rst
+  mv LICENSE ./Temp/LICENSE
   
   echo "language: objective-c
 
@@ -33,7 +33,7 @@ env:
     global:
       - secure: Github_encrypted_token_here" > ./Temp/.travis.yml
   
-  #checking the files inside temp - for testing only
+  #checking the files inside temp - for debugging only
   echo "All files inside temp;"
   find ./Temp/*
   
