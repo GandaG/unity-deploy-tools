@@ -12,7 +12,7 @@ if [ "$project" == "unitypackage-ci" ]; then
   echo "Move stuff inside CI/ to Temp/"
   mv ./CI ./Temp/CI
   
-  find ./Temp/CI/* -path "*/\.*" -name "*.pkg" -name "*.log" -name ".gitignore"
+  find ./Temp/CI/* -name "*.pkg" -name "*.log" -name ".gitignore"
   
   echo "Grab the README and the LICENSE."
   #also grab the readme and the license.
