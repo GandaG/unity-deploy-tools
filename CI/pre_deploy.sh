@@ -17,8 +17,7 @@ then
      -path "*/\.*" \
      -name "*.pkg" \
      -name "*.log" \
-     -name ".gitignore" \
-     -exec rm {} \;
+     -name ".gitignore"
     
     echo "Grab the README and the LICENSE."
     #also grab the readme and the license.
@@ -39,7 +38,7 @@ script:
 
 env:
     global:
-      - secure: Gihutb_encrypted_token_here" > ./Temp/.travis.yml
+      - secure: Github_encrypted_token_here" > ./Temp/.travis.yml
     
     #checking the files inside temp - for testing only
     echo "All files inside temp;"
