@@ -11,17 +11,17 @@ if [ "$project" == "unitypackage-ci" ]; then
   #grab everything inside CI/ except the files created during the build.
   echo "Move stuff inside CI/ to Temp/"
   mv ./CI ./Temp/CI
-  
-  find ./Temp/CI/* -name "*.pkg" -name "*.log" -name ".gitignore"
+  rm ./Temp/CI "*.pkg"
+  rm ./Temp/CI "*.log"
+  rm ./Temp/CI ".gitignore"
   
   echo "Grab the README and the LICENSE."
   #also grab the readme and the license.
-  find ./* \
-   -name "README.rst" \
-   -name "LICENSE" \
-   -exec mv {} ./Temp/ \;
+  mv README.rst ./Temp/README.rst
+  mv LICENSE ./Temp/LICENSE
   
   echo "language: objective-c
+
 install:
   - sh ./CI/py_set_up.sh
   - python ./CI/deploy_set_up.py
