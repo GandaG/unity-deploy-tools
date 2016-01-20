@@ -91,7 +91,7 @@ else:
 		"file": "./Deploy/%s.zip" % project,
         "release": os.environ["TRAVIS_TAG"],
         "draft": "true",
-        "description:" " ",
+        "description": " ",
 		"skip_cleanup": "true",
 		"on": {
 			"tags": "true"
