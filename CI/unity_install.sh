@@ -1,18 +1,21 @@
 #! /bin/sh
 
 #the only case where it shouldn't run is if there is an api key present but it's not rebuilding.
-if ! [ -z "${GH_TOKEN+x}" ];
+if [ ! -z "$TRAVIS_TAG" -a "$TRAVIS_TAG" != " " ];
 then
-	if [ -z "${REBUILDING+x}" ];
-	then exit 0
-	fi
-else
-	if ! [ -z "${ASSET_TOKEN+x}" ];
-	then
-		if [ -z "${REBUILDING+x}" ];
-		then exit 0
-		fi
-	fi
+    if ! [ -z "${GH_TOKEN+x}" ];
+    then
+        if [ -z "${REBUILDING+x}" ];
+        then exit 0
+        fi
+    else
+        if ! [ -z "${ASSET_TOKEN+x}" ];
+        then
+            if [ -z "${REBUILDING+x}" ];
+            then exit 0
+            fi
+        fi
+    fi
 fi
 
 printf '%s\n' ------------------------------------------------------------------------------------------------------------------------
