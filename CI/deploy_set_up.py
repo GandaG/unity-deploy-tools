@@ -89,7 +89,7 @@ else:
 		"provider": "releases",
 		"api_key": os.environ["GH_TOKEN"],
 		"file": "./Deploy/%s.zip" % project,
-        "title": os.environ["TRAVIS_TAG"],
+        "name": os.environ["TRAVIS_TAG"],
         "draft": True,
 		"skip_cleanup": "true",
 		"on": {
@@ -97,6 +97,9 @@ else:
 			}
 		}
 	]
+    #Add a pre-release check if the tag has the words alpha or beta. Useful but should be able to be turned off.
+    if "alpha" in os.environ["TRAVIS_TAG"] or "beta" in os.environ["TRAVIS_TAG"]:
+        deploy_gh[0]["prerelease"] = True
 	baseymldict["deploy"] = deploy_gh
 
 response = requests.post(url, headers=headers, json=json)
