@@ -3,10 +3,16 @@ import travispy
 import os
 
 if os.environ["TRAVIS_PULL_REQUEST"] != "false":
-	print '------------------------------------------------------------------------------------------------------------------------' #this is here because it's pretty :D
-	print "On pull request, skipping deployment."
+	print '------------------------------------------------------------------------------------------------------------------------'
+	print "On pull request, skipping deployment. ----------------------------------------------------------------------------------"
 	print '------------------------------------------------------------------------------------------------------------------------'
 	exit(0) #It's better to not rebuild on pr since the secure variables are not shared.
+
+if not os.environ["TRAVIS_TAG"].strip():
+    print '------------------------------------------------------------------------------------------------------------------------'
+	print "No tag pushed, skipping deployment. ------------------------------------------------------------------------------------"
+	print '------------------------------------------------------------------------------------------------------------------------'
+    exit(0) #travis for some reason doesn't check for tags when rebuilding.
 
 try:
 	os.environ["GH_TOKEN"] #check if there is an api token. If not, skip rebuild and deployment.
@@ -15,12 +21,12 @@ except KeyError:
 		os.environ["ASSET_TOKEN"] #not supported for now but hopefully somewhere in the future.
 	except KeyError:
 		print '------------------------------------------------------------------------------------------------------------------------'
-		print "No deployment tokens found. Skipping deployment."
+		print "No deployment tokens found. Skipping deployment. -----------------------------------------------------------------------"
 		print '------------------------------------------------------------------------------------------------------------------------'
 		exit(0)
 
 print '------------------------------------------------------------------------------------------------------------------------'
-print "Deployment token(s) found. Starting deployment."
+print "Deployment token(s) found. Starting deployment. ------------------------------------------------------------------------"
 print '------------------------------------------------------------------------------------------------------------------------'
 
 #grab the user from the repo slug.
@@ -71,11 +77,11 @@ try:
 	os.environ["GH_TOKEN"]
 except KeyError:
 	print '------------------------------------------------------------------------------------------------------------------------'
-	print "Github token not found. Not deploying to Github Releases."
+	print "Github token not found. Not deploying to Github Releases. --------------------------------------------------------------"
 	print '------------------------------------------------------------------------------------------------------------------------'
 else:
 	print '------------------------------------------------------------------------------------------------------------------------'
-	print "Github token found. Deploying to Github Releases."
+	print "Github token found. Deploying to Github Releases. ----------------------------------------------------------------------"
 	print '------------------------------------------------------------------------------------------------------------------------'
 	#the github deploy section. branch condition should be changed later to allow users to choose which branch to deploy from. Maybe package name too.
 	deploy_gh = [
@@ -85,8 +91,7 @@ else:
 		"file": "./Deploy/%s.zip" % project,
 		"skip_cleanup": "true",
 		"on": {
-			"tags": "true",
-			"branch": "master"
+			"tags": "true"
 			}
 		}
 	]
@@ -96,7 +101,7 @@ response = requests.post(url, headers=headers, json=json)
 
 if response.status_code == 202:
 	print '------------------------------------------------------------------------------------------------------------------------'
-	print "Request accepted by Travis-CI. Rebuilding..."
+	print "Request accepted by Travis-CI. Rebuilding... ---------------------------------------------------------------------------"
 	print '------------------------------------------------------------------------------------------------------------------------'
 	exit(0)
 
