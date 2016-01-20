@@ -89,9 +89,8 @@ else:
 		"provider": "releases",
 		"api_key": os.environ["GH_TOKEN"],
 		"file": "./Deploy/%s.zip" % project,
-        "release": os.environ["TRAVIS_TAG"],
+        "title": os.environ["TRAVIS_TAG"],
         "draft": True,
-        "description": " ",
 		"skip_cleanup": "true",
 		"on": {
 			"tags": "true"
