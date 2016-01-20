@@ -90,7 +90,7 @@ else:
 		"api_key": os.environ["GH_TOKEN"],
 		"file": "./Deploy/%s.zip" % project,
         "release": os.environ["TRAVIS_TAG"],
-        "draft": "true",
+        "draft": True,
         "description": " ",
 		"skip_cleanup": "true",
 		"on": {
