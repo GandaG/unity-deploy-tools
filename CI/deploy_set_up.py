@@ -64,7 +64,7 @@ baseymldict = {"language": ["objective-c"],
 
 #the json request. token is here again just to be sure but probably isn't needed.
 #it would great if the specific commit could be specified
-requestdict = {"message": "Testing API requests. Rebuilding with different yml file.",
+requestdict = {"message": "Deployment requested. Rebuilding.",
 				"branch": branch,
 				"token": api_token,
 				"config": baseymldict}
@@ -89,6 +89,9 @@ else:
 		"provider": "releases",
 		"api_key": os.environ["GH_TOKEN"],
 		"file": "./Deploy/%s.zip" % project,
+        "release": os.environ["TRAVIS_TAG"],
+        "draft": "true",
+        "description:" " ",
 		"skip_cleanup": "true",
 		"on": {
 			"tags": "true"
