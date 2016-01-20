@@ -41,9 +41,6 @@ package = "%s.unitypackage" % project
 #the url to request to: not that instead of a '/' like in the slug, a '%2F' is required here.
 url = "https://api.travis-ci.org/repo/" + user + "%2F" + project + "/requests"
 
-#the branch to rebuild from. Right now it grabs the latest commit, it would be much better if it could be sent to a specific commit.
-branch = os.environ["TRAVIS_BRANCH"]
-
 #grabs the api_token via travispy (it's there, why not use it?) authenticate with the gh token then grab the token from the headers (see TravisPy class)
 api_token = travispy.TravisPy.github_auth(os.environ["GH_TOKEN"])._session.headers['Authorization'].split()[1]
 
@@ -65,7 +62,7 @@ baseymldict = {"language": ["objective-c"],
 #the json request. token is here again just to be sure but probably isn't needed.
 #it would great if the specific commit could be specified
 requestdict = {"message": "Deployment requested. Rebuilding.",
-                "branch": branch,
+                "commit": TRAVIS_COMMIT,
                 "token": api_token,
                 "config": baseymldict}
 
