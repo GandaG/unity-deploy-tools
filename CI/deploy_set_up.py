@@ -63,6 +63,7 @@ baseymldict = {"language": ["objective-c"],
 #it would great if the specific commit could be specified
 requestdict = {"message": "Deployment requested. Rebuilding.",
                 "tag": os.environ["TRAVIS_TAG"],
+                "branch": os.environ["TRAVIS_BRANCH"],
                 "token": api_token,
                 "config": baseymldict}
 
