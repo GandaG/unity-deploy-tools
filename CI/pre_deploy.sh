@@ -19,7 +19,7 @@ if [ "$project" == "unitypackage-ci" ]; then
   rm ./Temp/CI/*.log
   mv README.rst ./Temp/README.rst
   mv LICENSE ./Temp/LICENSE
-  
+  mv config.ini ./Temp/config.ini
   
   printf '%s\n' ------------------------------------------------------------------------------------------------------------------------
   echo "Writing new yml file; --------------------------------------------------------------------------------------------------"
