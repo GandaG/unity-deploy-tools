@@ -35,9 +35,6 @@ user = os.environ["TRAVIS_REPO_SLUG"].split("/")[0]
 #grab the repo name from the repo slug.
 project = os.environ["TRAVIS_REPO_SLUG"].split("/")[1]
 
-#this is the name of the package with the extension.
-package = "%s.unitypackage" % project
-
 #the url to request to: not that instead of a '/' like in the slug, a '%2F' is required here.
 url = "https://api.travis-ci.org/repo/" + user + "%2F" + project + "/requests"
 
@@ -79,7 +76,7 @@ else:
     print '------------------------------------------------------------------------------------------------------------------------'
     print "Github token found. Deploying to Github Releases. ----------------------------------------------------------------------"
     print '------------------------------------------------------------------------------------------------------------------------'
-    #the github deploy section. branch condition should be changed later to allow users to choose which branch to deploy from. Maybe package name too.
+    #the github deploy section.
     deploy_gh = [
         {
         "provider": "releases",
@@ -89,9 +86,6 @@ else:
         "name": os.environ["TRAVIS_TAG"],
         "draft": True,
         "skip_cleanup": "true",
-        "on": {
-            "tags": "true"
-            }
         }
     ]
     #Add a pre-release check if the tag has the words alpha or beta. Useful but should be able to be turned off.
