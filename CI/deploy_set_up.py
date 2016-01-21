@@ -86,6 +86,9 @@ else:
         "name": os.environ["TRAVIS_TAG"],
         "draft": True,
         "skip_cleanup": "true",
+        "on": {
+            "all_branches": "true",
+            }
         }
     ]
     #Add a pre-release check if the tag has the words alpha or beta. Useful but should be able to be turned off.
