@@ -66,6 +66,7 @@ requestdict = {"message": "Deployment requested. Rebuilding.",
 json = {"request": requestdict}
 
 
+
 #checking the variables exist to append their deploy to the list. Needs to be fixed when adding support to asset store.
 try:
     os.environ["GH_TOKEN"]
