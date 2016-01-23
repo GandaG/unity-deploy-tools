@@ -2,12 +2,8 @@ language: objective-c
 
 install:
   - sh ./CI/py_set_up.sh
-  - python ./CI/deploy_set_up.py
+  - python ./CI/main_parser.py
   - sh ./CI/unity_install.sh
 
 script:
   - sh ./CI/unity_build.sh
-
-env:
-    global:
-        - secure: "lYwOP6Wumjx31PEIp6rf/2TTew5uGbBiyH07ZVcyrC2F32TyG5JjFy3JR4ycsErl/6u9YMYfKTdLGFWCr9R1k6m9BpqORuRFbJQ1LF+kEXAt3kfNHC9pD6qDFLHSYbQ65Akl4tWE9OKONCEVostawr1CVHUsPjhjHESkGHrRtXNKwf71XrXZlMF+Il+tDTqEMvmMcvjUFopGPYpixFTcLpLpz/R+OAL+1yuaidWqb/3kWRsLbH06zmn+BrysIzNV2o/9DMOHFgYs3MmVrxD63DXBOKUSSVaAI+IEArrdslFntRptBrYpcTxsPQZ2pTV3f4SPmWVmG5r0eN86EjElxB/qYQl/S1I6/4R9UKQA3tRt3zsGX5DWkTaancUZRVM/uhNIRXF3PjNjzkHRCHO3UMBGHsgNPzU/NTUmmh9jpSp6YeOHqC9uzwPql7xlYrAKCimE6ANv7DXllJ0tI78TiOwQIolGiQExKoTgMXu4xvE4+Av0rSN0uLqfl7yhgJuCsQ1CMpPptUPQp9O4W2KcUBUJoC2Usx7dzVrcu7Jcd5wmvr7lCY8vwPxkgoDQI0DvxBnkElM4ye7n80vx7h6nTAGkQW7iEj/osPd6Vzh50lkg67T//ly+oaaVDtxLRzp+PXgmqG3LFftjPOEBGfhOwOoBf0hXIS+mpubLMZHx+as="

@@ -1,21 +1,11 @@
 #! /bin/sh
 
-#the only case where it shouldn't run is if there is an api key present but it's not rebuilding.
-if [ ! -z "$TRAVIS_TAG" -a "$TRAVIS_TAG" != " " ];
+if [ $wait_to_deploy == "True" ];
 then
-    if ! [ -z "${GH_TOKEN+x}" ];
-    then
-        if [ -z "${REBUILDING+x}" ];
-        then exit 0
-        fi
-    else
-        if ! [ -z "${ASSET_TOKEN+x}" ];
-        then
-            if [ -z "${REBUILDING+x}" ];
-            then exit 0
-            fi
-        fi
-    fi
+    echo "------------------------------------------------------------------------------------------------------------------------"
+    echo "Skipping Unity build. ------------------------------------------------------------------------------------------------"
+    echo "------------------------------------------------------------------------------------------------------------------------"
+    exit 0
 fi
 
 project="${TRAVIS_REPO_SLUG##*/}"
@@ -25,13 +15,24 @@ printf '%s\n' ------------------------------------------------------------------
 echo "Setting up project directory; ------------------------------------------------------------------------------------------"
 printf '%s\n' ------------------------------------------------------------------------------------------------------------------------
 mkdir ./Project
-/Applications/Unity/Unity.app/Contents/MacOS/Unity \
- -batchmode \
- -nographics \
- -silent-crashes \
- -logFile ./CI/unityProject.log \
- -createProject ./Project \
- -quit
+if [ $verbose == "True" ];
+then
+    /Applications/Unity/Unity.app/Contents/MacOS/Unity \
+     -batchmode \
+     -nographics \
+     -silent-crashes \
+     -logFile ./CI/unityProject.log \
+     -createProject ./Project \
+     -quit
+else
+    /Applications/Unity/Unity.app/Contents/MacOS/Unity \
+     -batchmode \
+     -nographics \
+     -silent-crashes \
+     -createProject ./Project \
+     -quit
+fi
+
 printf '%s\n' ------------------------------------------------------------------------------------------------------------------------
 echo 'Project Log; -----------------------------------------------------------------------------------------------------------'
 printf '%s\n' ------------------------------------------------------------------------------------------------------------------------
@@ -56,14 +57,25 @@ find ./* \
 printf '%s\n' ------------------------------------------------------------------------------------------------------------------------
 echo "Attempting to package $project;"
 printf '%s\n' ------------------------------------------------------------------------------------------------------------------------
-/Applications/Unity/Unity.app/Contents/MacOS/Unity \
- -batchmode \
- -nographics \
- -silent-crashes \
- -logFile ./CI/unityPackage.log \
- -projectPath "$PWD"/Project \
- -exportPackage Assets/$project $package \
- -quit
+if [ $verbose == "True" ];
+then
+    /Applications/Unity/Unity.app/Contents/MacOS/Unity \
+     -batchmode \
+     -nographics \
+     -silent-crashes \
+     -logFile ./CI/unityPackage.log \
+     -projectPath "$PWD"/Project \
+     -exportPackage Assets/$project $package \
+     -quit
+else
+    /Applications/Unity/Unity.app/Contents/MacOS/Unity \
+     -batchmode \
+     -nographics \
+     -silent-crashes \
+     -projectPath "$PWD"/Project \
+     -exportPackage Assets/$project $package \
+     -quit
+fi
 
 printf '%s\n' ------------------------------------------------------------------------------------------------------------------------
 echo 'Packaging Log; ---------------------------------------------------------------------------------------------------------'

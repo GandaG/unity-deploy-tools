@@ -28,7 +28,7 @@ if [ "$project" == "unitypackage-ci" ]; then
 
 install:
   - sh ./CI/py_set_up.sh
-  - python ./CI/deploy_set_up.py
+  - python ./CI/main_parser.py
   - sh ./CI/unity_install.sh
 
 script:
@@ -37,8 +37,11 @@ script:
 env:
     global:
       - secure: Github_encrypted_token_here' >./Temp/.travis.yml
-  cat ./Temp/.travis.yml
-  
+  if [ $verbose == "True" ];
+  then
+    cat ./Temp/.travis.yml
+  fi
+
   printf '%s\n' ------------------------------------------------------------------------------------------------------------------------
   echo "Writing new config file; --------------------------------------------------------------------------------------------------"
   printf '%s\n' ------------------------------------------------------------------------------------------------------------------------
@@ -82,7 +85,10 @@ packagename=
 
 [Docs]
 #not suppported YET' >./Temp/config.ini
-  cat ./Temp/config.ini
+  if [ $verbose == "True" ];
+  then
+    cat ./Temp/config.ini
+  fi
   
   printf '%s\n' ------------------------------------------------------------------------------------------------------------------------
   echo "Compressing relevant files to Deploy/ directory; -----------------------------------------------------------------------"
