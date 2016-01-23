@@ -45,6 +45,7 @@ def parse_gh():
         "draft": draft,
         "prerelease": prerelease,
         "skip_cleanup": "true"
+        "on" : {}
     }
     
     if description:
