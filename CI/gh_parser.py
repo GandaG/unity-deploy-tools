@@ -22,13 +22,13 @@ def parse_gh():
     
     
     prerelease = config.getboolean('Github', 'prerelease')
-    if !prerelease:
+    if not prerelease:
         conditional_prerelease = config.getboolean('Github', 'conditional_prerelease')
         if conditional_prerelease and ("alpha" in os.environ["TRAVIS_TAG"] or "beta" in os.environ["TRAVIS_TAG"]):
             prerelease = True
     
     draft = config.getboolean('Github', 'draft')
-    if !draft:
+    if not draft:
         conditional_draft = config.getboolean('Github', 'conditional_draft')
         if conditional_draft and ("alpha" in os.environ["TRAVIS_TAG"] or "beta" in os.environ["TRAVIS_TAG"]):
             draft = True
