@@ -21,5 +21,5 @@ def parse_misc():
         print "Something in Misc already exists as an env variable. Change it to something else."
         exit(1)
 
-print str(config.getboolean('Misc', 'verbose'))
-print os.environ["verbose"]
+    print str(config.getboolean('Misc', 'verbose'))
+    print os.environ["verbose"]
