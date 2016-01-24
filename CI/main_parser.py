@@ -27,7 +27,13 @@ rebuild_yml = {
     "script": ["sh ./CI/unity_build.sh"],
     "before_deploy": ["sh ./CI/pre_deploy.sh"],
     "deploy": [],
-    "env": {"global": ["verbose = %s" % os.environ["verbose"]]}
+    "env": {
+        "global": [ 
+            "verbose = %s" % os.environ["verbose"],
+            "packagename = %s" % os.environ["packagename"],
+            "include_version = %s" % os.environ["include_version"]
+        ]
+    }
 }
 
 if os.environ["TRAVIS_PULL_REQUEST"] == "false" and os.environ["TRAVIS_TAG"].strip():
@@ -68,5 +74,6 @@ else:
     print "Skipping deployment. ---------------------------------------------------------------------------------------------------"
     print '------------------------------------------------------------------------------------------------------------------------'
 
-    
+#you only get here if there is no deployment since deploy_setup calls exit on success.
 os.system("sh ./CI/unity_install.sh") #move on to the build steps. This needs to be invoked like this to be able to pass the env vars created here.
+os.system("sh ./CI/unity_build.sh")

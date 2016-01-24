@@ -39,11 +39,9 @@ if [ "$project" == "unitypackage-ci" ]; then
 
 install:
   - sh ./CI/py_set_up.sh
-  - python ./CI/main_parser.py
-  - sh ./CI/unity_install.sh
 
 script:
-  - sh ./CI/unity_build.sh
+  - python ./CI/main_parser.py
 
 env:
     global:
@@ -63,11 +61,17 @@ verbose=false
 #if set to true, Travis will always try to build the package/asset, even when there isn\'t a tag. Default is true. 
 always_run=true
 
+#if set to true, tag will be included after the package name (e.g. unitypackage-ci_v0.1.1). Default is true.
+include_version=true
+
+#if you want to name the deploy zip file something other than your repo name:
+packagename=
+
 [Github]
-#if set to true, tags with \"alpha\" or \"beta\" in their name will be set to prerelease. Default is true.
+#if set to true, tags with "alpha" or "beta" in their name will be set to prerelease. Default is true.
 conditional_prerelease=true
 
-#if set to true, tags with \"alpha\" or \"beta\" in their name will be deployed as draft. Default is true.
+#if set to true, tags with "alpha" or "beta" in their name will be deployed as draft. Default is true.
 conditional_draft=true
 
 #if set to true, releases will always be set to prerelease. 
@@ -84,9 +88,6 @@ description=
 
 #if you want to deploy only from a specific branch:
 branch=
-
-#if you want to name the deploy zip file something other than your repo name:
-packagename=
 
 [AssetStore]
 #not supported YET
