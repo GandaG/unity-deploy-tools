@@ -10,14 +10,17 @@ import copy, os
 
 parse_misc()
 
-rebuild_yml = {
+rebuild_yml = 
+{
     "language": ["objective-c"],
     "install": ["sh ./CI/unity_install.sh"],
     "script": ["sh ./CI/unity_build.sh"],
     "before_deploy": ["sh ./CI/pre_deploy.sh"],
     "deploy": [],
-    "env": {
-        "global": [
+    "env": 
+    {
+        "global": 
+        [
             "verbose=%s" % os.environ["verbose"],
             "packagename=%s" % os.environ["packagename"],
             "include_version=%s" % os.environ["include_version"],
@@ -26,9 +29,18 @@ rebuild_yml = {
     }
 }
 
-if os.environ["TRAVIS_PULL_REQUEST"] == "false" and os.environ["TRAVIS_TAG"].strip():
+try:
+    os.environ["GH_TOKEN"]
+except KeyError:
+    gh_token_present = False
+else:
+    gh_token_present = True
+
+if (os.environ["TRAVIS_PULL_REQUEST"] == "false" and 
+    os.environ["TRAVIS_TAG"].strip() and
+    gh_token_present):
     
-    deploy_yml = copy.deepcopy(rebuild_yml) #yes it's slow, but there's no real substitute from what I could gather
+    deploy_yml = copy.deepcopy(rebuild_yml)
     
     ini_docs = parse_docs()
     if ini_docs:

@@ -7,10 +7,8 @@ def parse_gh():
     config = ConfigParser.RawConfigParser(allow_no_value=True)
     config.read('config.ini')
     
-    try:
-        os.environ["GH_TOKEN"]
-    except KeyError:
-        return None    
+    if not config.getboolean('Github', 'enable'):
+        return None
     
     prerelease = config.getboolean('Github', 'prerelease')
     if not prerelease:

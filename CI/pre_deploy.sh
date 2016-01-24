@@ -70,6 +70,9 @@ include_version=true
 packagename=
 
 [Github]
+#if set to true, will enable deployment to github if possible. Default is true.
+enable=true
+
 #if set to true, tags with "alpha" or "beta" in their name will be set to prerelease. Default is true.
 conditional_prerelease=true
 
@@ -85,7 +88,7 @@ prerelease=false
 draft=false
 
 #if you want to add something (don\'t forget this should be in github markdown) 
-#to the release description, uncomment and fill in: 
+#to the release description: 
 description=
 
 #if you want to deploy only from a specific branch:
