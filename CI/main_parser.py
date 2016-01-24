@@ -29,9 +29,9 @@ rebuild_yml = {
     "deploy": [],
     "env": {
         "global": [
-            ["verbose=%s" % os.environ["verbose"]],
-            ["packagename=%s" % os.environ["packagename"]],
-            ["include_version=%s" % os.environ["include_version"]]
+            "verbose=%s" % os.environ["verbose"],
+            "packagename=%s" % os.environ["packagename"],
+            "include_version=%s" % os.environ["include_version"]
         ]
     }
 }
