@@ -23,6 +23,7 @@ rebuild_yml = {
     "install": ["sh ./CI/unity_install.sh"],
     "script": ["sh ./CI/unity_build.sh"],
     "before_deploy": ["sh ./CI/pre_deploy.sh"],
+    "deploy": [],
     "env": {"global": ["verbose = %s" % os.environ["verbose"]]}
 }
 
