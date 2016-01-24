@@ -8,6 +8,8 @@ from deploy_setup import deploy_setup
 
 import copy, os
 
+parse_misc()
+
 try: #check if the env already exists, it's better not to mess with existing stuff
     os.environ["wait_to_deploy"]
 except KeyError:
@@ -18,8 +20,6 @@ except KeyError:
 else:
     print "\"wait_to_deploy\" already exists as an env variable. change it to something else."
     exit(1)
-
-parse_misc()
 
 rebuild_yml = {
     "language": ["objective-c"],
