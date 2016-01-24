@@ -30,7 +30,7 @@ rebuild_yml = {
     "env": {
         "global": [
             ["verbose=%s" % os.environ["verbose"]],
-            ["packagename=%s" % os.environ["packaename"]],
+            ["packagename=%s" % os.environ["packagename"]],
             ["include_version=%s" % os.environ["include_version"]]
         ]
     }
