@@ -6,7 +6,7 @@ else
     project="$packagename"
 fi
 if [ "$include_version" == "True" ]; then
-    package="$project"_"$include_version".unitypackage
+    package="$project"_"$TRAVIS_TAG".unitypackage
 else
     package=$project.unitypackage
 fi

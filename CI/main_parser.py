@@ -69,4 +69,4 @@ else:
     print '------------------------------------------------------------------------------------------------------------------------'
 
     
-os.system("sh ./CI/unity_install.sh")
+os.system("sh ./CI/unity_install.sh") #move on to the build steps. This needs to be invoked like this to be able to pass the env vars created here.

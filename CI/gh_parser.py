@@ -47,9 +47,15 @@ def parse_gh():
         deploy_gh["on"]["all_branches"] = "true"
     
     if os.environ["packagename"]:
-        deploy_gh["file"] = "./Deploy/%s.zip" % os.environ["packagename"]
+        if os.environ["include_version"] == "True":
+            deploy_gh["file"] = "./Deploy/%s_%s.zip" % (os.environ["packagename"], os.environ["TRAVIS_TAG"])
+        else:
+            deploy_gh["file"] = "./Deploy/%s.zip" % os.environ["packagename"]
     else:
-        deploy_gh["file"] = "./Deploy/%s.zip" % os.environ["TRAVIS_REPO_SLUG"].split("/")[1] #this is the repo name
+        if os.environ["include_version"] == "True":
+            deploy_gh["file"] = "./Deploy/%s_%s.zip" % (os.environ["TRAVIS_REPO_SLUG"].split("/")[1], os.environ["TRAVIS_TAG"])
+        else:
+            deploy_gh["file"] = "./Deploy/%s.zip" % os.environ["TRAVIS_REPO_SLUG"].split("/")[1] #this is the repo name
     
     return deploy_gh
 
