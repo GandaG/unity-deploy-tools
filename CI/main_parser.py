@@ -28,10 +28,9 @@ rebuild_yml = {
     "before_deploy": ["sh ./CI/pre_deploy.sh"],
     "deploy": [],
     "env": {
-        "global": [ 
-            "verbose=%s" % os.environ["verbose"],
-            "packagename=%s" % os.environ["packagename"],
-            "include_version=%s" % os.environ["include_version"]
+        "global": ["verbose=%s" % os.environ["verbose"]],
+            ["packagename=%s" % os.environ["packagename"]],
+            ["include_version=%s" % os.environ["include_version"]]
         ]
     }
 }
