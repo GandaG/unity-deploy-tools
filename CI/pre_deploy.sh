@@ -1,7 +1,15 @@
 #! /bin/sh
 
-project="${TRAVIS_REPO_SLUG##*/}"
-package=$project.unitypackage
+if [ "$packagename" == "" ]; then
+    project="${TRAVIS_REPO_SLUG##*/}"
+else
+    project="$packagename"
+fi
+if [ "$include_version" == "True" ]; then
+    package="$project"_"$include_version".unitypackage
+else
+    package=$project.unitypackage
+fi
 
 if [ "$project" == "unitypackage-ci" ]; then
   printf '%s\n' ------------------------------------------------------------------------------------------------------------------------
@@ -16,7 +24,10 @@ if [ "$project" == "unitypackage-ci" ]; then
   printf '%s\n' ------------------------------------------------------------------------------------------------------------------------
   mv ./CI ./Temp/CI
   rm ./Temp/CI/*.pkg
-  rm ./Temp/CI/*.log
+  if [ "$verbose" == "True" ];
+  then
+    rm ./Temp/CI/*.log
+  fi
   mv README.rst ./Temp/README.rst
   mv LICENSE ./Temp/LICENSE
   mv config.ini ./Temp/config.ini

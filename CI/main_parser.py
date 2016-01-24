@@ -11,7 +11,10 @@ import copy, os
 try: #check if the env already exists, it's better not to mess with existing stuff
     os.environ["wait_to_deploy"]
 except KeyError:
-    os.environ["wait_to_deploy"] = "False" #check to see if there is going to be a rebuild (if there are any deployment tokens present.)
+    if os.environ["always_run"] == "True":
+        os.environ["wait_to_deploy"] = "False"
+    else:
+        os.environ["wait_to_deploy"] = "True"
 else:
     print "\"wait_to_deploy\" already exists as an env variable. change it to something else."
     exit(1)
@@ -64,7 +67,3 @@ else:
     print '------------------------------------------------------------------------------------------------------------------------'
     print "Skipping deployment. ---------------------------------------------------------------------------------------------------"
     print '------------------------------------------------------------------------------------------------------------------------'
-
-if os.environ["always_run"] == "True":
-    os.environ["wait_to_deploy"] = "False"
-

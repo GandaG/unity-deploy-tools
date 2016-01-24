@@ -8,8 +8,16 @@ then
     exit 0
 fi
 
-project="${TRAVIS_REPO_SLUG##*/}"
-package=$project.unitypackage
+if [ "$packagename" == "" ]; then
+    project="${TRAVIS_REPO_SLUG##*/}"
+else
+    project="$packagename"
+fi
+if [ "$include_version" == "True" ]; then
+    package="$project"_"$include_version".unitypackage
+else
+    package=$project.unitypackage
+fi
 
 printf '%s\n' ------------------------------------------------------------------------------------------------------------------------
 echo "Setting up project directory; ------------------------------------------------------------------------------------------"
