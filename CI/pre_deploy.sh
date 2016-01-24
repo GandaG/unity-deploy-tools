@@ -11,6 +11,11 @@ else
     package=$project.unitypackage
 fi
 
+echo "$verbose"
+echo "$packagename"
+echo "$include_version"
+echo "$TRAVIS_TAG"
+
 if [ "$project" == "unitypackage-ci" ]; then
   printf '%s\n' ------------------------------------------------------------------------------------------------------------------------
   echo "Preparing directories; -------------------------------------------------------------------------------------------------"

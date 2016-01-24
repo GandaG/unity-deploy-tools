@@ -10,17 +10,6 @@ import copy, os
 
 parse_misc()
 
-try: #check if the env already exists, it's better not to mess with existing stuff
-    os.environ["wait_to_deploy"]
-except KeyError:
-    if os.environ["always_run"] == "True":
-        os.environ["wait_to_deploy"] = "False"
-    else:
-        os.environ["wait_to_deploy"] = "True"
-else:
-    print "\"wait_to_deploy\" already exists as an env variable. change it to something else."
-    exit(1)
-
 rebuild_yml = {
     "language": ["objective-c"],
     "install": ["sh ./CI/unity_install.sh"],
@@ -31,7 +20,8 @@ rebuild_yml = {
         "global": [
             "verbose=%s" % os.environ["verbose"],
             "packagename=%s" % os.environ["packagename"],
-            "include_version=%s" % os.environ["include_version"]
+            "include_version=%s" % os.environ["include_version"],
+            "TRAVIS_TAG=%s" % os.environ["TRAVIS_TAG"]
         ]
     }
 }
@@ -75,5 +65,11 @@ else:
     print '------------------------------------------------------------------------------------------------------------------------'
 
 #you only get here if there is no deployment since deploy_setup calls exit on success.
-os.system("sh ./CI/unity_install.sh") #move on to the build steps. This needs to be invoked like this to be able to pass the env vars created here.
-os.system("sh ./CI/unity_build.sh")
+if os.environ["always_run"] == "True":
+    os.system("sh ./CI/unity_install.sh") #move on to the build steps. This needs to be invoked like this to be able to pass the env vars created here.
+    os.system("sh ./CI/unity_build.sh")
+else:
+    print '------------------------------------------------------------------------------------------------------------------------'
+    print "Skipping build steps. ---------------------------------------------------------------------------------------------------"
+    print '------------------------------------------------------------------------------------------------------------------------'
+    
