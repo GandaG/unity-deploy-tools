@@ -7,14 +7,11 @@ else
 fi
 if [ "$include_version" == "True" ]; then
     package="$project"_"$TRAVIS_TAG".unitypackage
+    zip="$project"_"$TRAVIS_TAG".zip
 else
     package=$project.unitypackage
+    zip="$project".zip
 fi
-
-echo "$verbose"
-echo "$packagename"
-echo "$include_version"
-echo "$TRAVIS_TAG"
 
 if [ "$project" == "unitypackage-ci" ]; then
   printf '%s\n' ------------------------------------------------------------------------------------------------------------------------
@@ -108,15 +105,15 @@ branch=
   echo "Compressing relevant files to Deploy/ directory; -----------------------------------------------------------------------"
   printf '%s\n' ------------------------------------------------------------------------------------------------------------------------
   cd Temp/ || exit 1
-  zip -r -X "$project".zip .
+  zip -r -X "$zip" .
   cd ..
-  mv ./Temp/"$project".zip ./Deploy/"$project".zip
+  mv ./Temp/"$zip" ./Deploy/"$zip"
   
   printf '%s\n' ------------------------------------------------------------------------------------------------------------------------
   echo "Checking compression was successful; -----------------------------------------------------------------------------------"
   printf '%s\n' ------------------------------------------------------------------------------------------------------------------------
   
-  file=./Deploy/$project.zip
+  file=./Deploy/$zip
   
   if [ -e "$file" ];
   then
@@ -136,13 +133,13 @@ else
   printf '%s\n' ------------------------------------------------------------------------------------------------------------------------
   mkdir ./Deploy
   
-  zip -r -X ./Deploy/"$project".zip ./Project/"$package" \;
+  zip -r -X ./Deploy/"$zip" ./Project/"$package"
    
   printf '%s\n' ------------------------------------------------------------------------------------------------------------------------
   echo "Checking compression was successful; -----------------------------------------------------------------------------------"
   printf '%s\n' ------------------------------------------------------------------------------------------------------------------------
   
-  file=./Deploy/$project.zip
+  file=./Deploy/$zip
    
   if [ -e "$file" ];
   then
