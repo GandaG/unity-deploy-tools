@@ -44,7 +44,7 @@ def parse_gh():
         "name": os.environ["TRAVIS_TAG"],
         "draft": draft,
         "prerelease": prerelease,
-        "skip_cleanup": "true"
+        "skip_cleanup": "true",
         "on": {}
     }
     
