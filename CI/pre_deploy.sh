@@ -37,7 +37,7 @@ script:
 env:
     global:
       - secure: Github_encrypted_token_here' >./Temp/.travis.yml
-  if [ $verbose == "True" ];
+  if [ "$verbose" == "True" ];
   then
     cat ./Temp/.travis.yml
   fi
@@ -82,7 +82,7 @@ packagename=
 
 [Docs]
 #not suppported YET' >./Temp/config.ini
-  if [ $verbose == "True" ];
+  if [ "$verbose" == "True" ];
   then
     cat ./Temp/config.ini
   fi
@@ -90,10 +90,10 @@ packagename=
   printf '%s\n' ------------------------------------------------------------------------------------------------------------------------
   echo "Compressing relevant files to Deploy/ directory; -----------------------------------------------------------------------"
   printf '%s\n' ------------------------------------------------------------------------------------------------------------------------
-  cd Temp/
-  zip -r -X $project.zip .
+  cd Temp/ || exit 1
+  zip -r -X "$project".zip .
   cd ..
-  mv ./Temp/$project.zip ./Deploy/$project.zip
+  mv ./Temp/"$project".zip ./Deploy/"$project".zip
   
   printf '%s\n' ------------------------------------------------------------------------------------------------------------------------
   echo "Checking compression was successful; -----------------------------------------------------------------------------------"
@@ -101,7 +101,7 @@ packagename=
   
   file=./Deploy/$project.zip
   
-  if [ -e $file ];
+  if [ -e "$file" ];
   then
     printf '%s\n' ------------------------------------------------------------------------------------------------------------------------
 	echo "Package compressed successfully: $file"
@@ -119,7 +119,7 @@ else
   printf '%s\n' ------------------------------------------------------------------------------------------------------------------------
   mkdir ./Deploy
   
-  zip -r -X ./Deploy/$project.zip ./Project/$package \;
+  zip -r -X ./Deploy/"$project".zip ./Project/"$package" \;
    
   printf '%s\n' ------------------------------------------------------------------------------------------------------------------------
   echo "Checking compression was successful; -----------------------------------------------------------------------------------"
@@ -127,7 +127,7 @@ else
   
   file=./Deploy/$project.zip
    
-  if [ -e $file ];
+  if [ -e "$file" ];
   then
     printf '%s\n' ------------------------------------------------------------------------------------------------------------------------
 	echo "Package compressed successfully: $file"
