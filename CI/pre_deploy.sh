@@ -53,9 +53,6 @@ verbose=false
 always_run=true
 
 [Github]
-#your **encrypted** token here - required.
-token=
-
 #if set to true, tags with \"alpha\" or \"beta\" in their name will be set to prerelease. Default is true.
 conditional_prerelease=true
 

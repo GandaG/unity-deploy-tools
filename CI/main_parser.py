@@ -27,7 +27,7 @@ rebuild_yml = {
     "env": {"global": ["verbose = %s" % os.environ["verbose"]]}
 }
 
-if os.environ["TRAVIS_PULL_REQUEST"] == "false" and not os.environ["TRAVIS_TAG"].strip():
+if os.environ["TRAVIS_PULL_REQUEST"] == "false" and os.environ["TRAVIS_TAG"].strip():
     
     deploy_yml = copy.deepcopy(rebuild_yml) #yes it's slow, but there's no real substitute from what I could gather
     
@@ -58,7 +58,7 @@ if os.environ["TRAVIS_PULL_REQUEST"] == "false" and not os.environ["TRAVIS_TAG"]
         print '------------------------------------------------------------------------------------------------------------------------'
     else:
         os.environ["wait_to_deploy"] = "True"
-        deploy_setup(os.environ["gh_token"], deploy_yml)
+        deploy_setup(os.environ["GH_TOKEN"], deploy_yml)
     
 else:
     print '------------------------------------------------------------------------------------------------------------------------'

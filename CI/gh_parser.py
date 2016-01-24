@@ -7,19 +7,10 @@ def parse_gh():
     config = ConfigParser.RawConfigParser(allow_no_value=True)
     config.read('config.ini')
     
-    gh_token = config.get('Github', 'token')
-    
-    if gh_token is None:
-        return None
-    
-    try: #check if the env already exists, it's better not to mess with existing stuff
-        os.environ["gh_token"]
+    try:
+        os.environ["GH_TOKEN"]
     except KeyError:
-        os.environ["gh_token"] = gh_token
-    else:
-        print "\"gh_token\" already exists as an env variable. change it to something else."
-        exit(1)
-    
+        return None    
     
     prerelease = config.getboolean('Github', 'prerelease')
     if not prerelease:
@@ -39,7 +30,7 @@ def parse_gh():
     
     deploy_gh = {
         "provider": "releases",
-        "api_key": [{"secure": gh_token}],
+        "api_key": os.environ["GH_TOKEN"],
         "target_commitish": os.environ["TRAVIS_COMMIT"],
         "name": os.environ["TRAVIS_TAG"],
         "draft": draft,
