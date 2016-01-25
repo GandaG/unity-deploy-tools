@@ -2,11 +2,9 @@ language: objective-c
 
 install:
   - sh ./CI/py_set_up.sh
-  - python ./CI/deploy_set_up.py
-  - sh ./CI/unity_install.sh
 
 script:
-  - sh ./CI/unity_build.sh
+  - python ./CI/main_parser.py
 
 env:
     global:
