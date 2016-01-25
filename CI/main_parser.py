@@ -10,17 +10,14 @@ import copy, os
 
 parse_misc()
 
-rebuild_yml = 
-{
+rebuild_yml = {
     "language": ["objective-c"],
     "install": ["sh ./CI/unity_install.sh"],
     "script": ["sh ./CI/unity_build.sh"],
     "before_deploy": ["sh ./CI/pre_deploy.sh"],
     "deploy": [],
-    "env": 
-    {
-        "global": 
-        [
+    "env": {
+        "global": [
             "verbose=%s" % os.environ["verbose"],
             "packagename=%s" % os.environ["packagename"],
             "include_version=%s" % os.environ["include_version"],
