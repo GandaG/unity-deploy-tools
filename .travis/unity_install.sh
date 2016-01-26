@@ -3,14 +3,14 @@
 printf '%s\n' ------------------------------------------------------------------------------------------------------------------------
 echo 'Downloading Unity; -----------------------------------------------------------------------------------------------------'
 printf '%s\n' ------------------------------------------------------------------------------------------------------------------------
-curl -o CI/Unity.pkg http://download.unity3d.com/download_unity/f3d16a1fa2dd/MacEditorInstaller/Unity-5.2.3f1.pkg
+curl -o .travis/Unity.pkg http://download.unity3d.com/download_unity/f3d16a1fa2dd/MacEditorInstaller/Unity-5.2.3f1.pkg
 
 printf '%s\n' ------------------------------------------------------------------------------------------------------------------------
 echo 'Installing Unity; ------------------------------------------------------------------------------------------------------'
 printf '%s\n' ------------------------------------------------------------------------------------------------------------------------
 if [ "$verbose" == "True" ];
 then
-    sudo installer -dumplog -package CI/Unity.pkg -target /
+    sudo installer -dumplog -package .travis/Unity.pkg -target /
 else
-    sudo installer -package CI/Unity.pkg -target /
+    sudo installer -package .travis/Unity.pkg -target /
 fi
