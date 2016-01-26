@@ -20,15 +20,15 @@ if [ "$project" == "unitypackage-ci" ]; then
   mkdir ./Temp
   mkdir ./Deploy
   
-  #grab everything inside CI/ except the files created during the build. Also grab the readme and license.
+  #grab everything inside .travis/ except the files created during the build. Also grab the readme and license.
   printf '%s\n' ------------------------------------------------------------------------------------------------------------------------
   echo "Moving relevant files to Temp/ directory; ------------------------------------------------------------------------------"
   printf '%s\n' ------------------------------------------------------------------------------------------------------------------------
-  mv ./CI ./Temp/CI
-  rm ./Temp/CI/*.pkg
+  mv ./.travis ./Temp/.travis
+  rm ./Temp/.travis/*.pkg
   if [ "$verbose" == "True" ];
   then
-    rm ./Temp/CI/*.log
+    rm ./Temp/.travis/*.log
   fi
   mv README.rst ./Temp/README.rst
   mv LICENSE ./Temp/LICENSE
@@ -40,14 +40,10 @@ if [ "$project" == "unitypackage-ci" ]; then
   echo 'language: objective-c
 
 install:
-  - sh ./CI/py_set_up.sh
+  - sh ./.travis/py_set_up.sh
 
 script:
-  - python ./CI/main_parser.py
-
-env:
-    global:
-      - secure: Github_encrypted_token_here' >./Temp/.travis.yml
+  - python ./.travis/main_parser.py' >./Temp/.travis.yml
   if [ "$verbose" == "True" ];
   then
     cat ./Temp/.travis.yml
