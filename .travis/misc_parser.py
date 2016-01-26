@@ -21,5 +21,5 @@ def parse_misc():
         else:
             os.environ["include_version"] = "False" #so no sense having it when there is no tag.
     else:
-        print "Something in Misc already exists as an env variable. Change it to something else."
+        print "Something in [Misc] already exists as an env variable. Change it to something else."
         exit(1)
