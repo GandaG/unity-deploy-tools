@@ -52,7 +52,7 @@ find ./* \
  ! -path "./.travis/*" \
  ! -name ".travis" \
  ! -name ".gitignore" \
- -exec cp --parents -v {} ./Project/Assets/"$project"/ \;
+ -exec rsync -Rv {} ./Project/Assets/"$project"/ \;
 
 printf '%s\n' ------------------------------------------------------------------------------------------------------------------------
 echo "Attempting to package $project;"
