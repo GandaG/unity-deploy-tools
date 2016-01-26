@@ -15,9 +15,9 @@ This repository offers a quick way to setup open source unity packages. It featu
 - automated deployment to Unity's Asset Store. [TODO]
 
 
-***************
+************
 Installation
-***************
+************
 1. Download the `latest stable release <https://github.com/GandaG/unitypackage-ci/releases/latest>`_;
 
 2. Unpack the files into your repository's root directory;
@@ -32,6 +32,7 @@ Installation
 
 7. Simply push a commit and let travis do all the work for you!
 
+*******************
 Additional Features
 *******************
 In order to use any of the features below you need to grab an OAuth token from Github with special permissions. Take these steps:
@@ -62,19 +63,13 @@ In order to use any of the features below you need to grab an OAuth token from G
 
 10. Temporarily store your token somewhere local and safe;
 
-11. If you're using OSX or Linux/Unix feel free to skip this part. This is for Windows users who don't have Ruby installed:
+11. Go to `Travis-CI <https://travis-ci.org/>`_ and sign in with Github;
 
-    1. Install Ruby via `RubyInstaller <http://rubyinstaller.org/downloads/>`_; 
+12. Go to your repository settings;
 
-    2. Download the Development Kit from the same download page as Ruby Installer. Choose the .exe file corresponding to your environment (32 bits or 64 bits and working with your version of Ruby).
+13. In the Environment Variables section, write "GH_TOKEN" (without the quotes) in the :code:`Name` field and paste the token in the :code:`Value` field;
 
-    3. Follow the `installation instructions <https://github.com/oneclick/rubyinstaller/wiki/Development-Kit>`_ for Development Kit.
-
-12. On your terminal/command line, run :code:`gem install travis`;
-
-13. Run :code:`travis encrypt GH_TOKEN=place_your_token_here -r your_username/your_repo_name` Substitute your info in the proper places.
-
-14. Copy everything after :code:`secure:` to the proper place in the .travis.yml file (should be about 600 random characters);
+14. Make sure to leave :code:`Display value in build log` as :code:`OFF` and click :code:`Add`;
 
 15. It's now safe to delete and forget about that token from before! Only use the secure (encrypted) version from now on.
 
