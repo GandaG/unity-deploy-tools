@@ -12,9 +12,9 @@ parse_misc()
 
 rebuild_yml = {
     "language": ["objective-c"],
-    "install": ["sh ./.travis/unity_install.sh"],
-    "script": ["sh ./.travis/unity_build.sh"],
-    "before_deploy": ["sh ./.travis/pre_deploy.sh"],
+    "install": ["sh ./.sauce/travis/unity_install.sh"],
+    "script": ["sh ./.sauce/travis/unity_build.sh"],
+    "before_deploy": ["sh ./.sauce/travis/pre_deploy.sh"],
     "deploy": [],
     "env": {
         "global": [
@@ -75,8 +75,8 @@ else:
 
 #you only get here if there is no deployment since deploy_setup calls exit on success.
 if os.environ["always_run"] == "True": #move on to the build steps. This needs to be invoked like this to be able to pass the env vars created here.
-    if (os.system("sh ./.travis/unity_install.sh") == 0 and
-        os.system("sh ./.travis/unity_build.sh") == 0):
+    if (os.system("sh ./.sauce/travis/unity_install.sh") == 0 and
+        os.system("sh ./.sauce/travis/unity_build.sh") == 0):
         exit(0)
     else:
         exit(1)

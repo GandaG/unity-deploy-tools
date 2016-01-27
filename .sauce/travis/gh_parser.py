@@ -5,7 +5,7 @@ import ConfigParser, os
 def parse_gh():
     
     config = ConfigParser.RawConfigParser(allow_no_value=True)
-    config.read('.travis.ini')
+    config.read('.sauce.ini')
     
     if not config.getboolean('Github', 'enable'):
         return None
