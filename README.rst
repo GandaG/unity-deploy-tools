@@ -2,7 +2,7 @@
     :target: https://travis-ci.org/GandaG/unitypackage-ci
 
 ###############
-unitypackage-ci
+UnitySauce
 ###############
 *Continuous integration for open-source* `Unity3D <https://unity3d.com/>`_ *packages and assets.*
 
@@ -26,7 +26,7 @@ Installation
 
 4. Enable your repository in your account page;
 
-5. Open :code:`config.ini` with a text editor (like Notepad++) and modify the options under the :code:`[Misc]` section as per your preferences.
+5. Open :code:`.sauce.ini` with a text editor (like Notepad++) and modify the options under the :code:`[Misc]` section as per your preferences.
 
 6. For additional features check the subsections below;
 
@@ -75,7 +75,7 @@ In order to use any of the features below you need to grab an OAuth token from G
 
 Github Releases
 """"""""""""""""""
-As long as you have a Github token in your :code:`.travis.yml` file deployment is enabled by default. Open your :code:`config.ini` file with a text editor (like Notepad++) and modify the :code:`[Github]` section as per your preferences.
+As long as you have a Github token in your :code:`.travis.yml` file deployment is enabled by default. Open your :code:`.sauce.ini` file with a text editor (like Notepad++) and modify the :code:`[Github]` section as per your preferences.
 
 *****************
 Upcoming Features
