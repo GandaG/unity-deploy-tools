@@ -32,7 +32,7 @@ if [ "$project" == "unitypackage-ci" ]; then
   fi
   mv README.rst ./Temp/README.rst
   mv LICENSE ./Temp/LICENSE
-  mv config.ini ./Temp/config.ini
+  mv .travis.ini ./Temp/.travis.ini
   
   printf '%s\n' ------------------------------------------------------------------------------------------------------------------------
   echo "Writing new yml file; --------------------------------------------------------------------------------------------------"
@@ -94,10 +94,10 @@ branch=
 #not supported YET
 
 [Docs]
-#not suppported YET' >./Temp/config.ini
+#not suppported YET' >./Temp/.travis.ini
   if [ "$verbose" == "True" ];
   then
-    cat ./Temp/config.ini
+    cat ./Temp/.travis.ini
   fi
   
   printf '%s\n' ------------------------------------------------------------------------------------------------------------------------
@@ -132,7 +132,11 @@ else
   printf '%s\n' ------------------------------------------------------------------------------------------------------------------------
   mkdir ./Deploy
   
-  zip -r -X ./Deploy/"$zip" ./Project/"$package"
+  cd Project/ || exit 1
+  zip -r -X "$zip" "$package"
+  cd ..
+  
+  mv ./Project/"$zip" ./Deploy/"$zip"
    
   printf '%s\n' ------------------------------------------------------------------------------------------------------------------------
   echo "Checking compression was successful; -----------------------------------------------------------------------------------"
