@@ -1,5 +1,5 @@
-.. image:: https://travis-ci.org/GandaG/unitypackage-ci.svg?branch=master
-    :target: https://travis-ci.org/GandaG/unitypackage-ci
+.. image:: https://travis-ci.org/GandaG/UnitySauce.svg?branch=master
+    :target: https://travis-ci.org/GandaG/UnitySauce
 
 ###############
 UnitySauce
