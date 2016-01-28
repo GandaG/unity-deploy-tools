@@ -13,26 +13,26 @@ else
     zip="$project".zip
 fi
 
-if [ "$project" == "unitypackage-ci" ]; then
+if [ "$project" == "UnitySauce" ]; then
   printf '%s\n' ------------------------------------------------------------------------------------------------------------------------
   echo "Preparing directories; -------------------------------------------------------------------------------------------------"
   printf '%s\n' ------------------------------------------------------------------------------------------------------------------------
   mkdir ./Temp
   mkdir ./Deploy
   
-  #grab everything inside .travis/ except the files created during the build. Also grab the readme and license.
+  #grab everything inside .sauce/ except the files created during the build. Also grab the readme and license.
   printf '%s\n' ------------------------------------------------------------------------------------------------------------------------
   echo "Moving relevant files to Temp/ directory; ------------------------------------------------------------------------------"
   printf '%s\n' ------------------------------------------------------------------------------------------------------------------------
-  mv ./.travis ./Temp/.travis
-  rm ./Temp/.travis/*.pkg
+  mv ./.sauce ./Temp/.sauce
+  rm ./Temp/.sauce/*.pkg
   if [ "$verbose" == "True" ];
   then
-    rm ./Temp/.travis/*.log
+    rm ./Temp/.sauce/*.log
   fi
-  mv README.rst ./Temp/README.rst
-  mv LICENSE ./Temp/LICENSE
-  mv .travis.ini ./Temp/.travis.ini
+  mv README.rst ./Temp/.sauce/README.rst
+  mv LICENSE ./Temp/.sauce/LICENSE
+  mv .sauce.ini ./Temp/.sauce.ini
   
   printf '%s\n' ------------------------------------------------------------------------------------------------------------------------
   echo "Writing new yml file; --------------------------------------------------------------------------------------------------"
@@ -40,10 +40,10 @@ if [ "$project" == "unitypackage-ci" ]; then
   echo 'language: objective-c
 
 install:
-  - sh ./.travis/py_set_up.sh
+  - sh ./.sauce/travis/py_set_up.sh
 
 script:
-  - python ./.travis/main_parser.py' >./Temp/.travis.yml
+  - python ./.sauce/travis/main_parser.py' >./Temp/.travis.yml
   if [ "$verbose" == "True" ];
   then
     cat ./Temp/.travis.yml
@@ -59,7 +59,7 @@ verbose=false
 #if set to true, Travis will always try to build the package/asset, even when there isn\'t a tag. Default is true. 
 always_run=true
 
-#if set to true, tag will be included after the package name (e.g. unitypackage-ci_v0.1.1). Default is true.
+#if set to true, tag will be included after the package name (e.g. UnitySauce_v1.1). Default is true.
 include_version=true
 
 #if you want to name the deploy zip file something other than your repo name:
@@ -94,10 +94,10 @@ branch=
 #not supported YET
 
 [Docs]
-#not suppported YET' >./Temp/.travis.ini
+#not suppported YET' >./Temp/.sauce.ini
   if [ "$verbose" == "True" ];
   then
-    cat ./Temp/.travis.ini
+    cat ./Temp/.sauce.ini
   fi
   
   printf '%s\n' ------------------------------------------------------------------------------------------------------------------------
