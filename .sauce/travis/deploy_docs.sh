@@ -28,5 +28,13 @@ GENERATE_TREEVIEW=$include_nav_panel
 CLASS_DIAGRAMS=$gen_diagrams
 HAVE_DOT=$class_diagrams" >>./.sauce/docs/Doxyfile
 
+curl -o .sauce/doxygen.dmg http://ftp.stack.nl/pub/users/dimitri/Doxygen-1.8.11.dmg
 
+sudo hdiutil attach doxygen.dmg
 
+ls /Volumes/doxygen/
+
+#this will fail 99% sure. Just here so I don't forget to install.
+sudo installer -package /Volumes/doxygen/doxygen.pkg -target /
+
+sudo hdiutil detach /Volumes/doxygen
