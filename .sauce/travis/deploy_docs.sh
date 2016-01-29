@@ -16,17 +16,17 @@ EXCLUDE=./.sauce/ .travis.yml .sauce.ini
 RECURSIVE=YES
 INPUT=./
 PROJECT_NAME=$projectname
-PROJECT_NUMBER=$
-PROJECT_BRIEF=$
-PROJECT_LOGO=$
-EXTRACT_ALL=$
-EXTRACT_STATIC=$
-EXTRACT_PRIVATE=$
-EXTRACT_PACKAGE=$
-SEARCHENGINE=$
-GENERATE_TREEVIEW=$
-CLASS_DIAGRAMS=$
-HAVE_DOT=$" >>./.sauce/docs/Doxyfile
+PROJECT_NUMBER=$TRAVIS_TAG
+PROJECT_BRIEF=$description
+PROJECT_LOGO=$logo
+EXTRACT_ALL=$include_non_documented
+EXTRACT_STATIC=$include_non_documented
+EXTRACT_PRIVATE=$include_privates
+EXTRACT_PACKAGE=$include_privates
+SEARCHENGINE=$include_search
+GENERATE_TREEVIEW=$include_nav_panel
+CLASS_DIAGRAMS=$gen_diagrams
+HAVE_DOT=$class_diagrams" >>./.sauce/docs/Doxyfile
 
 
 

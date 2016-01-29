@@ -73,8 +73,10 @@ def parse_docs_options():
     
     if gen_diagrams:
         options.append("gen_diagrams=YES")
+        options.append("class_diagrams=NO") #this is just the opposite of the dot graphs - I set it to the opposite here just because it's easier than at deployment
     else:
         options.append("gen_diagrams=NO")
+        options.append("class_diagrams=YES")
     
     return options
 
