@@ -30,23 +30,17 @@ def parse_docs_options():
     config = ConfigParser.RawConfigParser(allow_no_value=True)
     config.read('.sauce.ini')
     
+    options = []
+    
+    projectname = config.get('Docs', 'projectname')
+    description = config.get('Docs', 'description')
+    logo = config.get('Docs', 'logo')
+    
     include_non_documented = config.getboolean('Docs', 'include_non_documented')
     include_privates = config.getboolean('Docs', 'include_privates')
     include_nav_panel = config.getboolean('Docs', 'include_nav_panel')
     include_search = config.getboolean('Docs', 'include_search')
     gen_diagrams = config.getboolean('Docs', 'gen_diagrams')
-    
-    options = [
-        "include_non_documented=%s" % include_non_documented,
-        "include_privates=%s" % include_privates,
-        "include_nav_panel=%s" % include_nav_panel,
-        "include_search=%s" % include_search,
-        "gen_diagrams=%s" % gen_diagrams,
-    ]
-    
-    projectname = config.get('Docs', 'projectname')
-    description = config.get('Docs', 'description')
-    logo = config.get('Docs', 'logo')
     
     if projectname:
         options.append("projectname=%s" % projectname)
@@ -56,6 +50,31 @@ def parse_docs_options():
         
     if logo:
         options.append("logo=%s" % logo)
+    
+    if include_non_documented:
+        options.append("include_non_documented=YES")
+    else:
+        options.append("include_non_documented=NO")
+    
+    if include_privates:
+        options.append("include_privates=YES")
+    else:
+        options.append("include_privates=NO")
+    
+    if include_nav_panel:
+        options.append("include_nav_panel=YES")
+    else:
+        options.append("include_nav_panel=NO")
+    
+    if include_search:
+        options.append("include_search=YES")
+    else:
+        options.append("include_search=NO")
+    
+    if gen_diagrams:
+        options.append("gen_diagrams=YES")
+    else:
+        options.append("gen_diagrams=NO")
     
     return options
 
