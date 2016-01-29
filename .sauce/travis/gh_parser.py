@@ -22,6 +22,7 @@ def parse_gh():
         if conditional_draft and ("alpha" in os.environ["TRAVIS_TAG"] or "beta" in os.environ["TRAVIS_TAG"]):
             draft = True
     
+    title = config.get('Github', 'title')
     description = config.get('Github', 'description')
     branch = config.get('Github', 'branch')
     
@@ -29,12 +30,16 @@ def parse_gh():
         "provider": "releases",
         "api_key": os.environ["GH_TOKEN"],
         "target_commitish": os.environ["TRAVIS_COMMIT"],
-        "name": os.environ["TRAVIS_TAG"],
         "draft": draft,
         "prerelease": prerelease,
         "skip_cleanup": "true",
         "on": {}
     }
+    
+    if title:
+        deploy_gh["name"] = title
+    else:
+        deploy_gh["name"] = os.environ["TRAVIS_TAG"]
     
     if description:
         deploy_gh["description"] = description

@@ -3,7 +3,7 @@
 from misc_parser import parse_misc
 from gh_parser import parse_gh
 from asset_parser import parse_asset
-from docs_parser import parse_docs
+from docs_parser import parse_docs, parse_docs_options
 from deploy_setup import deploy_setup
 
 import copy, os
@@ -45,7 +45,8 @@ if (os.environ["TRAVIS_PULL_REQUEST"] == "false" and
         print '------------------------------------------------------------------------------------------------------------------------'
         print "Deployment to Github Pages accepted. -----------------------------------------------------------------------------------"
         print '------------------------------------------------------------------------------------------------------------------------'
-    
+        deploy_yml["env"]["global"].extend(parse_docs_options())
+        
     ini_gh = parse_gh()
     if ini_gh:
         deploy_yml["deploy"].append(ini_gh)
