@@ -18,13 +18,13 @@ def parse_docs():
         "skip_cleanup": "true",
         "on": {}
     }
-    """
     
     if branch:
         deploy_docs["on"]["branch"] = branch
     else:
         deploy_docs["on"]["all_branches"] = "true"
-        
+    """
+    
     return ["sh ./.sauce/travis/deploy_docs.sh"]
 
 def parse_docs_options():
