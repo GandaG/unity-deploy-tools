@@ -35,6 +35,6 @@ sudo hdiutil attach .sauce/doxygen.dmg
 ls /Volumes/doxygen/
 
 #this will fail 99% sure. Just here so I don't forget to install.
-sudo installer -package /Volumes/doxygen/doxygen.pkg -target /
+#sudo installer -package /Volumes/doxygen/doxygen.pkg -target /
 
-sudo hdiutil detach /Volumes/doxygen
+#sudo hdiutil detach /Volumes/doxygen
