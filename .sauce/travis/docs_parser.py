@@ -11,7 +11,6 @@ def parse_docs():
     
     branch = config.get('Docs', 'branch')
     
-    """
     deploy_docs = {
         "provider": "script",
         "script": "./.sauce/travis/deploy_docs.sh",
@@ -23,9 +22,9 @@ def parse_docs():
         deploy_docs["on"]["branch"] = branch
     else:
         deploy_docs["on"]["all_branches"] = "true"
-    """
     
-    return ["sh ./.sauce/travis/deploy_docs.sh"]
+    return deploy_docs
+    #return ["sh ./.sauce/travis/deploy_docs.sh"]
 
 def parse_docs_options():
     

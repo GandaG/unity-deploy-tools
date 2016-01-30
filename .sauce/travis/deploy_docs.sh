@@ -30,7 +30,7 @@ HAVE_DOT=$class_diagrams" >>./.sauce/docs/Doxyfile
 
 curl -o .sauce/doxygen.dmg http://ftp.stack.nl/pub/users/dimitri/Doxygen-1.8.11.dmg
 
-sudo hdiutil attach doxygen.dmg
+sudo hdiutil attach .sauce/doxygen.dmg
 
 ls /Volumes/doxygen/
 
