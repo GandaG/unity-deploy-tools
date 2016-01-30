@@ -14,7 +14,6 @@ def parse_docs():
     deploy_docs = {
         "provider": "script",
         "script": "./.sauce/travis/deploy_docs.sh",
-        "skip_cleanup": "true",
         "on": {}
     }
     
