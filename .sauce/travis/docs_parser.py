@@ -23,8 +23,8 @@ def parse_docs():
     else:
         deploy_docs["on"]["all_branches"] = "true"
     
-    return deploy_docs
-    #return ["sh ./.sauce/travis/deploy_docs.sh"]
+    #return deploy_docs
+    return ["sh ./.sauce/travis/deploy_docs.sh"]
 
 def parse_docs_options():
     
