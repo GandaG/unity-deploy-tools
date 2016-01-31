@@ -48,8 +48,9 @@ def get_github_description(api_token):
         raise response.raise_for_status()
     
     print response
-    print response[description]
-    return response["description"]
+    print response.json()
+    #print response[description]
+    return "" #just for debugging
     
 def parse_docs_options(api_token):
     
