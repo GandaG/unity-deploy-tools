@@ -1,13 +1,22 @@
 #!/usr/bin/env python
 
-import requests
+import requests, travispy
 import os
 
-def deploy_setup(api_token, deploy_yml):
+def deploy_setup(gh_token, deploy_yml):
     print '------------------------------------------------------------------------------------------------------------------------'
     print "Starting deployment setup. ---------------------------------------------------------------------------------------------"
     print '------------------------------------------------------------------------------------------------------------------------'
 
+    #grab the user from the repo slug.
+    user = os.environ["TRAVIS_REPO_SLUG"].split("/")[0]
+
+    #grab the repo name from the repo slug.
+    project = os.environ["TRAVIS_REPO_SLUG"].split("/")[1]
+
+    #grabs the api_token via travispy (it's there, why not use it?) authenticate with the gh token then grab the token from the headers (see TravisPy class)
+    api_token = travispy.TravisPy.github_auth(gh_token)._session.headers['Authorization'].split()[1]
+    
     #the headers required by travis. see: https://docs.travis-ci.com/user/triggering-builds
     headers = {
         "Content-Type": "application/json",

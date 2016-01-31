@@ -27,7 +27,7 @@ def parse_docs():
     #return deploy_docs
     return ["sh ./.sauce/travis/deploy_docs.sh"]
 
-def get_github_description(api_token):
+def get_github_description():
     
     headers = {
         "Accept": "application/vnd.github.v3+json",
@@ -48,11 +48,10 @@ def get_github_description(api_token):
         raise response.raise_for_status()
     
     print response
-    print response.json()
-    #print response[description]
-    return "" #just for debugging
+    print response.json()["description"]
+    return response.json()["description"]
     
-def parse_docs_options(api_token):
+def parse_docs_options():
     
     config = ConfigParser.RawConfigParser(allow_no_value=True)
     config.read('.sauce.ini')
@@ -77,7 +76,7 @@ def parse_docs_options(api_token):
     if description:
         options.append("description=%s" % description)
     else:
-        options.append("description=%s" % get_github_description(api_token))
+        options.append("description=%s" % get_github_description())
         
     if logo:
         options.append("logo=%s" % logo)
