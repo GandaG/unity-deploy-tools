@@ -31,7 +31,7 @@ def get_github_description(api_token):
     
     headers = {
         "Accept": "application/vnd.github.v3+json",
-        "Authorization": "token %s" % api_token,
+        "Authorization": "token %s" % os.environ["GH_TOKEN"],
         "User-Agent": os.environ["TRAVIS_REPO_SLUG"].split("/")[0]
     }
     
