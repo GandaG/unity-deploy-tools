@@ -32,9 +32,20 @@ curl -o .sauce/doxygen.dmg http://ftp.stack.nl/pub/users/dimitri/Doxygen-1.8.11.
 
 sudo hdiutil attach .sauce/doxygen.dmg
 
-ls /Volumes/doxygen/
+sudo ditto /Volumes/Doxygen /Applications/Doxygen
 
-#this will fail 99% sure. Just here so I don't forget to install.
-#sudo installer -package /Volumes/doxygen/doxygen.pkg -target /
+echo "Listing /Applications/Doxygen"
 
-#sudo hdiutil detach /Volumes/doxygen
+ls /Applications/Doxygen
+
+sudo rm -rf /Applications/Doxygen.app
+
+sudo mv /Applications/Doxygen/Doxygen.app /Applications/
+
+echo "Listing /Applications/"
+
+ls /Applications/
+
+sudo rm -r /Applications/Doxygen
+
+sudo hdiutil detach /Volumes/doxygen
