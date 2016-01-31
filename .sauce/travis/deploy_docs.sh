@@ -15,6 +15,7 @@ GENERATE_LATEX=NO
 EXCLUDE=./.sauce/ .travis.yml .sauce.ini
 RECURSIVE=YES
 INPUT=./
+
 PROJECT_NAME=$projectname
 PROJECT_NUMBER=$TRAVIS_TAG
 PROJECT_BRIEF=$description
@@ -34,18 +35,12 @@ sudo hdiutil attach .sauce/doxygen.dmg
 
 sudo ditto /Volumes/Doxygen /Applications/Doxygen
 
-echo "Listing /Applications/Doxygen"
-
-ls /Applications/Doxygen
-
 sudo rm -rf /Applications/Doxygen.app
 
 sudo mv /Applications/Doxygen/Doxygen.app /Applications/
 
-echo "Listing /Applications/"
-
-ls /Applications/
-
 sudo rm -r /Applications/Doxygen
 
 sudo hdiutil detach /Volumes/doxygen
+
+/Applications/Doxygen.app/Contents/Resources/doxygen ./.sauce/docs/Doxyfile

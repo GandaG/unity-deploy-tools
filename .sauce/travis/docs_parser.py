@@ -1,8 +1,9 @@
 #!/usr/bin/env python
 
-import ConfigParser, os
+import ConfigParser, os, requests
 
 def parse_docs():
+
     config = ConfigParser.RawConfigParser(allow_no_value=True)
     config.read('.sauce.ini')
     
@@ -26,7 +27,31 @@ def parse_docs():
     #return deploy_docs
     return ["sh ./.sauce/travis/deploy_docs.sh"]
 
-def parse_docs_options():
+def get_github_description(api_token):
+    
+    headers = {
+        "Accept": "application/vnd.github.v3+json",
+        "Authorization": "token %s" % api_token,
+        "User-Agent": os.environ["TRAVIS_REPO_SLUG"].split("/")[0]
+    }
+    
+    url = "https://api.github.com/repos/%s" % os.environ["TRAVIS_REPO_SLUG"]
+    
+    response = requests.get(url, headers=headers)
+    
+    if response.status_code != requests.codes.ok:
+        print '------------------------------------------------------------------------------------------------------------------------'
+        print "Response status code: %s" % response.status_code
+        print '------------------------------------------------------------------------------------------------------------------------'
+        print "Response history: %s" % response.history
+        print '------------------------------------------------------------------------------------------------------------------------'
+        raise response.raise_for_status()
+    
+    print response
+    print response[description]
+    return response["description"]
+    
+def parse_docs_options(api_token):
     
     config = ConfigParser.RawConfigParser(allow_no_value=True)
     config.read('.sauce.ini')
@@ -45,12 +70,18 @@ def parse_docs_options():
     
     if projectname:
         options.append("projectname=%s" % projectname)
+    else:
+        options.append("projectname=%s" % os.environ["TRAVIS_REPO_SLUG"].split("/")[1]) #repo name!
     
     if description:
         options.append("description=%s" % description)
+    else:
+        options.append("description=%s" % get_github_description(api_token))
         
     if logo:
         options.append("logo=%s" % logo)
+    else:
+        options.append("logo=") #I hope this doesn't throw an error.
     
     if include_non_documented:
         options.append("include_non_documented=YES")
