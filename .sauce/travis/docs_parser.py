@@ -46,9 +46,7 @@ def get_github_description():
         print "Response history: %s" % response.history
         print '------------------------------------------------------------------------------------------------------------------------'
         raise response.raise_for_status()
-    
-    print response
-    print response.json()["description"]
+
     return response.json()["description"]
     
 def parse_docs_options():

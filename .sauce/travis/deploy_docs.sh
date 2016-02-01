@@ -16,18 +16,18 @@ EXCLUDE=./.sauce/ .travis.yml .sauce.ini ./Project/
 RECURSIVE=YES
 INPUT=./
 
-PROJECT_NAME=$projectname
-PROJECT_NUMBER=$TRAVIS_TAG
-PROJECT_BRIEF=$description
-PROJECT_LOGO=$logo
-EXTRACT_ALL=$include_non_documented
-EXTRACT_STATIC=$include_non_documented
-EXTRACT_PRIVATE=$include_privates
-EXTRACT_PACKAGE=$include_privates
-SEARCHENGINE=$include_search
-GENERATE_TREEVIEW=$include_nav_panel
-CLASS_DIAGRAMS=$gen_diagrams
-HAVE_DOT=$class_diagrams" >>./.sauce/docs/Doxyfile
+PROJECT_NAME=$(projectname)
+PROJECT_NUMBER=$(TRAVIS_TAG)
+PROJECT_BRIEF=$(description)
+PROJECT_LOGO=$(logo)
+EXTRACT_ALL=$(include_non_documented)
+EXTRACT_STATIC=$(include_non_documented)
+EXTRACT_PRIVATE=$(include_privates)
+EXTRACT_PACKAGE=$(include_privates)
+SEARCHENGINE=$(include_search)
+GENERATE_TREEVIEW=$(include_nav_panel)
+CLASS_DIAGRAMS=$(gen_diagrams)
+HAVE_DOT=$(class_diagrams)" >>./.sauce/docs/Doxyfile
 
 curl -o .sauce/doxygen.dmg http://ftp.stack.nl/pub/users/dimitri/Doxygen-1.8.11.dmg
 
