@@ -110,5 +110,7 @@ def parse_docs_options():
         options.append("gen_diagrams=NO")
         options.append("class_diagrams=YES")
     
+    options.append("GH_REF=github.com/%s.git" % os.environ["TRAVIS_REPO_SLUG"]) #this is needed for the push to gh-pages
+    
     return options
 
