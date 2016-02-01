@@ -9,7 +9,7 @@ else
     sudo installer -package .sauce/dotgraph.pkg -target /
 fi
 
-echo "OUTPUT_DIRECTORY=./.sauce/docs/output/
+echo 'OUTPUT_DIRECTORY=./.sauce/docs/output/
 OPTIMIZE_OUTPUT_JAVA=YES
 GENERATE_LATEX=NO
 EXCLUDE=./.sauce/ .travis.yml .sauce.ini ./Project/
@@ -27,7 +27,7 @@ EXTRACT_PACKAGE=$(include_privates)
 SEARCHENGINE=$(include_search)
 GENERATE_TREEVIEW=$(include_nav_panel)
 CLASS_DIAGRAMS=$(gen_diagrams)
-HAVE_DOT=$(class_diagrams)" >>./.sauce/docs/Doxyfile
+HAVE_DOT=$(class_diagrams)' >>./.sauce/docs/Doxyfile
 
 curl -o .sauce/doxygen.dmg http://ftp.stack.nl/pub/users/dimitri/Doxygen-1.8.11.dmg
 
@@ -65,4 +65,4 @@ git commit -m "Deploying to GitHub Pages"
 git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" master:gh-pages > /dev/null 2>&1
 
 #just in case travis doesn't know what to do
-cd ../../.. || exit 1
+cd ../../../.. || exit 1
