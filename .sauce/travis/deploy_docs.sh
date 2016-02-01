@@ -46,7 +46,7 @@ sudo hdiutil detach /Volumes/doxygen
 /Applications/Doxygen.app/Contents/Resources/doxygen ./.sauce/docs/Doxyfile
 
 # go to the out directory and create a *new* Git repo
-cd .sauce/docs/output/ || exit 1
+cd .sauce/docs/output/html || exit 1
 git init
 
 # inside this git repo we'll pretend to be a new user

@@ -74,10 +74,10 @@ def parse_docs_options():
         options.append("projectname=%s" % os.environ["TRAVIS_REPO_SLUG"].split("/")[1]) #repo name!
     
     if description:
-        options.append("description=%s" % description)
+        options.append("description=\"%s\"" % description)
     else:
-        options.append("description=%s" % get_github_description())
-        
+        options.append("description=\"%s\"" % get_github_description())
+    
     if logo:
         options.append("logo=%s" % logo)
     else:
