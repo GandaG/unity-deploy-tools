@@ -20,6 +20,8 @@ def parse_docs():
     }
     
     if branch:
+        if branch != os.environ["TRAVIS_BRANCH"]:
+            return None
         deploy_docs["on"]["branch"] = branch
     else:
         deploy_docs["on"]["all_branches"] = "true"
