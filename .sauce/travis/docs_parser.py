@@ -62,6 +62,7 @@ def parse_docs_options():
     description = config.get('Docs', 'description')
     logo = config.get('Docs', 'logo')
     
+    include_version = config.getboolean('Docs', 'include_version')
     include_non_documented = config.getboolean('Docs', 'include_non_documented')
     include_privates = config.getboolean('Docs', 'include_privates')
     include_nav_panel = config.getboolean('Docs', 'include_nav_panel')
@@ -82,6 +83,11 @@ def parse_docs_options():
         options.append("logo=%s" % logo)
     else:
         options.append("logo=") #I hope this doesn't throw an error.
+    
+    if include_non_documented:
+        options.append("docs_version=%s" % os.environ["TRAVIS_TAG"])
+    else:
+        options.append("docs_version=")
     
     if include_non_documented:
         options.append("include_non_documented=YES")

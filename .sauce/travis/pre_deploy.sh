@@ -83,6 +83,9 @@ description=
 #e.g. if you store it in the .sauce folder, fill in this: ./.sauce/my_logo.png
 logo=
 
+#if set to true, will include the tag as the documentation version. Default is false.
+include_version=false
+
 #if set to true, will include all code even if not documented. Default is true.
 include_non_documented=true
 

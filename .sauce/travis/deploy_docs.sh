@@ -26,7 +26,7 @@ RECURSIVE=YES
 INPUT=./
 
 PROJECT_NAME=$(projectname)
-PROJECT_NUMBER=$(TRAVIS_TAG)
+PROJECT_NUMBER=$(docs_version)
 PROJECT_BRIEF=$(description)
 PROJECT_LOGO=$(logo)
 EXTRACT_ALL=$(include_non_documented)
