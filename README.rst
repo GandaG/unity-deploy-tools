@@ -11,7 +11,7 @@ This repository offers a quick way to setup open source unity packages. It featu
 - a self-documented and easy to use .ini file to configure all the options;
 - automated package/asset exporting from unity;
 - automated deployment to Github Releases;
-- automated creation and deployment of documentation to Github Pages; [TODO]
+- automated creation and deployment of documentation to Github Pages;
 - automated deployment to Unity's Asset Store. [TODO]
 
 
@@ -75,10 +75,19 @@ In order to use any of the features below you need to grab an OAuth token from G
 
 Github Releases
 """"""""""""""""""
-As long as you have a Github token in your :code:`.travis.yml` file deployment is enabled by default. Open your :code:`.sauce.ini` file with a text editor (like Notepad++) and modify the :code:`[Github]` section as per your preferences.
+Simply open your :code:`.sauce.ini` file with a text editor (like Notepad++) and modify the :code:`[Github]` section as per your preferences. That's it, really.
+
+Code Documentation
+""""""""""""""""""
+
+Basic Usage
+'''''''''''
+
+Advanced/Expert
+'''''''''''''''
 
 *****************
 Upcoming Features
 *****************
 - Automated package deployment to `Unity <https://unity3d.com/>`_'s Asset Store.
-- Automated documentation generation.
+- Automated compiling and distribution as a .dll file.

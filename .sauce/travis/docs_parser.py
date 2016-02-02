@@ -84,7 +84,7 @@ def parse_docs_options():
     else:
         options.append("logo=") #I hope this doesn't throw an error.
     
-    if include_non_documented:
+    if include_version:
         options.append("docs_version=%s" % os.environ["TRAVIS_TAG"])
     else:
         options.append("docs_version=")
