@@ -26,6 +26,7 @@ GENERATE_LATEX=NO
 EXCLUDE=./.sauce/ .travis.yml .sauce.ini ./Project/
 RECURSIVE=YES
 INPUT=./
+DOT_PATH=/usr/local/bin
 
 PROJECT_NAME=$(projectname)
 PROJECT_NUMBER=$(docs_version)

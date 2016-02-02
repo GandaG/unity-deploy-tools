@@ -4,7 +4,7 @@
 ###############
 UnitySauce
 ###############
-*Continuous integration for open-source* `Unity3D <https://unity3d.com/>`_ *packages and assets.*
+*Continuous deployment tools for open-source* `Unity3D <https://unity3d.com/>`_ *packages and assets.*
 
 This repository offers a quick way to setup open source unity packages. It features:
 
