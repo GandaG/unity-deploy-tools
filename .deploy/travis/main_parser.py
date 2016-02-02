@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 from misc_parser import parse_misc
-from gh_parser import parse_gh
+from gh_parser import parse_gh, parse_gh_options
 from asset_parser import parse_asset
 from docs_parser import parse_docs, parse_docs_options
 from deploy_setup import deploy_setup
@@ -19,8 +19,6 @@ rebuild_yml = {
     "env": {
         "global": [
             "verbose=%s" % os.environ["verbose"],
-            "packagename=%s" % os.environ["packagename"],
-            "include_version=%s" % os.environ["include_version"],
             "TRAVIS_TAG=%s" % os.environ["TRAVIS_TAG"]
         ]
     }
@@ -42,7 +40,6 @@ if (os.environ["TRAVIS_PULL_REQUEST"] == "false" and
     ini_docs = parse_docs()
     if ini_docs:
         deploy_yml["after_success"] = ini_docs
-        #deploy_yml["deploy"].append(ini_docs)
         print '------------------------------------------------------------------------------------------------------------------------'
         print "Deployment to Github Pages accepted. -----------------------------------------------------------------------------------"
         print '------------------------------------------------------------------------------------------------------------------------'
@@ -54,6 +51,7 @@ if (os.environ["TRAVIS_PULL_REQUEST"] == "false" and
         print '------------------------------------------------------------------------------------------------------------------------'
         print "Deployment to Github Releases accepted. --------------------------------------------------------------------------------"
         print '------------------------------------------------------------------------------------------------------------------------'
+        deploy_yml["env"]["global"].extend(parse_gh_options())
     
     ini_asset = parse_asset()
     if ini_asset:

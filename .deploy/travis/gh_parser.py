@@ -62,4 +62,22 @@ def parse_gh():
     
     return deploy_gh
 
-
+def parse_gh_options():
+    
+    config = ConfigParser.RawConfigParser(allow_no_value=True)
+    config.read('.deploy.ini')
+    
+    options = []
+    
+    packagename = config.get('Github', 'packagename')
+    
+    include_version = config.getboolean('Github', 'include_version')
+    
+    if packagename:
+        options.append("packagename=\"%s\"" % packagename)
+    else:
+        options.append("packagename=%s" % os.environ["TRAVIS_REPO_SLUG"].split("/")[1]) #repo name!
+    
+    options.append("gh_version=%s" % include_version)
+    
+    return options
