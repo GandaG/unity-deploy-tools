@@ -75,7 +75,8 @@ In order to use any of the features below you need to grab an OAuth token from G
 
 Github Releases
 """"""""""""""""""
-Simply open your :code:`.deploy.ini` file with a text editor (like Notepad++) and modify the :code:`[Github]` section as per your preferences. That's it, really.
+Simply open your :code:`.deploy.ini` file with a text editor (like Notepad++) and modify the :code:`[Github]` 
+section as per your preferences. That's it, really.
 
 Code Documentation
 """"""""""""""""""
@@ -83,12 +84,18 @@ Documentation for all your code is generated with `Doxygen <http://www.stack.nl/
 
 Basic Usage
 '''''''''''
-Documentation generation is enabled by default. Open your :code:`.deploy.ini` file with a text editor (like Notepad++) and modify the :code:`[Docs]` section as per your preferences. That's pretty much it, for more things to do with Doxygen check below.
+Documentation generation is enabled by default. Open your :code:`.deploy.ini` file with a text editor (like Notepad++) 
+and modify the :code:`[Docs]` section as per your preferences. That's pretty much it, for more things to do with Doxygen check below.
 
 Advanced/Expert
 '''''''''''''''
 Doxygen must be (for the sheer amount of options) the best documented software I've ever seen. 
-If you want to customize your docs more than the basic options presented in the :code:`.deploy.ini` file (these are the same presented in the basic panel of the doxywizard) head over to :code:`.deploy/docs/` and open the :code:`Doxyfile`. This is the default doxygen configuration file and every option is very well documented. There are bajillions of them, have fun!
+
+If you want to customize your docs more than the basic options presented in the :code:`.deploy.ini` file 
+(these are the same presented in the basic panel of the doxywizard) head over to :code:`.deploy/docs/` and 
+open the :code:`Doxyfile`. This is the default doxygen configuration file and every option is very well 
+documented. There are bajillions of them, have fun!
+
 Please note that some options are hardcoded (see :code:`.deploy/travis/deploy_docs.sh`).
 
 *****************
