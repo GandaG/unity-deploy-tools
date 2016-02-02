@@ -61,12 +61,6 @@ verbose=false
 #if set to true, Travis will always try to build the package/asset, even when there isn\'t a tag. Default is true. 
 always_run=true
 
-#if set to true, tag will be included after the package name (e.g. UnityDeployTools_v1.1). Default is true.
-include_version=true
-
-#if you want to name the deploy zip file something other than your repo name:
-packagename=
-
 [Docs]
 #if set to true, will enable generating docs and deploying them to github pages. Default is true.
 enable=true
@@ -105,6 +99,12 @@ gen_diagrams=true
 [Github]
 #if set to true, will enable deployment to github if possible. Default is true.
 enable=true
+
+#if set to true, tag will be included after the package name (e.g. UnityDeployTools_v1.1). Default is true.
+include_version=true
+
+#if you want to name the deploy zip file something other than your repo name:
+packagename=
 
 #if set to true, tags with "alpha" or "beta" in their name will be set to prerelease. Default is true.
 conditional_prerelease=true

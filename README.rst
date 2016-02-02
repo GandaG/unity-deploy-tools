@@ -103,3 +103,9 @@ Upcoming Features
 *****************
 - Automated package deployment to `Unity <https://unity3d.com/>`_'s Asset Store.
 - Automated compiling and distribution as a .dll file.
+
+*****************
+Contributors
+*****************
+This repository follows a `git-flow model <https://danielkummer.github.io/git-flow-cheatsheet/>`_. 
+If this is not familiar to you or you cannot adhere to it for any reason just be sure to direct any pull requests to the :code:`develop` branch.

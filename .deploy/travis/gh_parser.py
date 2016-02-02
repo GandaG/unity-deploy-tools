@@ -25,6 +25,8 @@ def parse_gh():
     title = config.get('Github', 'title')
     description = config.get('Github', 'description')
     branch = config.get('Github', 'branch')
+    packagename = config.get('Github', 'packagename')
+    include_version = config.getboolean('Github', 'include_version')
     
     deploy_gh = {
         "provider": "releases",
@@ -49,13 +51,13 @@ def parse_gh():
     else:
         deploy_gh["on"]["all_branches"] = "true"
     
-    if os.environ["packagename"]:
-        if os.environ["include_version"] == "True":
-            deploy_gh["file"] = "./Deploy/%s_%s.zip" % (os.environ["packagename"], os.environ["TRAVIS_TAG"])
+    if packagename:
+        if include_version:
+            deploy_gh["file"] = "./Deploy/%s_%s.zip" % (packagename, os.environ["TRAVIS_TAG"])
         else:
-            deploy_gh["file"] = "./Deploy/%s.zip" % os.environ["packagename"]
+            deploy_gh["file"] = "./Deploy/%s.zip" % packagename
     else:
-        if os.environ["include_version"] == "True":
+        if include_version:
             deploy_gh["file"] = "./Deploy/%s_%s.zip" % (os.environ["TRAVIS_REPO_SLUG"].split("/")[1], os.environ["TRAVIS_TAG"])
         else:
             deploy_gh["file"] = "./Deploy/%s.zip" % os.environ["TRAVIS_REPO_SLUG"].split("/")[1] #this is the repo name
