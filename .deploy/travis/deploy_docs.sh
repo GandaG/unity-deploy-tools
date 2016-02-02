@@ -4,26 +4,26 @@ if [ "$gen_diagrams" == "YES" ]; then
     echo "------------------------------------------------------------------------------------------------------------------------"
     echo "Downloading GraphViz; --------------------------------------------------------------------------------------------------"
     echo "------------------------------------------------------------------------------------------------------------------------"
-    curl -o .sauce/dotgraph.pkg http://www.graphviz.org/pub/graphviz/stable/macos/mountainlion/graphviz-2.36.0.pkg
+    curl -o .deploy/dotgraph.pkg http://www.graphviz.org/pub/graphviz/stable/macos/mountainlion/graphviz-2.36.0.pkg
 
     echo "------------------------------------------------------------------------------------------------------------------------"
     echo "Installing GraphViz; ---------------------------------------------------------------------------------------------------"
     echo "------------------------------------------------------------------------------------------------------------------------"
     if [ "$verbose" == "True" ];
     then
-        sudo installer -dumplog -package .sauce/dotgraph.pkg -target /
+        sudo installer -dumplog -package .deploy/dotgraph.pkg -target /
     else
-        sudo installer -package .sauce/dotgraph.pkg -target /
+        sudo installer -package .deploy/dotgraph.pkg -target /
     fi
 fi
 
 echo "------------------------------------------------------------------------------------------------------------------------"
 echo "Writing options to Doxyfile; -------------------------------------------------------------------------------------------"
 echo "------------------------------------------------------------------------------------------------------------------------"
-echo 'OUTPUT_DIRECTORY=./.sauce/docs/output/
+echo 'OUTPUT_DIRECTORY=./.deploy/docs/output/
 OPTIMIZE_OUTPUT_JAVA=YES
 GENERATE_LATEX=NO
-EXCLUDE=./.sauce/ .travis.yml .sauce.ini ./Project/
+EXCLUDE=./.deploy/ .travis.yml .deploy.ini ./Project/
 RECURSIVE=YES
 INPUT=./
 DOT_PATH=/usr/local/bin
@@ -39,17 +39,17 @@ EXTRACT_PACKAGE=$(include_privates)
 SEARCHENGINE=$(include_search)
 GENERATE_TREEVIEW=$(include_nav_panel)
 CLASS_DIAGRAMS=$(class_diagrams)
-HAVE_DOT=$(gen_diagrams)' >>./.sauce/docs/Doxyfile
+HAVE_DOT=$(gen_diagrams)' >>./.deploy/docs/Doxyfile
 
 echo "------------------------------------------------------------------------------------------------------------------------"
 echo "Downloading Doxygen; ---------------------------------------------------------------------------------------------------"
 echo "------------------------------------------------------------------------------------------------------------------------"
-curl -o .sauce/doxygen.dmg http://ftp.stack.nl/pub/users/dimitri/Doxygen-1.8.11.dmg
+curl -o .deploy/doxygen.dmg http://ftp.stack.nl/pub/users/dimitri/Doxygen-1.8.11.dmg
 
 echo "------------------------------------------------------------------------------------------------------------------------"
 echo "Installing Doxygen; ----------------------------------------------------------------------------------------------------"
 echo "------------------------------------------------------------------------------------------------------------------------"
-sudo hdiutil attach .sauce/doxygen.dmg
+sudo hdiutil attach .deploy/doxygen.dmg
 
 sudo ditto /Volumes/Doxygen /Applications/Doxygen
 
@@ -64,13 +64,13 @@ sudo hdiutil detach /Volumes/doxygen
 echo "------------------------------------------------------------------------------------------------------------------------"
 echo "Running Doxygen; -------------------------------------------------------------------------------------------------------"
 echo "------------------------------------------------------------------------------------------------------------------------"
-/Applications/Doxygen.app/Contents/Resources/doxygen ./.sauce/docs/Doxyfile
+/Applications/Doxygen.app/Contents/Resources/doxygen ./.deploy/docs/Doxyfile
 
 echo "------------------------------------------------------------------------------------------------------------------------"
 echo "Pushing docs to Github Pages; ------------------------------------------------------------------------------------------"
 echo "------------------------------------------------------------------------------------------------------------------------"
 # go to the out directory and create a *new* Git repo
-cd .sauce/docs/output/html || exit 1
+cd .deploy/docs/output/html || exit 1
 git init
 
 # inside this git repo we'll pretend to be a new user

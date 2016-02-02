@@ -13,28 +13,28 @@ else
     zip="$project".zip
 fi
 
-if [ "$project" == "UnitySauce" ]; then
+if [ "$project" == "UnityDeployTools" ]; then
   echo "------------------------------------------------------------------------------------------------------------------------"
   echo "Preparing directories; -------------------------------------------------------------------------------------------------"
   echo "------------------------------------------------------------------------------------------------------------------------"
   mkdir ./Temp
   mkdir ./Deploy
   
-  #grab everything inside .sauce/ except the files created during the build. Also grab the readme and license.
+  #grab everything inside .deploy/ except the files created during the build. Also grab the readme and license.
   echo "------------------------------------------------------------------------------------------------------------------------"
   echo "Moving relevant files to Temp/ directory; ------------------------------------------------------------------------------"
   echo "------------------------------------------------------------------------------------------------------------------------"
-  mv ./.sauce ./Temp/.sauce
-  rm ./Temp/.sauce/*.pkg
-  rm ./Temp/.sauce/*.dmg
-  rm -rf ./Temp/.sauce/docs/output/
+  mv ./.deploy ./Temp/.deploy
+  rm ./Temp/.deploy/*.pkg
+  rm ./Temp/.deploy/*.dmg
+  rm -rf ./Temp/.deploy/docs/output/
   if [ "$verbose" == "True" ];
   then
-    rm ./Temp/.sauce/*.log
+    rm ./Temp/.deploy/*.log
   fi
-  mv README.rst ./Temp/.sauce/README.rst
-  mv LICENSE ./Temp/.sauce/LICENSE
-  mv .sauce.ini ./Temp/.sauce.ini
+  mv README.rst ./Temp/.deploy/README.rst
+  mv LICENSE ./Temp/.deploy/LICENSE
+  mv .deploy.ini ./Temp/.deploy.ini
   
   echo "------------------------------------------------------------------------------------------------------------------------"
   echo "Writing new yml file; --------------------------------------------------------------------------------------------------"
@@ -42,10 +42,10 @@ if [ "$project" == "UnitySauce" ]; then
   echo 'language: objective-c
 
 install:
-  - sh ./.sauce/travis/py_set_up.sh
+  - sh ./.deploy/travis/py_set_up.sh
 
 script:
-  - python ./.sauce/travis/main_parser.py' >./Temp/.travis.yml
+  - python ./.deploy/travis/main_parser.py' >./Temp/.travis.yml
   if [ "$verbose" == "True" ];
   then
     cat ./Temp/.travis.yml
@@ -61,7 +61,7 @@ verbose=false
 #if set to true, Travis will always try to build the package/asset, even when there isn\'t a tag. Default is true. 
 always_run=true
 
-#if set to true, tag will be included after the package name (e.g. UnitySauce_v1.1). Default is true.
+#if set to true, tag will be included after the package name (e.g. UnityDeployTools_v1.1). Default is true.
 include_version=true
 
 #if you want to name the deploy zip file something other than your repo name:
@@ -81,7 +81,7 @@ projectname=
 description=
 
 #if you wish your project to have a logo, fill in the relative path to the image.
-#e.g. if you store it in the .sauce folder, fill in this: ./.sauce/my_logo.png
+#e.g. if you store it in the .deploy folder, fill in this: ./.deploy/my_logo.png
 logo=
 
 #if set to true, will include the tag as the documentation version. Default is false.
@@ -131,10 +131,10 @@ description=
 branch=
 
 [AssetStore]
-#not supported YET' >./Temp/.sauce.ini
+#not supported YET' >./Temp/.deploy.ini
   if [ "$verbose" == "True" ];
   then
-    cat ./Temp/.sauce.ini
+    cat ./Temp/.deploy.ini
   fi
   
   echo "------------------------------------------------------------------------------------------------------------------------"

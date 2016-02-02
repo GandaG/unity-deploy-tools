@@ -5,7 +5,7 @@ import ConfigParser, os
 def parse_misc():
     
     config = ConfigParser.RawConfigParser(allow_no_value=True)
-    config.read('.sauce.ini')
+    config.read('.deploy.ini')
     
     try: #check if the env already exists, it's better not to mess with existing stuff
         os.environ["verbose"]

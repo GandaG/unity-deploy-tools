@@ -5,7 +5,7 @@ import ConfigParser, os, requests
 def parse_docs():
 
     config = ConfigParser.RawConfigParser(allow_no_value=True)
-    config.read('.sauce.ini')
+    config.read('.deploy.ini')
     
     if not config.getboolean('Docs', 'enable'):
         return None
@@ -14,7 +14,7 @@ def parse_docs():
     
     deploy_docs = {
         "provider": "script",
-        "script": "./.sauce/travis/deploy_docs.sh",
+        "script": "./.deploy/travis/deploy_docs.sh",
         "skip_cleanup": "true",
         "on": {}
     }
@@ -27,7 +27,7 @@ def parse_docs():
         deploy_docs["on"]["all_branches"] = "true"
     
     #return deploy_docs
-    return ["sh ./.sauce/travis/deploy_docs.sh"]
+    return ["sh ./.deploy/travis/deploy_docs.sh"]
 
 def get_github_description():
     
@@ -54,7 +54,7 @@ def get_github_description():
 def parse_docs_options():
     
     config = ConfigParser.RawConfigParser(allow_no_value=True)
-    config.read('.sauce.ini')
+    config.read('.deploy.ini')
     
     options = []
     

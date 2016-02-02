@@ -3,14 +3,14 @@
 echo "------------------------------------------------------------------------------------------------------------------------"
 echo 'Downloading Unity; -----------------------------------------------------------------------------------------------------'
 echo "------------------------------------------------------------------------------------------------------------------------"
-curl -o .sauce/Unity.pkg http://download.unity3d.com/download_unity/f3d16a1fa2dd/MacEditorInstaller/Unity-5.2.3f1.pkg
+curl -o .deploy/Unity.pkg http://download.unity3d.com/download_unity/f3d16a1fa2dd/MacEditorInstaller/Unity-5.2.3f1.pkg
 
 echo "------------------------------------------------------------------------------------------------------------------------"
 echo 'Installing Unity; ------------------------------------------------------------------------------------------------------'
 echo "------------------------------------------------------------------------------------------------------------------------"
 if [ "$verbose" == "True" ];
 then
-    sudo installer -dumplog -package .sauce/Unity.pkg -target /
+    sudo installer -dumplog -package .deploy/Unity.pkg -target /
 else
-    sudo installer -package .sauce/Unity.pkg -target /
+    sudo installer -package .deploy/Unity.pkg -target /
 fi
