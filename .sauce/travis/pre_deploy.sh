@@ -27,6 +27,7 @@ if [ "$project" == "UnitySauce" ]; then
   mv ./.sauce ./Temp/.sauce
   rm ./Temp/.sauce/*.pkg
   rm ./Temp/.sauce/*.dmg
+  rm -r ./Temp/.sauce/docs/output/
   if [ "$verbose" == "True" ];
   then
     rm ./Temp/.sauce/*.log
