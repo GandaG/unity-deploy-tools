@@ -70,7 +70,7 @@ def parse_docs_options():
     gen_diagrams = config.getboolean('Docs', 'gen_diagrams')
     
     if projectname:
-        options.append("projectname=%s" % projectname)
+        options.append("projectname=\"%s\"" % projectname)
     else:
         options.append("projectname=%s" % os.environ["TRAVIS_REPO_SLUG"].split("/")[1]) #repo name!
     
@@ -80,7 +80,7 @@ def parse_docs_options():
         options.append("description=\"%s\"" % get_github_description())
     
     if logo:
-        options.append("logo=%s" % logo)
+        options.append("logo=\"%s\"" % logo)
     else:
         options.append("logo=") #I hope this doesn't throw an error.
     
