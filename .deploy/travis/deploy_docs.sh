@@ -85,13 +85,18 @@ if git ls-remote --exit-code "https://github.com/${TRAVIS_REPO_SLUG}.git" gh-pag
     #since we already tested it exists, pull from the gh pages branch and silence it.
     git pull --quiet "https://${GH_TOKEN}@${GH_REF}" gh-pages &> /dev/null
     
+    echo "------------------------------------------------------------------------------------------------------------------------"
+    echo "Kill everything; -------------------------------------------------------------------------------------------------------"
+    echo "------------------------------------------------------------------------------------------------------------------------"
     #kill everything inside except the .git folder.
-    find . ! -name ".git" ! -path "./.git/*" -exec rm -rv {} \;
+    find ./* ! -name ".git" ! -path "./.git/*" -exec rm -r -v {} \;
     cd .. || exit 1
     
-    
+    echo "------------------------------------------------------------------------------------------------------------------------"
+    echo "Moving to proper directory; --------------------------------------------------------------------------------------------"
+    echo "------------------------------------------------------------------------------------------------------------------------"
     #copy everything from the doxygen output to the repo.
-    rsync -Rv html/ temp_git/
+    find ./html/* -exec rsync -R -r -v {} temp_git/ \;
     cd temp_git/ || exit 1
     
     #add everything that changed and commit. -A is used instead of "." for compatibility.
