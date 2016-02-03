@@ -86,12 +86,12 @@ if git ls-remote --exit-code "https://github.com/${TRAVIS_REPO_SLUG}.git" gh-pag
     git pull --quiet "https://${GH_TOKEN}@${GH_REF}" gh-pages &> /dev/null
     
     #kill everything inside except the .git folder.
-    find . ! -name ".git" ! -path "./.git/*" -exec rm -r {} \;
+    find . ! -name ".git" ! -path "./.git/*" -exec rm -rv {} \;
     cd .. || exit 1
     
     
     #copy everything from the doxygen output to the repo.
-    rsync -R html/ temp_git/
+    rsync -Rv html/ temp_git/
     cd temp_git/ || exit 1
     
     #add everything that changed and commit. -A is used instead of "." for compatibility.
