@@ -113,11 +113,11 @@ else
     git init
 
     # inside this git repo we'll pretend to be a new user
-    git config user.name "Travis-CI Doxygen Deployment"
-    git config user.email "doxygen@deployment_to.github.pages"
+    git config user.name "$docs_username"
+    git config user.email "$docs_email"
 
     git add -A
-    git commit -m "Deploying to GitHub Pages"
+    git commit -m "$docs_commit_description"
 .
     git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" master:gh-pages &> /dev/null
 
