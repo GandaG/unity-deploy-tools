@@ -91,15 +91,15 @@ if git ls-remote --exit-code "https://github.com/${TRAVIS_REPO_SLUG}.git" gh-pag
     echo "$PWD"
     #kill everything inside except the .git folder.
     find . ! -name "." ! -name ".git" ! -path "./.git/*" -exec rm -r -v {} \;
-    cd .. || exit 1
+    cd ../html || exit 1
     
     echo "------------------------------------------------------------------------------------------------------------------------"
     echo "Moving to proper directory; --------------------------------------------------------------------------------------------"
     echo "------------------------------------------------------------------------------------------------------------------------"
     echo "$PWD"
     #copy everything from the doxygen output to the repo.
-    find ./html/* -exec rsync -R -r -v {} temp_git/ \;
-    cd temp_git/ || exit 1
+    find ./* -exec rsync -R -r -v {} ../temp_git/ \;
+    cd ../temp_git/ || exit 1
     
     #add everything that changed and commit. -A is used instead of "." for compatibility.
     git add -A
