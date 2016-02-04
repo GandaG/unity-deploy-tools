@@ -14,7 +14,7 @@ def parse_docs():
     
     deploy_docs = {
         "provider": "script",
-        "script": "./.deploy/travis/deploy_docs.sh",
+        "script": "sh $TRAVIS_BUILD/.deploy/travis/deploy_docs.sh",
         "skip_cleanup": "true",
         "on": {}
     }
@@ -26,8 +26,8 @@ def parse_docs():
     else:
         deploy_docs["on"]["all_branches"] = "true"
     
-    #return deploy_docs
-    return ["sh ./.deploy/travis/deploy_docs.sh"]
+    return deploy_docs
+    #return ["sh ./.deploy/travis/deploy_docs.sh"]
 
 def get_github_description():
     
