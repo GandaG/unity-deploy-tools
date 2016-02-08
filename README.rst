@@ -5,7 +5,7 @@
    :trim:
 
 ####################################################################################
-Unity Deployment Tools |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |travisbadge|
+Unity Deployment Tools |nbsp| |nbsp| |nbsp| |travisbadge|
 ####################################################################################
 *Continuous deployment tools for open-source* `Unity3D <https://unity3d.com/>`_ *packages and assets.*
 
