@@ -1,6 +1,7 @@
 var NAVTREE =
 [
   [ "Unity Deployment Tools", "index.html", [
+    [ "Contributors", "md_CONTRIBUTING.html", null ],
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
       [ "Class Index", "classes.html", null ],
