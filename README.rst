@@ -1,17 +1,20 @@
-.. image:: https://travis-ci.org/GandaG/UnitySauce.svg?branch=master
-    :target: https://travis-ci.org/GandaG/UnitySauce
+.. |travisbadge| image:: https://travis-ci.org/GandaG/unity-deploy-tools.svg?branch=master
+    :target: https://travis-ci.org/GandaG/unity-deploy-tools
 
-###############
-UnitySauce
-###############
-*Continuous integration for open-source* `Unity3D <https://unity3d.com/>`_ *packages and assets.*
+.. |nbsp| unicode:: 0xA0 
+   :trim:
+
+####################################################################################
+Unity Deployment Tools |nbsp| |nbsp| |nbsp| |travisbadge|
+####################################################################################
+*Continuous deployment tools for open-source* `Unity3D <https://unity3d.com/>`_ *packages and assets.*
 
 This repository offers a quick way to setup open source unity packages. It features:
 
 - a self-documented and easy to use .ini file to configure all the options;
 - automated package/asset exporting from unity;
 - automated deployment to Github Releases;
-- automated creation and deployment of documentation to Github Pages; [TODO]
+- automated creation and deployment of documentation to Github Pages;
 - automated deployment to Unity's Asset Store. [TODO]
 
 
@@ -26,7 +29,7 @@ Installation
 
 4. Enable your repository in your account page;
 
-5. Open :code:`.sauce.ini` with a text editor (like Notepad++) and modify the options under the :code:`[Misc]` section as per your preferences.
+5. Open :code:`.deploy.ini` with a text editor (like Notepad++) and modify the options under the :code:`[Misc]` section as per your preferences.
 
 6. For additional features check the subsections below;
 
@@ -75,10 +78,33 @@ In order to use any of the features below you need to grab an OAuth token from G
 
 Github Releases
 """"""""""""""""""
-As long as you have a Github token in your :code:`.travis.yml` file deployment is enabled by default. Open your :code:`.sauce.ini` file with a text editor (like Notepad++) and modify the :code:`[Github]` section as per your preferences.
+Simply open your :code:`.deploy.ini` file with a text editor (like Notepad++) and modify the :code:`[Github]` 
+section as per your preferences. That's it, really.
+
+Code Documentation
+""""""""""""""""""
+Documentation for all your code is generated with `Doxygen <http://www.stack.nl/~dimitri/doxygen/index.html/>`_.
+Example documentation is provided at the `Github Pages <https://gandag.github.io/unity-deploy-tools/>`_ of this repository, 
+example script taken from Microsoft's `XML Documentation Example <https://msdn.microsoft.com/en-us/library/aa288481(v=vs.71).aspx>`_.
+
+Basic Usage
+'''''''''''
+Documentation generation is enabled by default. Open your :code:`.deploy.ini` file with a text editor (like Notepad++) 
+and modify the :code:`[Docs]` section as per your preferences. That's pretty much it, for more things to do with Doxygen check below.
+
+Advanced/Expert
+'''''''''''''''
+Doxygen must be (for the sheer amount of options) the best documented software I've ever seen. 
+
+If you want to customize your docs more than the basic options presented in the :code:`.deploy.ini` file 
+(these are the same presented in the basic panel of the doxywizard) head over to :code:`.deploy/docs/` and 
+open the :code:`Doxyfile`. This is the default doxygen configuration file and every option is very well 
+documented. There are bajillions of them, have fun!
+
+Please note that some options are hardcoded (see :code:`.deploy/travis/deploy_docs.sh`).
 
 *****************
 Upcoming Features
 *****************
 - Automated package deployment to `Unity <https://unity3d.com/>`_'s Asset Store.
-- Automated documentation generation.
+- Automated compiling and distribution as a .dll file.
