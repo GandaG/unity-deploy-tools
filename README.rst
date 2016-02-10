@@ -104,6 +104,16 @@ documented. There are bajillions of them, have fun!
 Please note that some options are hardcoded (see :code:`.deploy/travis/deploy_docs.sh`).
 
 *****************
+Known Issues
+*****************
+- Build error due to timeout on Travis-CI.
+    ``No fix available`` - Sometimes the connection speed from the Travis-CI worker to the unity servers is 
+    just too slow and the build times out. No fix unless Travis somehow allows us to restart the build automatically.
+
+    ``Workaround`` - Simply restart the build until the connection is faster. 
+
+
+*****************
 Upcoming Features
 *****************
 - Automated package deployment to `Unity <https://unity3d.com/>`_'s Asset Store.
