@@ -12,6 +12,8 @@
 
 .. _deploy_docs.sh: .deploy/travis/deploy_docs.sh
 
+.. _UnitySteer: https://github.com/ricardojmendez/UnitySteer
+
 ####################################################################################
 Unity Deployment Tools |nbsp| |nbsp| |nbsp| |travisbadge|
 ####################################################################################
@@ -27,6 +29,10 @@ Unity Deployment Tools offers a quick way to setup open source unity packages. I
 - automated deployment to Github Releases;
 - automated creation and deployment of documentation to Github Pages;
 - automated deployment to Unity's Asset Store. [TODO]
+
+Projects using UDT
+""""""""""""""""""
+- `UnitySteer`_
 
 ************
 Installation
@@ -44,6 +50,11 @@ Installation
 6. For additional `features`_ check the subsections below;
 
 7. Simply push a commit and let travis do all the work for you!
+
+Once you're using UDT please consider `leaving a comment <https://github.com/GandaG/unity-deploy-tools/issues>`_ so that I can add your repo 
+to the list__ !
+
+__ `Projects using UDT`_
 
 *******************
 Features
