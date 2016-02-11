@@ -16,3 +16,22 @@ def parse_misc():
     else:
         print "Something in [Misc] already exists as an env variable. Change it to something else."
         exit(1)
+
+def parse_unity_versions():
+    
+    config = ConfigParser.RawConfigParser(allow_no_value=True)
+    config.read('.deploy.ini')
+    
+    options = []
+    
+    version_dict = {
+        "":"",
+    }
+    
+    unity_vers = config.get('Misc', 'unity_versions')
+    
+    if not unity_vers:
+        return []
+    
+    
+
