@@ -4,19 +4,29 @@
 .. |nbsp| unicode:: 0xA0 
    :trim:
 
+.. _.ini: .deploy.ini
+
+.. _.deploy.ini: .deploy.ini
+
+.. _Doxyfile: .deploy/docs/Doxyfile
+
+.. _deploy_docs.sh: .deploy/travis/deploy_docs.sh
+
 ####################################################################################
 Unity Deployment Tools |nbsp| |nbsp| |nbsp| |travisbadge|
 ####################################################################################
 *Continuous deployment tools for open-source* `Unity3D <https://unity3d.com/>`_ *packages and assets.*
 
-This repository offers a quick way to setup open source unity packages. It features:
+********
+Overview
+********
+Unity Deployment Tools offers a quick way to setup open source unity packages. It features:
 
-- a self-documented and easy to use .ini file to configure all the options;
+- a self-documented and easy to use `.ini`_ file to configure all the options;
 - automated package/asset exporting from unity;
 - automated deployment to Github Releases;
 - automated creation and deployment of documentation to Github Pages;
 - automated deployment to Unity's Asset Store. [TODO]
-
 
 ************
 Installation
@@ -29,17 +39,68 @@ Installation
 
 4. Enable your repository in your account page;
 
-5. Open :code:`.deploy.ini` with a text editor (like Notepad++) and modify the options under the :code:`[Misc]` section as per your preferences.
+5. Open `.deploy.ini`_ with a text editor (like Notepad++) and modify the options under the :code:`[Misc]` section as per your preferences.
 
-6. For additional features check the subsections below;
+6. For additional `features`_ check the subsections below;
 
 7. Simply push a commit and let travis do all the work for you!
 
 *******************
-Additional Features
+Features
 *******************
-In order to use any of the features below you need to grab an OAuth token from Github with special permissions. Take these steps:
+These tools are all targeted at the majority of Unity users: the newbies. While more advanced users will also find them useful 
+(automation is always welcome) everything by default is as simple as possible to configure (a simple `.ini`_ file) and to 
+use (unzip and copy to your repo).
 
+Some features have requirements (e.g. having a tag associated with the commit) which you have to fulfill before using them. The 
+only exception is the automated building and exporting of the package (this includes no deployment/upload - it is simply to check
+is the package CAN be built and exported correctly). These requirements are shown at the beggining of each feature description.
+
+
+Github Releases
+""""""""""""""""""
+:Requirements:
+    `Github OAuth Token`_ present;
+    
+    Tag present;
+    
+    Not on a Pull Request.
+
+Simply open your `.deploy.ini`_ file with a text editor (like Notepad++) and modify the :code:`[Github]` 
+section as per your preferences. That's it, really.
+
+Code Documentation
+""""""""""""""""""
+:Requirements:
+    `Github OAuth Token`_ present;
+    
+    Tag present;
+    
+    Not on a Pull Request.
+
+Documentation for all your code is generated with `Doxygen <http://www.stack.nl/~dimitri/doxygen/index.html/>`_.
+Example documentation is provided at the `Github Pages <https://gandag.github.io/unity-deploy-tools/>`_ of this repository, 
+example script taken from Microsoft's `XML Documentation Example <https://msdn.microsoft.com/en-us/library/aa288481(v=vs.71).aspx>`_.
+
+Basic Usage
+'''''''''''
+Documentation generation is enabled by default. Open your `.deploy.ini`_ file with a text editor (like Notepad++) 
+and modify the :code:`[Docs]` section as per your preferences. That's pretty much it, for more things to do with Doxygen check below.
+
+Advanced/Expert
+'''''''''''''''
+Doxygen must be (for the sheer amount of options) the best documented software I've ever seen. 
+
+If you want to customize your docs more than the basic options presented in the `.deploy.ini`_ file 
+(these are the same presented in the basic panel of the doxywizard)
+open the `Doxyfile`_. This is the default doxygen configuration file and every option is very well 
+documented. There are bajillions of them, have fun!
+
+Please note that some options are hardcoded (see `deploy_docs.sh`_).
+
+******************
+Github OAuth Token
+******************
 1. Sign in to Github;
 
 2. Go to your `Settings <https://github.com/settings/>`_;
@@ -50,7 +111,7 @@ In order to use any of the features below you need to grab an OAuth token from G
 
 5. Enter your password;
 
-6. Give the token a good description. Mine is :code:`Travis-CI Deploy`;
+6. Give the token a good description. Mine is :code:`Travis-CI Unity Deploy Tools`;
 
 7. Give the token these permissions:
 
@@ -75,33 +136,6 @@ In order to use any of the features below you need to grab an OAuth token from G
 14. Make sure to leave :code:`Display value in build log` as :code:`OFF` and click :code:`Add`;
 
 15. It's now safe to delete and forget about that token from before! Only use the secure (encrypted) version from now on.
-
-Github Releases
-""""""""""""""""""
-Simply open your :code:`.deploy.ini` file with a text editor (like Notepad++) and modify the :code:`[Github]` 
-section as per your preferences. That's it, really.
-
-Code Documentation
-""""""""""""""""""
-Documentation for all your code is generated with `Doxygen <http://www.stack.nl/~dimitri/doxygen/index.html/>`_.
-Example documentation is provided at the `Github Pages <https://gandag.github.io/unity-deploy-tools/>`_ of this repository, 
-example script taken from Microsoft's `XML Documentation Example <https://msdn.microsoft.com/en-us/library/aa288481(v=vs.71).aspx>`_.
-
-Basic Usage
-'''''''''''
-Documentation generation is enabled by default. Open your :code:`.deploy.ini` file with a text editor (like Notepad++) 
-and modify the :code:`[Docs]` section as per your preferences. That's pretty much it, for more things to do with Doxygen check below.
-
-Advanced/Expert
-'''''''''''''''
-Doxygen must be (for the sheer amount of options) the best documented software I've ever seen. 
-
-If you want to customize your docs more than the basic options presented in the :code:`.deploy.ini` file 
-(these are the same presented in the basic panel of the doxywizard) head over to :code:`.deploy/docs/` and 
-open the :code:`Doxyfile`. This is the default doxygen configuration file and every option is very well 
-documented. There are bajillions of them, have fun!
-
-Please note that some options are hardcoded (see :code:`.deploy/travis/deploy_docs.sh`).
 
 *****************
 Known Issues
