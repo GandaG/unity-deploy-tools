@@ -10,6 +10,9 @@ def parse_gh():
     if not config.getboolean('Github', 'enable'):
         return None
     
+    if not config.getboolean('Github', 'conditional_deployment') and ("alpha" in os.environ["TRAVIS_TAG"] or "beta" in os.environ["TRAVIS_TAG"]):
+        return None
+    
     prerelease = config.getboolean('Github', 'prerelease')
     if not prerelease:
         conditional_prerelease = config.getboolean('Github', 'conditional_prerelease')
