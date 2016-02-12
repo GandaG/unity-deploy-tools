@@ -115,6 +115,9 @@ include_version=true
 #if you want to name the deploy zip file something other than your repo name:
 packagename=
 
+#if set to true, tags with "alpha" or "beta" in their name will be deployed. Default is true.
+conditional_deployment=true
+
 #if set to true, tags with "alpha" or "beta" in their name will be set to prerelease. Default is true.
 conditional_prerelease=true
 
@@ -178,18 +181,14 @@ else
   echo "------------------------------------------------------------------------------------------------------------------------"
   mkdir ./Deploy
   
-  cd Project/ || exit 1
-  zip -r -X "$zip" "$package"
-  cd ..
-  
-  mv ./Project/"$zip" ./Deploy/"$zip"
+  mv ./Project/"$package" ./Deploy/"$package"
    
   echo "------------------------------------------------------------------------------------------------------------------------"
   echo "Checking compression was successful; -----------------------------------------------------------------------------------"
   echo "------------------------------------------------------------------------------------------------------------------------"
   
-  file=./Deploy/$zip
-   
+  file=./Deploy/"$package"
+  
   if [ -e "$file" ];
   then
     echo "------------------------------------------------------------------------------------------------------------------------"

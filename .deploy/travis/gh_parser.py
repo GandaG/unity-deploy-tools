@@ -54,16 +54,30 @@ def parse_gh():
     else:
         deploy_gh["on"]["all_branches"] = "true"
     
-    if packagename:
-        if include_version:
-            deploy_gh["file"] = "./Deploy/%s_%s.zip" % (packagename, os.environ["TRAVIS_TAG"])
+    repo_name = os.environ["TRAVIS_REPO_SLUG"].split("/")[1]
+    
+    if repo_name == "UnityDeployTools":
+        if packagename:
+            if include_version:
+                deploy_gh["file"] = "./Deploy/%s_%s.zip" % (packagename, os.environ["TRAVIS_TAG"])
+            else:
+                deploy_gh["file"] = "./Deploy/%s.zip" % packagename
         else:
-            deploy_gh["file"] = "./Deploy/%s.zip" % packagename
+            if include_version:
+                deploy_gh["file"] = "./Deploy/%s_%s.zip" % (repo_name, os.environ["TRAVIS_TAG"])
+            else:
+                deploy_gh["file"] = "./Deploy/%s.zip" % repo_name
     else:
-        if include_version:
-            deploy_gh["file"] = "./Deploy/%s_%s.zip" % (os.environ["TRAVIS_REPO_SLUG"].split("/")[1], os.environ["TRAVIS_TAG"])
+        if packagename:
+            if include_version:
+                deploy_gh["file"] = "./Deploy/%s_%s.unitypackage" % (packagename, os.environ["TRAVIS_TAG"])
+            else:
+                deploy_gh["file"] = "./Deploy/%s.unitypackage" % packagename
         else:
-            deploy_gh["file"] = "./Deploy/%s.zip" % os.environ["TRAVIS_REPO_SLUG"].split("/")[1] #this is the repo name
+            if include_version:
+                deploy_gh["file"] = "./Deploy/%s_%s.unitypackage" % (repo_name, os.environ["TRAVIS_TAG"])
+            else:
+                deploy_gh["file"] = "./Deploy/%s.unitypackage" % repo_name
     
     return deploy_gh
 
