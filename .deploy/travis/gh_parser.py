@@ -56,7 +56,7 @@ def parse_gh():
     
     repo_name = os.environ["TRAVIS_REPO_SLUG"].split("/")[1]
     
-    if repo_name == "UnityDeployTools":
+    if repo_name == "unity-deploy-tools":
         if packagename:
             if include_version:
                 deploy_gh["file"] = "./Deploy/%s_%s.zip" % (packagename, os.environ["TRAVIS_TAG"])
