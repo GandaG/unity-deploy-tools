@@ -56,3 +56,12 @@ Changelog
 
 * Added conditional deployment option to the .ini file.
 
+
+1.1.3 (13-02-2016)
+-----------------------------------------
+
+* Changed package deployment to github releases to .unitypackage instead of .zip;
+* Fixed deployed .ini file;
+* Added conditional description option to the .ini file;
+* Fixed github releases description.
+
