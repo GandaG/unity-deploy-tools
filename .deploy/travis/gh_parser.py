@@ -30,6 +30,7 @@ def parse_gh():
             draft = True
     
     title = config.get('Github', 'title')
+    conditional_description = config.get('Github', 'conditional_description')
     description = config.get('Github', 'description')
     branch = config.get('Github', 'branch')
     packagename = config.get('Github', 'packagename')

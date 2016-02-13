@@ -124,6 +124,9 @@ conditional_prerelease=true
 #if set to true, tags with "alpha" or "beta" in their name will be deployed as draft. Default is true.
 conditional_draft=true
 
+#if filled in, tags with "alpha" or "beta" in their name will have this description. (don\'t forget this should be in github markdown)
+conditional_description=
+
 #if set to true, releases will always be set to prerelease. 
 #Overrides conditional_prerelease if true. Default is false.
 prerelease=false
