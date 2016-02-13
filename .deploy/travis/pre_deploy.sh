@@ -13,7 +13,7 @@ else
     zip="$project".zip
 fi
 
-if [ "$project" == "UnityDeployTools" ]; then
+if [ "${TRAVIS_REPO_SLUG##*/}" == "unity-deploy-tools" ]; then
   echo "------------------------------------------------------------------------------------------------------------------------"
   echo "Preparing directories; -------------------------------------------------------------------------------------------------"
   echo "------------------------------------------------------------------------------------------------------------------------"
@@ -115,11 +115,17 @@ include_version=true
 #if you want to name the deploy zip file something other than your repo name:
 packagename=
 
+#if set to true, tags with "alpha" or "beta" in their name will be deployed. Default is true.
+conditional_deployment=true
+
 #if set to true, tags with "alpha" or "beta" in their name will be set to prerelease. Default is true.
 conditional_prerelease=true
 
 #if set to true, tags with "alpha" or "beta" in their name will be deployed as draft. Default is true.
 conditional_draft=true
+
+#if filled in, tags with "alpha" or "beta" in their name will have this description. (don\'t forget this should be in github markdown)
+conditional_description=
 
 #if set to true, releases will always be set to prerelease. 
 #Overrides conditional_prerelease if true. Default is false.
@@ -178,18 +184,14 @@ else
   echo "------------------------------------------------------------------------------------------------------------------------"
   mkdir ./Deploy
   
-  cd Project/ || exit 1
-  zip -r -X "$zip" "$package"
-  cd ..
-  
-  mv ./Project/"$zip" ./Deploy/"$zip"
+  mv ./Project/"$package" ./Deploy/"$package"
    
   echo "------------------------------------------------------------------------------------------------------------------------"
   echo "Checking compression was successful; -----------------------------------------------------------------------------------"
   echo "------------------------------------------------------------------------------------------------------------------------"
   
-  file=./Deploy/$zip
-   
+  file=./Deploy/"$package"
+  
   if [ -e "$file" ];
   then
     echo "------------------------------------------------------------------------------------------------------------------------"
