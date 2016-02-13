@@ -25,7 +25,23 @@ def parse_unity_versions():
     options = []
     
     version_dict = {
-        "":"",
+        "5.0.1": "http://download.unity3d.com/download_unity/5a2e8fe35a68/MacEditorInstaller/Unity-5.0.1f1.pkg",
+        "5.0.2": "http://download.unity3d.com/download_unity/0b02744d4013/MacEditorInstaller/Unity-5.0.2f1.pkg",
+        "5.0.3": "http://download.unity3d.com/download_unity/c28c7860811c/MacEditorInstaller/Unity-5.0.3f2.pkg",
+        "5.0.4": "http://download.unity3d.com/download_unity/1d75c08f1c9c/MacEditorInstaller/Unity-5.0.4f1.pkg",
+        "5.1.0": "http://download.unity3d.com/download_unity/ec70b008569d/MacEditorInstaller/Unity-5.1.0f3.pkg",
+        "5.1.1": "http://download.unity3d.com/download_unity/2046fc06d4d8/MacEditorInstaller/Unity-5.1.1f1.pkg",
+        "5.1.2": "http://download.unity3d.com/download_unity/afd2369b692a/MacEditorInstaller/Unity-5.1.2f1.pkg",
+        "5.1.3": "http://download.unity3d.com/download_unity/b0a23b31c3d8/MacEditorInstaller/Unity-5.1.3f1.pkg",
+        "5.1.4": "http://download.unity3d.com/download_unity/36d0f3617432/MacEditorInstaller/Unity-5.1.4f1.pkg",
+        "5.2.0": "http://download.unity3d.com/download_unity/e7947df39b5c/MacEditorInstaller/Unity-5.2.0f3.pkg",
+        "5.2.1": "http://download.unity3d.com/download_unity/44735ea161b3/MacEditorInstaller/Unity-5.2.1f1.pkg",
+        "5.2.2": "http://download.unity3d.com/download_unity/3757309da7e7/MacEditorInstaller/Unity-5.2.2f1.pkg",
+        "5.2.3": "http://download.unity3d.com/download_unity/f3d16a1fa2dd/MacEditorInstaller/Unity-5.2.3f1.pkg",
+        "5.2.4": "http://download.unity3d.com/download_unity/98095704e6fe/MacEditorInstaller/Unity-5.2.4f1.pkg",
+        "5.3.0": "http://download.unity3d.com/download_unity/2524e04062b4/MacEditorInstaller/Unity-5.3.0f4.pkg",
+        "5.3.1": "http://download.unity3d.com/download_unity/cc9cbbcc37b4/MacEditorInstaller/Unity-5.3.1f1.pkg",
+        "5.3.2": "http://netstorage.unity3d.com/unity/e87ab445ead0/MacEditorInstaller/Unity-5.3.2f1.pkg"
     }
     
     unity_vers = config.get('Misc', 'unity_versions')
