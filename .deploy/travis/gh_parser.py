@@ -53,10 +53,10 @@ def parse_gh():
     
     if not test_release:
         if description:
-            deploy_gh["description"] = description
+            deploy_gh["body"] = description
     else:
         if conditional_description:
-            deploy_gh["description"] = conditional_description
+            deploy_gh["body"] = conditional_description
     
     if branch:
         deploy_gh["on"]["branch"] = branch
@@ -107,3 +107,5 @@ def parse_gh_options():
     options.append("gh_version=%s" % include_version)
     
     return options
+
+
