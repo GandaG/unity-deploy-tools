@@ -22,8 +22,16 @@ def parse_unity_versions():
     config = ConfigParser.RawConfigParser(allow_no_value=True)
     config.read('.deploy.ini')
     
-    options = []
+    unity_vers = config.get('Misc', 'unity_versions')
     
+    if not unity_vers:
+        return ["5.0.1"] #once/if a scraper is written this should return the latest version.
+    
+    return unity_vers.split()
+    
+def get_available_unity_vers():
+    
+    #once/if a scraper is written, this should output the scraper's results instead of a fixed list.
     version_dict = {
         "5.0.1": "http://download.unity3d.com/download_unity/5a2e8fe35a68/MacEditorInstaller/Unity-5.0.1f1.pkg",
         "5.0.2": "http://download.unity3d.com/download_unity/0b02744d4013/MacEditorInstaller/Unity-5.0.2f1.pkg",
@@ -44,10 +52,6 @@ def parse_unity_versions():
         "5.3.2": "http://netstorage.unity3d.com/unity/e87ab445ead0/MacEditorInstaller/Unity-5.3.2f1.pkg"
     }
     
-    unity_vers = config.get('Misc', 'unity_versions')
-    
-    if not unity_vers:
-        return []
-    
-    
+    return version_dict
+
 
