@@ -1,18 +1,21 @@
 #!/usr/bin/env python
 
-from misc_parser import parse_misc
-from gh_parser import parse_gh, parse_gh_options
-from asset_parser import parse_asset
-from docs_parser import parse_docs, parse_docs_options
-from deploy_setup import deploy_setup
+from misc_parser import *
+from gh_parser import *
+from asset_parser import *
+from docs_parser import *
+from deploy_setup import *
 
 import copy, os
 
 parse_misc()
 
+unity_vers = parse_unity_version()
+unity_vers_url = get_available_unity_vers()[unity_vers]
+
 rebuild_yml = {
     "language": ["objective-c"],
-    "install": ["sh ./.deploy/travis/unity_install.sh"],
+    "install": ["sh ./.deploy/travis/unity_install.sh %s %s" % (unity_vers, unity_vers_url)],
     "script": ["sh ./.deploy/travis/unity_build.sh"],
     "before_deploy": ["sh ./.deploy/travis/pre_deploy.sh"],
     "deploy": [],
@@ -65,7 +68,7 @@ if (os.environ["TRAVIS_PULL_REQUEST"] == "false" and
         print '------------------------------------------------------------------------------------------------------------------------'
         print "Skipping deployment. ---------------------------------------------------------------------------------------------------"
         print '------------------------------------------------------------------------------------------------------------------------'
-    else:        
+    else:
         deploy_setup(os.environ["GH_TOKEN"], deploy_yml)
     
 else:
@@ -75,7 +78,7 @@ else:
 
 #you only get here if there is no deployment since deploy_setup calls exit on success.
 if os.environ["always_run"] == "True": #move on to the build steps. This needs to be invoked like this to be able to pass the env vars created here.
-    if (os.system("sh ./.deploy/travis/unity_install.sh") == 0 and
+    if (os.system("sh ./.deploy/travis/unity_install.sh %s %s" % (unity_vers, unity_vers_url)) == 0 and
         os.system("sh ./.deploy/travis/unity_build.sh") == 0):
         exit(0)
     else:
