@@ -4,16 +4,6 @@
 .. |nbsp| unicode:: 0xA0 
    :trim:
 
-.. _.ini: .deploy.ini
-
-.. _.deploy.ini: .deploy.ini
-
-.. _Doxyfile: .deploy/docs/Doxyfile
-
-.. _deploy_docs.sh: .deploy/travis/deploy_docs.sh
-
-.. _UnitySteer: https://github.com/ricardojmendez/UnitySteer
-
 ####################################################################################
 Unity Deployment Tools |nbsp| |nbsp| |nbsp| |travisbadge|
 ####################################################################################
@@ -22,6 +12,9 @@ Unity Deployment Tools |nbsp| |nbsp| |nbsp| |travisbadge|
 ********
 Overview
 ********
+
+.. _.ini: .deploy.ini
+
 Unity Deployment Tools offers a quick way to setup open source unity packages. It features:
 
 - a self-documented and easy to use `.ini`_ file to configure all the options;
@@ -32,11 +25,17 @@ Unity Deployment Tools offers a quick way to setup open source unity packages. I
 
 Projects using UDT
 """"""""""""""""""
+
+.. _UnitySteer: https://github.com/ricardojmendez/UnitySteer
+
 - `UnitySteer`_
 
 ************
 Installation
 ************
+
+.. _.deploy.ini: .deploy.ini
+
 1. Download the `latest stable release <https://github.com/GandaG/unitypackage-ci/releases/latest>`_;
 
 2. Unpack the files into your repository's root directory;
@@ -52,7 +51,7 @@ Installation
 7. Simply push a commit and let travis do all the work for you!
 
 Once you're using UDT please consider `leaving a comment <https://github.com/GandaG/unity-deploy-tools/issues>`_ so that I can add your repo 
-to the list__ !
+to the list__!
 
 __ `Projects using UDT`_
 
@@ -70,24 +69,20 @@ is the package CAN be built and exported correctly). These requirements are show
 
 Github Releases
 """"""""""""""""""
-:Requirements:
-    `Github OAuth Token`_ present;
-    
-    Tag present;
-    
-    Not on a Pull Request.
+- Requirements
+    - `Github OAuth Token`_ present;
+    - Tag present;
+    - Not on a Pull Request.
 
 Simply open your `.deploy.ini`_ file with a text editor (like Notepad++) and modify the :code:`[Github]` 
 section as per your preferences. That's it, really.
 
 Code Documentation
 """"""""""""""""""
-:Requirements:
-    `Github OAuth Token`_ present;
-    
-    Tag present;
-    
-    Not on a Pull Request.
+- Requirements
+    - `Github OAuth Token`_ present;
+    - Tag present;
+    - Not on a Pull Request.
 
 Documentation for all your code is generated with `Doxygen <http://www.stack.nl/~dimitri/doxygen/index.html/>`_.
 Example documentation is provided at the `Github Pages <https://gandag.github.io/unity-deploy-tools/>`_ of this repository, 
@@ -100,6 +95,11 @@ and modify the :code:`[Docs]` section as per your preferences. That's pretty muc
 
 Advanced/Expert
 '''''''''''''''
+
+.. _Doxyfile: .deploy/docs/Doxyfile
+
+.. _deploy_docs.sh: .deploy/travis/deploy_docs.sh
+
 Doxygen must be (for the sheer amount of options) the best documented software I've ever seen. 
 
 If you want to customize your docs more than the basic options presented in the `.deploy.ini`_ file 
@@ -109,9 +109,28 @@ documented. There are bajillions of them, have fun!
 
 Please note that some options are hardcoded (see `deploy_docs.sh`_).
 
-******************
+*****************
+Known Issues
+*****************
+- Build error due to timeout on Travis-CI.
+    ``No fix available`` - Sometimes the connection speed from the Travis-CI worker to the unity servers is 
+    just too slow and the build times out. No fix unless Travis somehow allows us to restart the build automatically.
+
+    ``Workaround`` - Simply restart the build until the connection is faster. 
+
+
+*****************
+Upcoming Features
+*****************
+- Automated package deployment to `Unity <https://unity3d.com/>`_'s Asset Store.
+- Automated compiling and distribution as a .dll file.
+
+******
+Extras
+******
+
 Github OAuth Token
-******************
+""""""""""""""""""
 1. Sign in to Github;
 
 2. Go to your `Settings <https://github.com/settings/>`_;
@@ -148,18 +167,24 @@ Github OAuth Token
 
 15. It's now safe to delete and forget about that token from before! Only use the secure (encrypted) version from now on.
 
-*****************
-Known Issues
-*****************
-- Build error due to timeout on Travis-CI.
-    ``No fix available`` - Sometimes the connection speed from the Travis-CI worker to the unity servers is 
-    just too slow and the build times out. No fix unless Travis somehow allows us to restart the build automatically.
+Supported Unity Versions
+"""""""""""""""""""""""""""
+- 5.0.1 
+- 5.0.2
+- 5.0.3
+- 5.0.4
+- 5.1.0
+- 5.1.1
+- 5.1.2
+- 5.1.3
+- 5.1.4
+- 5.2.0
+- 5.2.1
+- 5.2.2
+- 5.2.3
+- 5.2.4
+- 5.3.0
+- 5.3.1
+- 5.3.2
 
-    ``Workaround`` - Simply restart the build until the connection is faster. 
-
-
-*****************
-Upcoming Features
-*****************
-- Automated package deployment to `Unity <https://unity3d.com/>`_'s Asset Store.
-- Automated compiling and distribution as a .dll file.
+Earlier versions are not supported. If a new version has come out and it isn't yet supported, add it to the list and create a pull request.
