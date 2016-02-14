@@ -15,9 +15,11 @@ Overview
 
 .. _.ini: .deploy.ini
 
+.. _all the options: `Configuration`_
+
 Unity Deployment Tools offers a quick way to setup open source unity packages. It features:
 
-- a self-documented and easy to use `.ini`_ file to configure all the options;
+- a self-documented and easy to use `.ini`_ file to configure `all the options`_;
 - automated package/asset exporting from unity;
 - automated deployment to Github Releases;
 - automated creation and deployment of documentation to Github Pages.
@@ -126,6 +128,162 @@ Upcoming Features
 ******
 Extras
 ******
+
+Configuration
+"""""""""""""
+| These are all the options present in the `.ini`_ file.
+
+.. note:: ``None`` corresponds to an empty field.
+
+Misc Section
+''''''''''''
+- verbose
+    - Default:
+        ``false``
+    - If set to true, all logs from commands will be shown.
+- always_run
+    - Default:
+        ``true``
+    - If set to true, Travis will always try to build the package/asset, even when there isn't a tag. 
+- unity_version
+    - Default:
+        ``None``
+    - Place the unity version you wish to build againts here (e.g. unity_version=5.1.0). See supported versions in the readme. If none are specified, version 5.0.1 (the earliest supported) is used.
+
+Docs Section
+''''''''''''
+- enable
+    - Default:
+        ``true``
+    - If set to true, will enable generating docs and deploying them to github pages.
+
+- branch
+    - Default:
+        ``master``
+    - If you want to generate documentation only from a specific branch.
+
+- projectname
+    - Default:
+        ``None``
+    - If you want to name your project something other than the repo name.
+
+- username
+    - Default:
+        ``None``
+    - If you want to have a custom username when pushing to gh-pages, fill in. If left blank, defaults to "Travis-CI Doxygen Deployment".
+
+- email
+    - Default:
+        ``None``
+    - If you want to have a custom email when pushing to gh-pages, fill in. If left blank, defaults to "doxygen@deployment.to.github.pages".
+
+- commit_description
+    - Default:
+        ``None``
+    - If you want to have a custom message for the commit to gh-pages, fill in. If left blank, defaults to "Deploying to GitHub Pages".
+
+- description
+    - Default:
+        ``None``
+    - If you want the short description to be something other than your repo description.
+
+- include_version
+    - Default:
+        ``false``
+    - If set to true, will include the tag as the documentation version.
+
+- logo
+    - Default:
+        ``None``
+    - If you wish your project to have a logo, fill in the relative path to the image.(e.g. if you store it in the .deploy folder, fill in this: ./.deploy/my_logo.png)
+
+- include_non_documented
+    - Default:
+        ``true``
+    - If set to true, will include all code even if not documented.
+
+- include_privates
+    - Default:
+        ``true``
+    - If set to true, will include private members in the documentation.
+
+- include_nav_panel
+    - Default:
+        ``true``
+    - If set to true, will include a sidebar with a navigation panel.
+
+- include_search
+    - Default:
+        ``true``
+    - If set to true, will include a search function in each page.
+
+- gen_diagrams
+    - Default:
+        ``true``
+    - If set to true, will generate class hierarchy diagrams.
+    
+Github Section
+''''''''''''''
+- enable
+    - Default:
+        ``true``
+    - If set to true, will enable deployment to github if possible.
+
+- include_version
+    - Default:
+        ``true``
+    - If set to true, tag will be included after the package name (e.g. UnityDeployTools_v1.1).
+
+- packagename
+    - Default:
+        ``None``
+    - If you want to name the deploy zip file something other than your repo name.
+
+- conditional_deployment
+    - Default:
+        ``true``
+    - If set to true, tags with "alpha" or "beta" in their name will be deployed.
+
+- conditional_prerelease
+    - Default:
+        ``true``
+    - If set to true, tags with "alpha" or "beta" in their name will be set to prerelease.
+
+- conditional_draft
+    - Default:
+        ``false``
+    - If set to true, tags with "alpha" or "beta" in their name will be deployed as draft.
+
+- conditional_description
+    - Default:
+        ``None``
+    - If filled in, tags with "alpha" or "beta" in their name will have this description. (don't forget this should be in github markdown)
+
+- prerelease
+    - Default:
+        ``false``
+    - If set to true, releases will always be set to prerelease. Overrides conditional_prerelease if true.
+
+- draft
+    - Default:
+        ``false``
+    - If set to true, releases will always be deployed as a draft. Overrides conditional_draft if true.
+
+- title
+    - Default:
+        ``None``
+    - If you want to name the release something other than the tag.
+
+- description
+    - Default:
+        ``None``
+    - If you want to add something to the release description. (don't forget this should be in github markdown) 
+
+- branch
+    - Default:
+        ``None``
+    - If you want to deploy only from a specific branch.
+
 
 Github OAuth Token
 """"""""""""""""""

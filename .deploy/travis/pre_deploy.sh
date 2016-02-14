@@ -61,9 +61,11 @@ verbose=false
 #if set to true, Travis will always try to build the package/asset, even when there isn\'t a tag. Default is true. 
 always_run=true
 
-#place the unity version you wish to build againts here (e.g. 5.1.0). See supported versions in the readme.
+#place the unity version you wish to build againts here (e.g. unity_version=5.1.0). See supported versions in the readme.
 #If none are specified, version 5.0.1 (the earliest supported) is used.
 unity_version=
+
+
 
 [Docs]
 #if set to true, will enable generating docs and deploying them to github pages. Default is true.
@@ -87,12 +89,12 @@ commit_description=
 #if you want the short description to be something other than your repo description, fill in:
 description=
 
+#if set to true, will include the tag as the documentation version. Default is false.
+include_version=false
+
 #if you wish your project to have a logo, fill in the relative path to the image.
 #e.g. if you store it in the .deploy folder, fill in this: ./.deploy/my_logo.png
 logo=
-
-#if set to true, will include the tag as the documentation version. Default is false.
-include_version=false
 
 #if set to true, will include all code even if not documented. Default is true.
 include_non_documented=true
@@ -108,6 +110,8 @@ include_search=true
 
 #if set to true, will generate class hierarchy diagrams. Default is true.
 gen_diagrams=true
+
+
 
 [Github]
 #if set to true, will enable deployment to github if possible. Default is true.
@@ -148,9 +152,7 @@ description=
 
 #if you want to deploy only from a specific branch:
 branch=
-
-[AssetStore]
-#not supported YET' >./Temp/.deploy.ini
+' >./Temp/.deploy.ini
   if [ "$verbose" == "True" ];
   then
     cat ./Temp/.deploy.ini
