@@ -1,10 +1,10 @@
 #!/usr/bin/env python
 
-from misc_parser import parse_misc, parse_unity_versions
-from gh_parser import parse_gh, parse_gh_options
-from asset_parser import parse_asset
-from docs_parser import parse_docs, parse_docs_options
-from deploy_setup import deploy_setup
+from misc_parser import *
+from gh_parser import *
+from asset_parser import *
+from docs_parser import *
+from deploy_setup import *
 
 import copy, os
 
@@ -24,25 +24,18 @@ rebuild_yml = {
     }
 }
 
-if os.environ["TRAVIS_PULL_REQUEST"] == "false":
+try:
+    os.environ["GH_TOKEN"]
+except KeyError:
+    gh_token_present = False
+else:
+    gh_token_present = True
+
+if (os.environ["TRAVIS_PULL_REQUEST"] == "false" and
+    os.environ["TRAVIS_TAG"].strip() and
+    gh_token_present):
     
     deploy_yml = copy.deepcopy(rebuild_yml)
-    
-    unity_vers = parse_unity_versions()
-    if len(unity_vers) > 1:
-        print '------------------------------------------------------------------------------------------------------------------------'
-        print "Building with several Unity versions; ----------------------------------------------------------------------------------"
-        print '------------------------------------------------------------------------------------------------------------------------'
-        print '------------------------------------------------------------------------------------------------------------------------'
-        for ver in unity_vers:
-            deploy_yml["env"]["matrix"].append("unity_version=%s" % ver)
-            print 'Using Version: %s; ---------------------------------------------------------------------------------------------' % ver
-        print '------------------------------------------------------------------------------------------------------------------------'
-    else:
-        deploy_yml["env"]["matrix"].append("unity_version=%s" % unity_vers[0])
-        print '------------------------------------------------------------------------------------------------------------------------'
-        print "Building with the latest Unity version; --------------------------------------------------------------------------------"
-        print '------------------------------------------------------------------------------------------------------------------------'
     
     ini_docs = parse_docs()
     if ini_docs:

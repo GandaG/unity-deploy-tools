@@ -6,14 +6,8 @@ def parse_docs():
 
     config = ConfigParser.RawConfigParser(allow_no_value=True)
     config.read('.deploy.ini')
-    
-    try:
-        os.environ["GH_TOKEN"]
-    except KeyError:
-        return None
-    
-    if (not config.getboolean('Docs', 'enable') or
-        not os.environ["TRAVIS_TAG"].strip()):
+
+    if not config.getboolean('Docs', 'enable'):
         return None
     
     branch = config.get('Docs', 'branch')
