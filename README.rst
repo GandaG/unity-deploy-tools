@@ -132,8 +132,8 @@ Extras
 Configuration
 """""""""""""
 | These are all the options present in the `.ini`_ file.
-
-.. note:: ``None`` corresponds to an empty field.
+|
+| **Note:** ``None`` corresponds to an empty field.
 
 Misc Section
 ''''''''''''

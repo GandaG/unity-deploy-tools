@@ -65,3 +65,8 @@ Changelog
 * Added conditional description option to the .ini file;
 * Fixed github releases description.
 
+
+1.2.0 (14-02-2016)
+-----------------------------------------
+
+* Added option to choose which unity version to test and export against.
