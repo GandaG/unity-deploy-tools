@@ -6,7 +6,7 @@ def parse_gh():
     
     config = ConfigParser.RawConfigParser(allow_no_value=True)
     config.read('.deploy.ini')
-    
+
     repo_name = os.environ["TRAVIS_REPO_SLUG"].split("/")[1]
     
     test_release = ("alpha" in os.environ["TRAVIS_TAG"] or "beta" in os.environ["TRAVIS_TAG"])

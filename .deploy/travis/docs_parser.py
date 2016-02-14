@@ -6,7 +6,7 @@ def parse_docs():
 
     config = ConfigParser.RawConfigParser(allow_no_value=True)
     config.read('.deploy.ini')
-    
+
     if not config.getboolean('Docs', 'enable'):
         return None
     
