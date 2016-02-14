@@ -10,9 +10,12 @@ import copy, os
 
 parse_misc()
 
+unity_vers = parse_unity_version()
+unity_vers_url = get_available_unity_vers()[unity_vers]
+
 rebuild_yml = {
     "language": ["objective-c"],
-    "install": ["sh ./.deploy/travis/unity_install.sh"],
+    "install": ["sh ./.deploy/travis/unity_install.sh %s %s" % (unity_vers, unity_vers_url)],
     "script": ["sh ./.deploy/travis/unity_build.sh"],
     "before_deploy": ["sh ./.deploy/travis/pre_deploy.sh"],
     "deploy": [],
@@ -73,11 +76,9 @@ else:
     print "Skipping deployment. ---------------------------------------------------------------------------------------------------"
     print '------------------------------------------------------------------------------------------------------------------------'
 
-unity_vers = parse_unity_version()
-
 #you only get here if there is no deployment since deploy_setup calls exit on success.
 if os.environ["always_run"] == "True": #move on to the build steps. This needs to be invoked like this to be able to pass the env vars created here.
-    if (os.system("sh ./.deploy/travis/unity_install.sh %s %s" % (unity_vers, get_available_unity_vers()[unity_vers])) == 0 and
+    if (os.system("sh ./.deploy/travis/unity_install.sh %s %s" % (unity_vers, unity_vers_url)) == 0 and
         os.system("sh ./.deploy/travis/unity_build.sh") == 0):
         exit(0)
     else:
