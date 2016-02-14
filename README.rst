@@ -169,6 +169,9 @@ Github OAuth Token
 
 Supported Unity Versions
 """""""""""""""""""""""""""
+
+.. _unity_supported_versions.json: .deploy/travis/unity_supported_versions.json
+
 - 5.0.1 
 - 5.0.2
 - 5.0.3
@@ -187,4 +190,25 @@ Supported Unity Versions
 - 5.3.1
 - 5.3.2
 
-Earlier versions are not supported. If a new version has come out and it isn't yet supported, add it to the list and create a pull request.
+Earlier versions are not supported. If a new version has come out and it isn't yet supported, you can follow these instructions to add it:
+
+- `Set up Git <https://help.github.com/articles/set-up-git/>`_;
+- `Fork and clone this repo <https://help.github.com/articles/fork-a-repo/>`_;
+- `Create a branch <https://help.github.com/articles/creating-and-deleting-branches-within-your-repository/>`_ and commit your fixes in it:
+    - Open the `unity_supported_versions.json`_ file with a text editor;
+    - Get the download link to the version you want to add;
+        - Make sure the link refers to the Mac Unity Editor;
+        - Make sure the link ends in ``.pkg``  -  ``.dmg`` links are not supported.
+    - Add the new version to the dictionary like this:
+        .. code-block:: json
+
+            {
+                "5.0.1": "http://download.unity3d.com/download_unity/5a2e8fe35a68/MacEditorInstaller/Unity-5.0.1f1.pkg",
+                "5.0.2": "http://download.unity3d.com/download_unity/0b02744d4013/MacEditorInstaller/Unity-5.0.2f1.pkg",
+                "5.0.3": "http://download.unity3d.com/download_unity/c28c7860811c/MacEditorInstaller/Unity-5.0.3f2.pkg",
+                "5.0.4": "http://download.unity3d.com/download_unity/1d75c08f1c9c/MacEditorInstaller/Unity-5.0.4f1.pkg",
+                "5.1.0": "http://download.unity3d.com/download_unity/ec70b008569d/MacEditorInstaller/Unity-5.1.0f3.pkg",
+                "new.unity.version": "http://unity.editor.download.link.for.mac.pkg"
+            }
+- Push your local branch to your fork;
+- `Create a Pull Request <https://help.github.com/articles/using-pull-requests/>`_ to this fork.
