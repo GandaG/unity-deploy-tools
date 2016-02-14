@@ -65,7 +65,7 @@ if (os.environ["TRAVIS_PULL_REQUEST"] == "false" and
         print '------------------------------------------------------------------------------------------------------------------------'
         print "Skipping deployment. ---------------------------------------------------------------------------------------------------"
         print '------------------------------------------------------------------------------------------------------------------------'
-    else:        
+    else:
         deploy_setup(os.environ["GH_TOKEN"], deploy_yml)
     
 else:
@@ -73,9 +73,11 @@ else:
     print "Skipping deployment. ---------------------------------------------------------------------------------------------------"
     print '------------------------------------------------------------------------------------------------------------------------'
 
+unity_vers = parse_unity_version()
+
 #you only get here if there is no deployment since deploy_setup calls exit on success.
 if os.environ["always_run"] == "True": #move on to the build steps. This needs to be invoked like this to be able to pass the env vars created here.
-    if (os.system("sh ./.deploy/travis/unity_install.sh") == 0 and
+    if (os.system("sh ./.deploy/travis/unity_install.sh %s %s" % (unity_vers, get_available_unity_vers()[unity_vers])) == 0 and
         os.system("sh ./.deploy/travis/unity_build.sh") == 0):
         exit(0)
     else:

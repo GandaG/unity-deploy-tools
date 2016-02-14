@@ -17,17 +17,17 @@ def parse_misc():
         print "Something in [Misc] already exists as an env variable. Change it to something else."
         exit(1)
 
-def parse_unity_versions():
+def parse_unity_version():
     
     config = ConfigParser.RawConfigParser(allow_no_value=True)
     config.read('.deploy.ini')
     
-    unity_vers = config.get('Misc', 'unity_versions')
+    unity_vers = config.get('Misc', 'unity_version')
     
     if not unity_vers:
-        return ["5.0.1"] #once/if a scraper is written this should return the latest version.
+        return "5.0.1" #once/if a scraper is written this should return the latest version.
     
-    return unity_vers.split()
+    return unity_vers
     
 def get_available_unity_vers():
     
