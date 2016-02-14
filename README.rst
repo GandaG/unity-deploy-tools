@@ -20,8 +20,7 @@ Unity Deployment Tools offers a quick way to setup open source unity packages. I
 - a self-documented and easy to use `.ini`_ file to configure all the options;
 - automated package/asset exporting from unity;
 - automated deployment to Github Releases;
-- automated creation and deployment of documentation to Github Pages;
-- automated deployment to Unity's Asset Store. [TODO]
+- automated creation and deployment of documentation to Github Pages.
 
 Projects using UDT
 """"""""""""""""""
@@ -122,7 +121,6 @@ Known Issues
 *****************
 Upcoming Features
 *****************
-- Automated package deployment to `Unity <https://unity3d.com/>`_'s Asset Store.
 - Automated compiling and distribution as a .dll file.
 
 ******
