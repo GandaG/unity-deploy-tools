@@ -4,5 +4,5 @@ install:
   - sh ./.deploy/travis/py_set_up.sh
 
 script:
-  - python ./.deploy/travis/main_parser.py
+  - travis_wait 30 python ./.deploy/travis/main_parser.py
 
